@@ -4,9 +4,11 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import { Navigation } from "@/components/navigation"
+import { Navigation } from "@/components/navigation";
 
-import { ThemeProvider } from "@/components/theme-provider"
+import { ThemeProvider } from "@/components/theme-provider";
+
+import { MovementComponent } from "@/components/hero";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,20 +23,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-      <Navigation />
-      <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-
-        {children}
-        
-        
+        <Navigation />
+        <MovementComponent />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
         </ThemeProvider>
-
-        </body>
+      </body>
     </html>
   );
 }
