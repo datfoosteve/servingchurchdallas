@@ -8,6 +8,8 @@ import { Navigation } from "@/components/navigation";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
+import {Footer} from "@/components/footer";
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -30,6 +32,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

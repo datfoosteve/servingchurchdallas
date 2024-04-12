@@ -18,7 +18,7 @@ export function MovementComponent() {
           style={{ objectFit: "cover" }}
         />
         <div className="text-content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="text-4xl font-bold text-white text-left">
+          <h2 className="text-4xl font-bold text-white text-left shadow-lg border-b-0 ">
             A MOVEMENT FOR ALL PEOPLE TO
           </h2>
         </div>
