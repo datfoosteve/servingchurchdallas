@@ -8,7 +8,6 @@ import { Navigation } from "@/components/navigation";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
-import { MovementComponent } from "@/components/hero";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -24,7 +23,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navigation />
-        <MovementComponent />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
