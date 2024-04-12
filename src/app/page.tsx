@@ -1,7 +1,5 @@
 
 
-import Image from "next/image";
-
 import { MovementComponent } from "@/components/hero";
 import { MiracleSection } from "@/components/miracle";
 
@@ -13,7 +11,7 @@ export default function Home() {
     
       <MovementComponent />
       <MiracleSection />
-      <Image src="/logo.svg" width={200} height={200} alt="Logo" />
+      
     </main>
   );
 }
