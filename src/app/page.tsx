@@ -2,6 +2,7 @@
 
 import { MovementComponent } from "@/components/hero";
 import { MiracleSection } from "@/components/miracle";
+import OurLocations from "@/components/ourlocations";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
     
       <MovementComponent />
       <MiracleSection />
+      <OurLocations />
       
     </main>
   );

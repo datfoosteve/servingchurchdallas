@@ -10,7 +10,7 @@ import { navigationMenuTriggerStyle } from "@/components/ui/navigation-menu"
  
 import { cn } from "@/lib/utils"
 
-import yourImagePath from '/src/images/fakelogo.png';
+import yourImagePath from '/src/images/logowordhome.svg';
 
 
 import {
@@ -27,14 +27,14 @@ import {
 
   export function Navigation() {
     return (
-        <nav className="sticky top-0 z-auto bg-white shadow flex items-center justify-between p-4">
+        <nav className="sticky mx-auto top-0 z-auto bg-white shadow flex items-center justify-between p-4">
         {/* Logo Section */}
-        <NavigationMenuItem className="flex items-center">
+        <NavigationMenuItem className="flex items-center mx-5">
 
             <Image
       src={yourImagePath}
-      width={50}
-      height={50}
+      width={120}
+      height={40}
       alt="Logo"
     />
           
