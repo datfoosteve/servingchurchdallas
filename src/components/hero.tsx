@@ -22,16 +22,16 @@ export function MovementComponent() {
       </div>
       <div className="blocks-container grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 px-4 sm:px-8 lg:px-40 -translate-y-16 sm:-translate-y-24 lg:-translate-y-32">
         <div className="block know-god bg-gradient-to-br from-[#33869b] to-[#197fa4] text-white p-8">
-          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">KNOW GOD</p>
+          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">EXPERIANCE GOD</p>
         </div>
         <div className="block find-freedom bg-gradient-to-br from-[#308295] to-[#b8c1be] text-white p-8">
-          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">FIND FREEDOM</p>
+          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">BECOME A DISCIPLE</p>
         </div>
         <div className="block discover-calling bg-gradient-to-br from-[#b1ada4] to-[#c3440d] text-white p-8">
-          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">DISCOVER CALLING</p>
+          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">FIND YOUR PURPOSE</p>
         </div>
         <div className="block make-a-difference bg-gradient-to-br from-[#8a8684] to-[#f36f0a] text-white p-8">
-          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">MAKE A DIFFERENCE</p>
+          <p className="text-2xl font-bold text-left pt-24 sm:pt-32">JOIN A FAMILY</p>
         </div>
       </div>
       <div className="welcome-section px-4 sm:px-8">
