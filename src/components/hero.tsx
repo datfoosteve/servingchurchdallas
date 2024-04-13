@@ -6,7 +6,7 @@ import { Separator } from "@/components/ui/separator";
 
 export function MovementComponent() {
   return (
-    <div className="movement-container p-0">
+    <div className="movement-container place-content-center p-1">
       <div className="hero-section relative">
       <Image
   src={yourImagePath}
