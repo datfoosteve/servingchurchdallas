@@ -1,7 +1,7 @@
 
 import React from "react";
 import Image from "next/image";
-import yourImagePath from "/src/images/aiminlife.svg";
+import yourImagePath from "/src/images/aiminlife.png";
 import { Separator } from "@/components/ui/separator"
 
 export function MiracleSection () {
