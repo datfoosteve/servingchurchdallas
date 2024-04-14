@@ -1,53 +1,55 @@
+"use client";
 
 import React from "react";
 import Image from "next/image";
 import yourImagePath from "/src/images/aiminlife.png";
-import { Separator } from "@/components/ui/separator"
+import { Separator } from "@/components/ui/separator";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
-export function MiracleSection () {
+export function MiracleSection() {
   return (
     <section className="bg-gray-50 p-8 pt-10">
-      <div className="container mx-auto flex flex-col md:flex-row gap-8">
-        <div className="md:w-1/2">
-        <Image
-          src={yourImagePath}
-          alt="Background"
-          quality={100}
-         
-          style={{ objectFit: "cover" }}
-        />
+      <h2 className="text-4xl font-bold text-center mb-4">
+        Sermon Series - Pastor Sam Thomas
+      </h2>
+      <Separator className="bg-red-600" />
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+        <div className="relative">
+          <Image
+            src={yourImagePath}
+            alt="Background"
+            quality={100}
+            layout="responsive"
+            objectFit="cover"
+            className="rounded-lg shadow-md"
+          />
         </div>
-        <div className="md:w-1/2">
-          <h2 className="text-4xl font-bold mb-4">WHAT IS YOUR AIM IN LIFE?</h2>
-          <p className="text-lg mb-8">
-            We will be discussing the bigger questions of life and considering what God needs of us.
-          </p>
-
-          <Separator className="border-gray-200 mb-8" />
-
-          <div className="flex justify-between items-center">
-            <div className="bg-white rounded-lg p-4 shadow">
-              <p className="text-lg font-mono">OUR NEXT SERVICE</p>
-              <p className="text-3xl font-mono">00 : 06 : 55 : 13</p>
-              <p className="text-sm font-mono">Day(s) Hour(s) Minute(s) Second(s)</p>  
-            </div>
-
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-blue-500">
-                <i className="fab fa-facebook text-2xl"></i>
-              </a>
-              <a href="#" className="hover:text-blue-400">
-                <i className="fab fa-twitter text-2xl"></i>
-              </a>
-              <a href="#" className="hover:text-orange-600">
-                <i className="fab fa-instagram text-2xl"></i>
-              </a>
-            </div>
-          </div>
-
-        </div>
+        <Card className="shadow-lg">
+          <CardHeader>
+            <CardTitle className="text-3xl font-bold mb-2">WHAT IS YOUR AIM IN LIFE?</CardTitle>
+            <CardDescription className="text-lg text-gray-600 mb-4">
+              We will be discussing the bigger questions of life and considering what God needs
+              of us.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <Separator className="border-gray-200 mb-4" />
+            {/* Add social media links or other content */}
+          </CardContent>
+          <CardFooter className="flex justify-end">
+            <button className="bg-red-600 text-white px-4 py-2 rounded-lg shadow-md hover:bg-red-700">
+              Join Us
+            </button>
+          </CardFooter>
+        </Card>
       </div>
     </section>
-  )
+  );
 }
-

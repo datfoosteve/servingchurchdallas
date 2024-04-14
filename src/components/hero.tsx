@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import yourImagePath from "/src/images/samwise.png";
 import { Separator } from "@/components/ui/separator";
+import { Bold } from "lucide-react";
 
 export function MovementComponent() {
   return (
@@ -16,7 +17,7 @@ export function MovementComponent() {
 />
         <div className="text-content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
           <h2 className="text-4xl font-bold text-white text-center shadow-lg border-b-0 px-4 sm:text-left">
-            A MOVEMENT FOR ALL PEOPLE TO
+           <p className="prose">A <strong className="">FAMILY</strong> TRYING TO LOOK LIKE <strong>CHRIST</strong></p> 
           </h2>
         </div>
       </div>
