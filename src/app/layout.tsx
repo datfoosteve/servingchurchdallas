@@ -4,7 +4,8 @@ import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
-import { Navigation } from "@/components/navigation";
+// import { Navigation } from "@/components/navigation";
+import { NavComponent } from "@/components/component/navcomponent";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
@@ -24,7 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navigation />
+        {/* <Navigation /> */}
+        <NavComponent />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
