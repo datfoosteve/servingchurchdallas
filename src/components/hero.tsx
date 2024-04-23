@@ -7,10 +7,10 @@ import { Separator } from "@/components/ui/separator";
 export function MovementComponent() {
   return (
     <div className="movement-container place-content-center p-1 z-0 w-screen">
-      <div className="hero-section relative inline-block z-50">
+      <div className="hero-section relative inline-block z-50 d">
         <Image src={yourImagePath} alt="Background" height={500} width={1920} />
         <div className="text-content absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h2 className="text-4xl font-bold text-white text-center shadow-lg border-b-0 px-4 sm:text-left">
+          <h2 className="md:text-4xl sm:text-base lg:text-6xl text-border border-gray-950 font-bold text-white text-center shadow-lg border-b-1 px-4 sm:text-left">
             <p className="prose">
               A <strong className="bg-gradient-to-r from-blue-800 to-rose-600 bg-clip-text text-transparent">FAMILY</strong> TRYING TO LOOK LIKE{" "}
               <strong className=" bg-gradient-to-r from-emerald-400 via-violet-600 to-amber-500 bg-clip-text text-transparent max-w-xs transition duration-300 ease-in-out hover:scale-110">CHRIST</strong>
