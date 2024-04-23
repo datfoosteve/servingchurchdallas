@@ -43,27 +43,27 @@ import { NavigationMenuLink, NavigationMenuTrigger, NavigationMenuContent, Navig
 
 export function NavComponent() {
   return (
-    <header className="flex container justify-center h-20 w-screen shrink-0 items-center px-4 md:px-6">
+    <header className="flex container justify-center h-20 w-screen shrink-0 items-center px-4 md:px-6 sticky top-0 z-50">
 
 <div className="w-[150px] flex items-center">
   <Link href="/" passHref>
-    <div className="flex items-center gap-2 text-lg font-semibold md:text-base">
+    <div className="flex gap-2 text-lg font-semibold md:text-base">
       <Image src={yourImagePath} width={140} height={35} alt="Logo" layout="intrinsic" />
       <span className="sr-only">Serving Church</span>
     </div>
   </Link>
 </div>
-<div className="mx-auto flex items-center justify-center">
+<div className="mx-auto flex items-center justify-self-center">
       <Sheet>
-        <SheetTrigger asChild>
+        <SheetTrigger asChild >
           <Button className="lg:hidden" size="icon" variant="outline">
-            <MenuIcon className="h-6 w-6 " />
+            <MenuIcon className="h-8 w-8 justify-self-center" />
             <span className="sr-only">Toggle navigation menu</span>
           </Button>
         </SheetTrigger>
         <SheetContent side="left">
           <Link className="mr-6 hidden lg:flex items-center gap-2 text-lg font-semibold md:text-base" href="/">
-            <MountainIcon className="h-6 w-6" />
+            <Image src={yourImagePath} width={140} height={35} alt="Logo" layout="intrinsic" />
             <span className="sr-only">Serving Church</span>
           </Link>
           <div className="grid gap-2 py-6">
@@ -264,21 +264,3 @@ function MenuIcon(props: any) {
 }
 
 
-function MountainIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-    </svg>
-  )
-}
