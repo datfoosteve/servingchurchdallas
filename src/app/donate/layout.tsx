@@ -1,6 +1,8 @@
 // src/app/donate/layout.tsx
+"use client";
+
 import { Rubik } from 'next/font/google';
-import Script from 'next/script';
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 const rubik = Rubik({
   subsets: ['latin'],
@@ -15,6 +17,13 @@ type LayoutProps = {
 };
 
 export default function Layout({ children }: LayoutProps) {
+  const initialOptions = {
+    clientId: "Aei8lGQxd0aIRyJTmhuGCTDj_8tCd_9cG9liz-9tKVkMfz8NgZGzQ4km-JmBQ_PuFcrKs1vvCHhUlAfG", // use camelCase for clientId
+  currency: "USD",
+  intent: "capture",
+    // Include any other options you need
+  };
+  
   return (
     <html lang="en">
       <head>
@@ -23,11 +32,9 @@ export default function Layout({ children }: LayoutProps) {
       </head>
       <body className={rubik.variable}>
         <NavComponent />
-        <Script
-          src="https://www.paypal.com/sdk/js?client-id=Aei8lGQxd0aIRyJTmhuGCTDj_8tCd_9cG9liz-9tKVkMfz8NgZGzQ4km-JmBQ_PuFcrKs1vvCHhUlAfG"
-          strategy="afterInteractive"
-        />
-        {children}
+        <PayPalScriptProvider options={initialOptions}>
+          {children}
+        </PayPalScriptProvider>
       </body>
     </html>
   );
