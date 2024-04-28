@@ -11,6 +11,7 @@ const rubik = Rubik({
 });
 
 import { NavComponent } from "@/components/component/navcomponent";
+import { Footer } from '@/components/footer';
 
 type LayoutProps = {
   children: React.ReactNode;  // Explicitly typing the children prop
@@ -35,6 +36,7 @@ export default function Layout({ children }: LayoutProps) {
         <PayPalScriptProvider options={initialOptions}>
           {children}
         </PayPalScriptProvider>
+        < Footer />
       </body>
     </html>
   );
