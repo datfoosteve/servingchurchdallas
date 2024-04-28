@@ -36,7 +36,6 @@ export default function Layout({ children }: LayoutProps) {
         <PayPalScriptProvider options={initialOptions}>
           {children}
         </PayPalScriptProvider>
-        < Footer />
       </body>
     </html>
   );
