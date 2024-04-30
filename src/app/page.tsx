@@ -2,7 +2,7 @@
 
 import { MovementComponent } from "@/components/hero";
 import { MiracleSection } from "@/components/miracle";
-import LocationAndCountdown from "@/components/locationandcountdown";
+// import LocationAndCountdown from "@/components/locationandcountdown";
 
 
 
@@ -13,7 +13,7 @@ export default function Home() {
     
       <MovementComponent />
       <MiracleSection />
-      <LocationAndCountdown />
+      {/* <LocationAndCountdown /> */}
     
       
     </main>
