@@ -1,24 +1,113 @@
 // src/pages/more/who-we-are.tsx
+"use client";
+
 import React from 'react';
-import { Card, CardContent, CardTitle } from '@/components/ui/card';
+import Image from 'next/image';
+import Miracle from "/src/images/miracle.png";
 
 const WhoWeArePage = () => {
   return (
-    <div className="container mx-auto px-4 py-8">
-      <Card>
-        <CardContent>
-          <CardTitle className="text-4xl font-bold mb-4">Who We Are</CardTitle>
-          <p>
-            We are a community of faith, committed to making a difference in the world around us.
-            Our mission is to spread love, hope, and joy to all corners of the globe.
-          </p>
-          <p>
-            Founded in 1984, our community has grown to include thousands of members worldwide,
-            dedicated to various causes and outreach programs.
-          </p>
-        </CardContent>
-      </Card>
-    </div>
+    <main key="1" className="w-full max-w-6xl mx-auto py-12 md:py-20 px-4 md:px-6">
+      <div className="space-y-12 md:space-y-16">
+        <section>
+          <h2 className="text-3xl font-bold mb-6 md:mb-8">Pastor and Family</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { name: "Pastor Sam Thomas", role: "Lead Pastor, Husband, Father", src: Miracle },
+              { name: "Hepsy Sam", role: "Pastor's Wife, Mother", src: Miracle },
+              { name: "Zion", role: "Pastor's Son", src: Miracle }
+            ].map((person, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <Image
+                  alt={person.name}
+                  className="w-full h-48 object-cover"
+                  src={person.src}
+                  layout="responsive"
+                  width={400}
+                  height={400}
+                />
+                <div className="p-4 md:p-6">
+                  <h3 className="text-xl font-semibold mb-2">{person.name}</h3>
+                  <p className="text-gray-500 text-sm">{person.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-6 md:mb-8">Worship Leaders</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { name: "Arlie Sam", role: "Worship Leader, Vocalist", src: Miracle },
+              { name: "Jessica Thomas", role: "Worship Leader, Guitarist", src: Miracle },
+              { name: "Sam Thomas", role: "Worship Leader, Pianist", src: Miracle }
+            ].map((leader, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <Image
+                  alt={leader.name}
+                  className="w-full h-48 object-cover"
+                  src={leader.src}
+                  layout="responsive"
+                  width={400}
+                  height={400}
+                />
+                <div className="p-4 md:p-6">
+                  <h3 className="text-xl font-semibold mb-2">{leader.name}</h3>
+                  <p className="text-gray-500 text-sm">{leader.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-6 md:mb-8">Lead Photographer and Videographer</h2>
+          <div className="flex justify-center">
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden w-full sm:w-2/3 md:w-1/2">
+              <Image
+                alt="Marvin Mathew"
+                className="w-full h-48 object-cover"
+                src={Miracle}
+                layout="responsive"
+                width={400}
+                height={400}
+              />
+              <div className="p-4 md:p-6">
+                <h3 className="text-xl font-semibold mb-2">Marvin Mathew</h3>
+                <p className="text-gray-500 text-sm">Lead Photographer and Videographer</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-6 md:mb-8">Music Production Team</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { name: "Jacob", role: "Guitarist, Music Producer", src: Miracle },
+              { name: "Sam THomas", role: "Pianist, Music Producer", src: Miracle },
+              { name: "Justina Mathew", role: "Vocalist, Music Producer", src: Miracle }
+            ].map((member, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <Image
+                  alt={member.name}
+                  className="w-full h-48 object-cover"
+                  src={member.src}
+                  layout="responsive"
+                  width={400}
+                  height={400}
+                />
+                <div className="p-4 md:p-6">
+                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                  <p className="text-gray-500 text-sm">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+    </main>
   );
 };
 
