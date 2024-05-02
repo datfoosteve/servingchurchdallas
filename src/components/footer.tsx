@@ -28,7 +28,7 @@ export function Footer (){
               <Link href="https://twitter.com/theservingchurch" target="_blank" rel="noopener noreferrer">
                 <FaTwitter className="text-6xl hover:text-gray-300" />
               </Link>
-              <Link href="https://www.instagram.com/theservingchurch" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.instagram.com/theservingchurchdallas?igsh=MXJkNDA4bm4yY3dlNg==" target="_blank" rel="noopener noreferrer">
                 <FaInstagram className="text-6xl hover:text-gray-300" />
               </Link>
               <Button className="text-white hover:text-gray-300">

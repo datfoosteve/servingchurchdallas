@@ -43,7 +43,7 @@ import { NavigationMenuLink, NavigationMenuTrigger, NavigationMenuContent, Navig
 
 export function NavComponent() {
   return (
-    <header className="flex container justify-center h-20 w-screen shrink-0 items-center px-4 md:px-6 sticky top-0 z-50">
+    <header className="flex container justify-center h-20 w-screen shrink-0 items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90">
 
 <div className="w-[150px] flex items-center">
   <Link href="/" passHref>
@@ -129,7 +129,7 @@ export function NavComponent() {
         <NavigationMenuList>
           <NavigationMenuLink asChild>
             <Link
-              className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+              className="group inline-flex h-12 w-max items-center justify-center rounded-sm backdrop-blur-md bg-white bg-opacity-50 px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
               href="/about-us"
             >
               About Us
