@@ -61,6 +61,33 @@ const WhoWeArePage = () => {
           </div>
         </section>
 
+
+        <section>
+          <h2 className="text-3xl font-bold mb-6 md:mb-8">Music Production Team</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+            {[
+              { name: "Jacob", role: "Guitarist, Music Producer", src: Miracle },
+              { name: "Sam Thomas", role: "Pianist, Music Producer", src: Miracle },
+              { name: "Justina Mathew", role: "Vocalist, Music Producer", src: Miracle }
+            ].map((member, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
+                <Image
+                  alt={member.name}
+                  className="w-full h-48 object-cover"
+                  src={member.src}
+                  layout="responsive"
+                  width={400}
+                  height={400}
+                />
+                <div className="p-4 md:p-6">
+                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
+                  <p className="text-gray-500 text-sm">{member.role}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section>
           <h2 className="text-3xl font-bold mb-6 md:mb-8">Lead Photographer and Videographer</h2>
           <div className="flex justify-center">
@@ -81,31 +108,6 @@ const WhoWeArePage = () => {
           </div>
         </section>
 
-        <section>
-          <h2 className="text-3xl font-bold mb-6 md:mb-8">Music Production Team</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-            {[
-              { name: "Jacob", role: "Guitarist, Music Producer", src: Miracle },
-              { name: "Sam THomas", role: "Pianist, Music Producer", src: Miracle },
-              { name: "Justina Mathew", role: "Vocalist, Music Producer", src: Miracle }
-            ].map((member, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <Image
-                  alt={member.name}
-                  className="w-full h-48 object-cover"
-                  src={member.src}
-                  layout="responsive"
-                  width={400}
-                  height={400}
-                />
-                <div className="p-4 md:p-6">
-                  <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
-                  <p className="text-gray-500 text-sm">{member.role}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
     </main>
   );

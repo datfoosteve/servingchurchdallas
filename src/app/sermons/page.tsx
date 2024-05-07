@@ -12,7 +12,7 @@ const SermonsPage = () => {
           <div className="flex container w-screen">
             <iframe
               src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins&feed=true"
-              allow="autoplay; encrypted-media"
+              title="sermons"
               className="flex container grow w-3/4 h-screen box-content overflow-hidden shadow-border"
             ></iframe>
           </div>

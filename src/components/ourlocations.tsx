@@ -10,13 +10,12 @@ const OurLocation: React.FC = () => {
         <h2 className="text-3xl font-bold mb-8 text-center text-white">OUR LOCATION</h2>
         <div className="flex flex-col md:flex-row items-center justify-center">
           <div className="md:w-1/2 mb-8 md:mb-0">
-            <iframe
+            <iframe className="box-border shadow-lg rounded-lg"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3347.9804983189554!2d-96.56547248481534!3d32.80821678096323!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864ea0b9f3e5fded%3A0x8de8a05e8e5c8e5d!2sSunnyvale%20ISD!5e0!3m2!1sen!2sus!4v1621887204247!5m2!1sen!2sus"
               width="100%"
               height="650"
-              style={{ border: 2 }}
               allowFullScreen
-              loading="lazy"
+              title='Our Location'
             ></iframe>
           </div>
           <div className="md:w-1/2 md:pl-8">
