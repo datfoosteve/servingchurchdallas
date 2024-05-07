@@ -9,7 +9,7 @@ import { NavComponent } from "@/components/component/navcomponent";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
-import {Footer} from "@/components/footer";
+import  Footer  from "@/components/footer";
 
 
 export const metadata: Metadata = {
