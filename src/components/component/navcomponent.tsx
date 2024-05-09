@@ -163,38 +163,51 @@ export function NavComponent() {
                 Events
               </Link>
               </SheetTrigger>
+              
               <Collapsible className="grid gap-4">
                 <CollapsibleTrigger className="flex w-full items-center text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
                   More
                   <ChevronRightIcon className="ml-auto h-5 w-5 transition-all" />
                 </CollapsibleTrigger>
                 <CollapsibleContent>
-                  <div className="-mx-6 grid gap-6 bg-gray-100 p-6 ">
+                  <div className="grid gap-6 bg-gray-100 p-6 ">
+
                     <SheetTrigger asChild>
+                      
                     <Link
                       className="group grid h-auto w-full justify-start gap-1"
                       href="/more/gallery"
                     >
+                      <>
                       <div className="text-sm font-medium leading-none group-hover:underline">
                         Gallery
                       </div>
                       <div className="line-clamp-2 text-sm leading-snug text-gray-500 ">
                         View our photo gallery.
                       </div>
+                      </>
                     </Link>
+                    
                     </SheetTrigger>
+
                     <SheetTrigger asChild>
+                    
                     <Link
                       className="group grid h-auto w-full justify-start gap-1"
                       href="/more/who-we-are"
                     >
+                      <>
                       <div className="text-sm font-medium leading-none group-hover:underline">
                         Who We Are
                       </div>
                       <div className="line-clamp-2 text-sm leading-snug text-gray-500 ">
                         Learn more about our church.
                       </div>
-                    </Link> </SheetTrigger>
+                      </>
+                    </Link> 
+                    
+                    </SheetTrigger>
+
                   </div>
                 </CollapsibleContent>
               </Collapsible>

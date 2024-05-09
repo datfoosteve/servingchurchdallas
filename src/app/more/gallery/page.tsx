@@ -1,6 +1,7 @@
 // src/pages/more/gallery.tsx
 // src/pages/more/gallery.tsx
 
+"use client";
 
 import React from 'react';
 import { Carousel, CarouselItem, CarouselContent, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';

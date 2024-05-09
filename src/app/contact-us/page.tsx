@@ -19,12 +19,12 @@ const ContactUsPage = () => {
       <div className="grid grid-cols-2 gap-4">
         <Button asChild>
           <Link href="/contact-church">
-            <a className="w-full h-full inline-flex justify-center items-center">Contact Church</a>
+            <div className="w-full h-full inline-flex justify-center items-center">Contact Church</div>
           </Link>
         </Button>
         <Button asChild>
           <Link href="/prayer-request">
-            <a className="w-full h-full inline-flex justify-center items-center">Prayer Requests</a>
+            <div className="w-full h-full inline-flex justify-center items-center">Prayer Requests</div>
           </Link>
         </Button>
       </div>

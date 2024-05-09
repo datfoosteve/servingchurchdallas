@@ -13,12 +13,12 @@ const MorePage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Button asChild>
               <Link href="/more/gallery">
-                <a className="w-full h-full inline-flex justify-center items-center">Gallery</a>
+                <div className="w-full h-full inline-flex justify-center items-center">Gallery</div>
               </Link>
             </Button>
             <Button asChild>
               <Link href="/more/who-we-are">
-                <a className="w-full h-full inline-flex justify-center items-center">Who We Are</a>
+                <div className="w-full h-full inline-flex justify-center items-center">Who We Are</div>
               </Link>
             </Button>
           </div>
