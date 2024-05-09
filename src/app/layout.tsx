@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import React from 'react';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,6 +12,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 import  Footer  from "@/components/footer";
 
+const ViewTransitions = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.ViewTransitions })));
 
 export const metadata: Metadata = {
   title: "The Serving Church",
@@ -23,6 +25,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    
+    <ViewTransitions>
     <html lang="en">
       <body className={inter.className}>
         {/* <Navigation /> */}
@@ -38,5 +42,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    </ViewTransitions>
   );
 }

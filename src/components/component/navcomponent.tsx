@@ -33,11 +33,13 @@ To read more about using these font, please visit the Next.js documentation:
 
 "use client";
 
+import React from 'react';
 import Image from "next/image";
 import yourImagePath from "/src/images/logowordhome.svg";
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
-import Link from "next/link";
+// import Link from "next/link";
+const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import {
   CollapsibleTrigger,
   CollapsibleContent,
@@ -52,11 +54,14 @@ import {
   NavigationMenu,
 } from "@/components/ui/navigation-menu";
 
+import { Skeleton } from "@/components/ui/skeleton"
+
 import ChevronRightIcon from "@/images/icons/ChevronRightIcon";
 import MenuIcon from "@/images/icons/MenuIcon";
 
 export function NavComponent() {
   return (
+    <React.Suspense fallback={<Skeleton className="w-[100px] h-[20px] rounded-full" />}>
     <header className="flex container justify-center h-20 w-screen shrink-0 items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90">
       <div className="w-[150px] flex items-center">
         <Link href="/" passHref>
@@ -150,13 +155,14 @@ export function NavComponent() {
                 </CollapsibleContent>
               </Collapsible>
 
-             
+              <SheetTrigger asChild>
               <Link
                 className="flex w-full items-center py-2 text-lg font-semibold"
                 href="/events"
               >
                 Events
               </Link>
+              </SheetTrigger>
               <Collapsible className="grid gap-4">
                 <CollapsibleTrigger className="flex w-full items-center text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
                   More
@@ -164,6 +170,7 @@ export function NavComponent() {
                 </CollapsibleTrigger>
                 <CollapsibleContent>
                   <div className="-mx-6 grid gap-6 bg-gray-100 p-6 ">
+                    <SheetTrigger asChild>
                     <Link
                       className="group grid h-auto w-full justify-start gap-1"
                       href="/more/gallery"
@@ -175,6 +182,8 @@ export function NavComponent() {
                         View our photo gallery.
                       </div>
                     </Link>
+                    </SheetTrigger>
+                    <SheetTrigger asChild>
                     <Link
                       className="group grid h-auto w-full justify-start gap-1"
                       href="/more/who-we-are"
@@ -185,16 +194,18 @@ export function NavComponent() {
                       <div className="line-clamp-2 text-sm leading-snug text-gray-500 ">
                         Learn more about our church.
                       </div>
-                    </Link>
+                    </Link> </SheetTrigger>
                   </div>
                 </CollapsibleContent>
               </Collapsible>
+              <SheetTrigger asChild>
               <Link
                 className="flex w-full items-center py-2 text-lg font-semibold"
                 href="/sermons"
               >
                 Sermons
               </Link>
+              </SheetTrigger>
             </div>
           </SheetContent>
         </Sheet>
@@ -311,6 +322,7 @@ export function NavComponent() {
         </Button>
       </div>
     </header>
+    </React.Suspense>
   );
 }
 
