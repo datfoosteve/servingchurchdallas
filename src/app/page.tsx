@@ -15,8 +15,9 @@ export default function Home() {
     
       <MovementComponent />
       <WelcomeSection />
-      <ValueBlocks />
       <MiracleSection />
+      <ValueBlocks />
+      
       {/* <LocationAndCountdown /> */}
     
       

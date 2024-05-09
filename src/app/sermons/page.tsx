@@ -5,7 +5,7 @@ import { Card, CardContent, CardTitle } from '@/components/ui/card';
 
 const SermonsPage = () => {
   return (
-    <div className="flex container mx-auto px-2 py-8">
+    <div className="flex container mx-auto px-2 py-8 shadow-border">
       <Card>
         <CardContent>
           <CardTitle className="text-4xl font-bold mb-4 content-center text-center">Sermons</CardTitle>

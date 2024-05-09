@@ -1,10 +1,12 @@
 import React from "react";
 import Link from "next/link";
 import CrossIcon  from '@/images/icons/CrossIcon';
+import { Button } from "@/components/ui/button"
+import ChurchIcon from "@/images/icons/ChurchIcon";
 
 export function WelcomeSection() {
   return (
-    <section className="bg-gray-50 py-20 md:py-32 lg:py-40">
+    <section className="bg-white py-20 w-screen md:py-32 lg:py-40">
     <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl text-center">
       <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
         Welcome to Our Church
@@ -17,11 +19,20 @@ export function WelcomeSection() {
       <p className="text-lg md:text-xl text-gray-600 mx-auto leading-relaxed max-w-3xl">
         Discover the joy and community of our vibrant church. Join us as we worship, grow, and serve together.
       </p>
-      <Link href="/about">
-        <div className="mt-8 inline-block bg-purple-600 text-white font-medium px-6 py-3 rounded-full shadow-lg transition-colors hover:bg-purple-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-600 focus-visible:ring-offset-2">
-          Explore Our Church
-        </div>
+      <div className="pt-4">
+      <Link href="/about-us">
+      <Button
+      className="relative overflow-hidden rounded-full px-6 py-3 font-semibold shadow-lg transition-all hover:shadow-none active:scale-95"
+      variant="ghost"
+    >
+      <div className="absolute -inset-px rounded-full bg-gradient-to-r from-purple-600 to-blue-600 opacity-20 blur-lg transition duration-1000 group-hover:opacity-100 group-hover:duration-300 animate-tilt" />
+      <div className="relative flex items-center justify-center gap-2">
+        <ChurchIcon className="h-5 w-5 fill-white" />
+        <span>Join Us</span>
+      </div>
+    </Button>
       </Link>
+      </div>
     </div>
   </section>
 );
