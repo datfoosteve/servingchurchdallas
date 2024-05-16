@@ -28,7 +28,7 @@ export function ValueBlocks() {
                                 <p className="text-center text-gray-600">
                                     {card.description}
                                 </p>
-                                <Button variant="link">Learn More</Button>
+                                
                             </CardContent>
                         </Card>
                     ))}

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Calendar } from "@/components/ui/calendar"; // Adjust the import path as necessary
 import "react-calendar/dist/Calendar.css"; // Keep if you need to override default styles
 import { format } from "date-fns";
-import Link from "next/link";
+const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 
 import {
   Card,

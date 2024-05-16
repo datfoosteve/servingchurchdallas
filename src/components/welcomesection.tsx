@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import CrossIcon  from '@/images/icons/CrossIcon';
 import { Button } from "@/components/ui/button"
 import ChurchIcon from "@/images/icons/ChurchIcon";
@@ -20,7 +20,7 @@ export function WelcomeSection() {
         Discover the joy and community of our vibrant church. Join us as we worship, grow, and serve together.
       </p>
       <div className="pt-4">
-      <Link href="/about-us">
+      <Link href="/contact-us/contact-church">
       <Button
       className="relative overflow-hidden rounded-full px-6 py-3 font-semibold shadow-lg transition-all hover:shadow-none active:scale-95"
       variant="ghost"

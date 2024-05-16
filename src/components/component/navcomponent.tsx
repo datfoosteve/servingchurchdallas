@@ -38,7 +38,7 @@ import Image from "next/image";
 import yourImagePath from "/src/images/logowordhome.svg";
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
-// import Link from "next/link";
+// const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import {
   CollapsibleTrigger,

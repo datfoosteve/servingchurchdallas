@@ -20,7 +20,8 @@
 // export default AboutUsPage;
 "use client";
 // app/about-us/page.tsx
-import Link from "next/link";
+import React from "react";
+const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import Image from "next/image";
 import yourImagePath from "/src/images/church.png"; // Adjust the image path as needed
 import ChurchIcon from '../../images/icons/ChurchIcon';
