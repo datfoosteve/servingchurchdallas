@@ -62,8 +62,8 @@ import MenuIcon from "@/images/icons/MenuIcon";
 export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="w-[100px] h-[20px] rounded-full" />}>
-   <header className="flex container justify-between h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90">
-  <div className="w-[150px] flex items-center">
+   <header className="flex justify-between h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90">
+  <div className="flex items-center gap-12"> {/* Add gap for spacing */}
     <Link href="/" passHref>
       <div className="flex gap-2 text-lg font-semibold md:text-base">
         <Image
@@ -76,11 +76,9 @@ export function NavComponent() {
         <span className="sr-only">Serving Church</span>
       </div>
     </Link>
-  </div>
-  <div className="flex-1 flex justify-center items-center lg:hidden">
     <Sheet>
       <SheetTrigger asChild>
-        <Button className="self-center" size="icon" variant="outline">
+        <Button className="self-center lg:hidden" size="icon" variant="outline">
           <MenuIcon className="h-8 w-8" />
           <span className="sr-only">Toggle navigation menu</span>
         </Button>
@@ -318,7 +316,7 @@ export function NavComponent() {
       </NavigationMenuList>
     </NavigationMenu>
     </div>
-  <div className="ml-auto w-[150px]">
+  <div className="ml-auto flex items-center gap-4"> {/* Add gap for spacing */}
     <Button
       asChild
       className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
