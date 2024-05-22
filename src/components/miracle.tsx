@@ -23,18 +23,25 @@ export function MiracleSection() {
         Sermon Series - Pastor Sam Thomas
       </h2>
       <Separator className="bg-red-600" />
-      {/* Add the Acast iframe for the "Last Week's Sermon" */}
-      <div className="flex justify-center mt-4">
-        <iframe
-          src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins"
-          frameBorder="0"
-          width="100%"
-          height="80px"
-          title="Last Week's Sermon"
-          className="shadow-md max-w-xl"
-        ></iframe>
-      </div>
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 rounded-lg">
+        <Card className="shadow-lg md:col-span-2">
+          <CardHeader>
+            <CardTitle className="text-3xl font-bold mb-2 text-center py-0.5">Last Week&apos;s Sermon</CardTitle>
+            <Separator className="border-gray-200 mb-4" />
+          </CardHeader>
+          <CardContent>
+            <div className="flex justify-center">
+              <iframe
+                src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins"
+                frameBorder="0"
+                width="100%"
+                height="80px"
+                title="Last Week's Sermon"
+                className="shadow-md max-w-xl"
+              ></iframe>
+            </div>
+          </CardContent>
+        </Card>
         <div className="relative rounded-lg">
           <Image
             src={yourImagePath}
