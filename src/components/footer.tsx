@@ -24,7 +24,7 @@ export default function Footer() {
               <ChurchIcon className="h-8 w-8 text-white" />
               <span className="text-2xl font-semibold ml-2">The Serving Church</span>
             </Link>
-            <p className="text-gray-400 mb-4">Join our community and experience the love of Christ.</p>
+            <p className="text-gray-400 mb-4">Living to Reflect the Image of Christ</p>
             <div className="flex space-x-4">
               <Link className="text-gray-400 hover:text-white transition-colors" href="https://www.facebook.com/theservingchurch">
                 <FacebookIcon className="h-5 w-5" />
