@@ -26,7 +26,7 @@ export function MiracleSection() {
       {/* Add the Acast iframe for the "Last Week's Sermon" */}
       <div className="flex justify-center mt-4">
         <iframe
-          src="https://embed.acast.com/63d6855a93dfbe00116a43c6?font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins"
+          src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins"
           frameBorder="0"
           width="100%"
           height="80px"
