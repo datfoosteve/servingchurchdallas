@@ -3,7 +3,7 @@
 "use client";
 
 import React from 'react';
-import Link from 'next/link';
+const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
 import ChurchIcon from '@/images/icons/ChurchIcon';
@@ -49,9 +49,9 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2">
-              <li><MapPinIcon className="h-5 w-5 inline-block mr-2" />123 Church Street, City, State</li>
-              <li><PhoneIcon className="h-5 w-5 inline-block mr-2" />(123) 456-7890</li>
-              <li><MailIcon className="h-5 w-5 inline-block mr-2" />info@churchname.org</li>
+              <li><MapPinIcon className="h-5 w-5 inline-block mr-2" />216 Collins Rd, Sunnyvale, TX 75182</li>
+              <li><PhoneIcon className="h-5 w-5 inline-block mr-2" />(214) 738-6371</li>
+              <li><MailIcon className="h-5 w-5 inline-block mr-2" />theservingchurchdallas@gmail.com</li>
             </ul>
           </div>
           <div>
