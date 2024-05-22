@@ -38,7 +38,6 @@ import Image from "next/image";
 import yourImagePath from "/src/images/logowordhome.svg";
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
-// const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import {
   CollapsibleTrigger,
@@ -62,8 +61,8 @@ import MenuIcon from "@/images/icons/MenuIcon";
 export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="w-[100px] h-[20px] rounded-full" />}>
-   <header className="flex justify-between h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90">
-  <div className="flex items-center gap-12"> {/* Add gap for spacing */}
+   <header className="flex h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90 justify-evenly">
+  <div className="flex items-center"> {/* Add gap for spacing */}
     <Link href="/" passHref>
       <div className="flex gap-2 text-lg font-semibold md:text-base">
         <Image
@@ -84,19 +83,21 @@ export function NavComponent() {
         </Button>
       </SheetTrigger>
       <SheetContent side="left">
-        <Link
-          className="hidden lg:flex items-center gap-2 text-lg font-semibold md:text-base"
-          href="/"
-        >
-          <Image
-            src={yourImagePath}
-            width={140}
-            height={35}
-            alt="Logo"
-            layout="intrinsic"
-          />
-          <span className="sr-only">Serving Church</span>
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link
+            className="flex items-center gap-2 text-lg font-semibold md:text-base"
+            href="/"
+          >
+            <Image
+              src={yourImagePath}
+              width={140}
+              height={35}
+              alt="Logo"
+              layout="intrinsic"
+            />
+            <span className="sr-only">Serving Church</span>
+          </Link>
+        </div>
         <div className="grid gap-2 py-6">
           <SheetTrigger asChild>
             <Link
@@ -316,7 +317,7 @@ export function NavComponent() {
       </NavigationMenuList>
     </NavigationMenu>
     </div>
-  <div className="ml-auto flex items-center gap-4"> {/* Add gap for spacing */}
+    <div className="flex justify-end w-1/3"> {/* Add gap for spacing */}
     <Button
       asChild
       className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
@@ -329,5 +330,3 @@ export function NavComponent() {
     </React.Suspense>
   );
 }
-
-
