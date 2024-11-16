@@ -1,22 +1,39 @@
-"use client";
+"use client"
 
 import React, { useState } from "react";
-import { Calendar } from "@/components/ui/calendar"; // Adjust the import path as necessary
-import "react-calendar/dist/Calendar.css"; // Keep if you need to override default styles
-import { format } from "date-fns";
-const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
+import { Calendar } from "@/components/ui/calendar";
+import { format, isSameDay } from "date-fns";
+import { generateRecurringEvents } from "@/components/eventHelper";
+const Link = React.lazy(() =>
+  import("next-view-transitions").then((module) => ({ default: module.Link }))
+);
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
 const EventsPage: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
+
+  // Generate events dynamically for the year and month of the selected date
+  const events = generateRecurringEvents(
+    date ? date.getFullYear() : new Date().getFullYear(),
+    date ? date.getMonth() : new Date().getMonth()
+  );
+
+  // Filter events for selected date
+  const filteredEvents = events.filter((event) =>
+    isSameDay(event.date, date || new Date())
+  );
+
+  // Create a modifiers object for event highlighting
+  const modifiers = {
+    hasEvents: events.map((event) => event.date),
+  };
 
   return (
     <>
@@ -33,38 +50,56 @@ const EventsPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="w-screen py-12 md:py-24 lg:py-32">
-      <div className="container mx-auto px-4 py-8">
-        <div className="bg-white p-4 shadow rounded-lg grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section className="w-full py-12 md:py-24 lg:py-32">
+        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Calendar Component */}
-          <Calendar
-            mode="single"
-            selected={date}
-            onSelect={setDate} // Assuming onSelect is the correct prop to handle date changes
-            className="rounded-md border p-4"
-          />
-          
-          {/* Card Component */}
-          <Card className="shadow-sm">
+          <div className="flex justify-center">
+            <Calendar
+              mode="single"
+              selected={date}
+              onSelect={setDate}
+              className="rounded-md border p-4"
+              modifiers={modifiers}
+              modifiersClassNames={{
+                hasEvents: "bg-blue-200 text-blue-900 rounded-full",
+              }}
+            />
+          </div>
+
+          {/* Events Card */}
+          <Card className="shadow-lg">
             <CardHeader>
-              <CardTitle>{date ? format(date, "MMMM d, yyyy") : 'Select a date'}</CardTitle>
-              <CardDescription>Events on this day</CardDescription>
+              <CardTitle className="text-xl font-bold text-center">
+                {date ? format(date, "MMMM d, yyyy") : "Select a date"}
+              </CardTitle>
+              {/* <CardDescription className="text-gray-500">
+                {filteredEvents.length > 0
+                  ? "Events on this day"
+                  : "No events scheduled"}
+              </CardDescription> */}
             </CardHeader>
-            <CardContent className="border-t-2">
-              <p>Event Details.</p>
+            <CardContent className="text-center">
+              {filteredEvents.length > 0 ? (
+                filteredEvents.map((event, index) => (
+                  <div key={index} className="mb-6">
+                    <h4 className="text-lg font-bold text-gray-800">
+                      {event.title}
+                    </h4>
+                    <p className="text-gray-600">{event.description}</p>
+                    <p className="text-sm text-gray-500 mt-2">
+                      Location: {event.location}
+                    </p>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center text-gray-500">
+                  <p>No events for this day.</p>
+                </div>
+              )}
             </CardContent>
-            <CardFooter className="text-end border-2">
-              <p>Members:</p>
-            </CardFooter>
           </Card>
         </div>
-        {date && (
-          <p className="text-center mt-4 text-lg">
-            Selected Date: {format(date, "MMMM d, yyyy")}
-          </p>
-        )}
-      </div>
-    </section>
+      </section>
 
       <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
         <div className="container px-4 md:px-6">
@@ -79,7 +114,7 @@ const EventsPage: React.FC = () => {
                 welcoming, uplifting experience for all ages.
               </p>
               <Link
-                className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50  "
+                className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
                 href="#"
               >
                 Learn More
@@ -95,7 +130,7 @@ const EventsPage: React.FC = () => {
                 led by knowledgeable and caring leaders.
               </p>
               <Link
-                className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50 "
+                className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
                 href="#"
               >
                 Join a Group
