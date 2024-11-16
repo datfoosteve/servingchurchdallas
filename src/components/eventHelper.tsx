@@ -13,7 +13,7 @@ export const generateRecurringEvents = (year: number, month: number) => {
     date: firstWeekend,
     title: "Fasting Prayer",
     description: "Join us for Fasting Prayer at Sam's house.",
-    location: "Sam's House",
+    location: "Sam's House - Call for details",
   });
 
   // Bible Study (Every Thursday)
@@ -23,7 +23,7 @@ export const generateRecurringEvents = (year: number, month: number) => {
       date: thursday,
       title: "Bible Study",
       description: "Deepen your faith with our Bible study session.",
-      location: "Sam's House",
+      location: "Sam's House - 5PM to 8PM",
     });
   });
 
@@ -34,7 +34,7 @@ export const generateRecurringEvents = (year: number, month: number) => {
       date: sunday,
       title: "Sunday Service",
       description: "Join us every Sunday for worship, prayer, and teaching.",
-      location: "Sam's House",
+      location: "SUnnyvale High School - Choir Room - 11PM to 1PM",
     });
   });
 
