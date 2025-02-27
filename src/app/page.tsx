@@ -4,7 +4,7 @@ import { MovementComponent } from "@/components/hero";
 import { ValueBlocks } from "@/components/valueblocks";
 import { WelcomeSection } from "@/components/welcomesection";
 import { MiracleSection } from "@/components/miracle";
-// import LocationAndCountdown from "@/components/locationandcountdown";
+
 
 
 
@@ -18,7 +18,7 @@ export default function Home() {
       <MiracleSection />
       <ValueBlocks />
       
-      {/* <LocationAndCountdown /> */}
+      
     
       
     </main>

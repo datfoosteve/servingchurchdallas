@@ -34,7 +34,7 @@ export const generateRecurringEvents = (year: number, month: number) => {
       date: sunday,
       title: "Sunday Service",
       description: "Join us every Sunday for worship, prayer, and teaching.",
-      location: "SUnnyvale High School - Choir Room - 11PM to 1PM",
+      location: "SUnnyvale High School - Choir Room - 10:30am - 12PM",
     });
   });
 

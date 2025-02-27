@@ -49,7 +49,7 @@ export default function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
             <ul className="space-y-2">
-              <li><MapPinIcon className="h-5 w-5 inline-block mr-2" />216 Collins Rd, Sunnyvale, TX 75182</li>
+              <li><MapPinIcon className="h-5 w-5 inline-block mr-2" />222 Collins Rd, Sunnyvale, TX 75182</li>
               <li><PhoneIcon className="h-5 w-5 inline-block mr-2" />(214) 738-6371</li>
               <li><MailIcon className="h-5 w-5 inline-block mr-2" />theservingchurchdallas@gmail.com</li>
             </ul>

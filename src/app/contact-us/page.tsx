@@ -11,7 +11,7 @@ const ContactUsPage = () => {
       <Card className="mb-6">
         <div className="p-4">
           <h2 className="text-2xl font-semibold">Contact Information</h2>
-          <p><strong>Address:</strong> 123 Church Road, Heaven&apos;s Gate, HG 12345</p>
+          <p><strong>Address:</strong> 222 Collins Rd, Sunnyvale, Texas, 75182</p>
           <p><strong>Phone:</strong> (123) 456-7890</p>
           <p><strong>Email:</strong> info@yourchurch.com</p>
         </div>

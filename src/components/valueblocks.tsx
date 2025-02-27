@@ -21,7 +21,7 @@ export function ValueBlocks() {
                     {cardData.map(card => (
                         <Card key={card.id} className="shadow-lg transition duration-300 hover:bg-gray-100 hover:scale-105">
                             <CardHeader>
-                                <CardTitle>{card.title}</CardTitle>
+                                <CardTitle className="text-center">{card.title}</CardTitle>
                             </CardHeader>
                             <CardContent className="flex flex-col items-center justify-center gap-4 p-6">
                                 {card.icon}
