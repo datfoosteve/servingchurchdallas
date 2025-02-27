@@ -13,13 +13,10 @@ import {
 } from "@/components/ui/card";
 import ChurchIcon from "@/images/icons/ChurchIcon";
 import { Button } from "@/components/ui/button";
-import { Skeleton } from "@/components/ui/skeleton";
-import React, { useState } from "react";
+import React from "react";
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 
 export function MiracleSection() {
-  const [iframeLoaded, setIframeLoaded] = useState(false);
-
   return (
     <section className="bg-gray-50 p-8 pt-10">
       <h2 className="text-4xl font-bold text-center mb-4">
@@ -34,17 +31,13 @@ export function MiracleSection() {
           </CardHeader>
           <CardContent>
             <div className="flex justify-center">
-              {!iframeLoaded && <Skeleton className="w-full h-[152px] max-w-xl rounded-lg" />}
               <iframe
-                style={{ borderRadius: '12px', display: iframeLoaded ? 'block' : 'none' }}
-                src="https://open.spotify.com/embed/show/0aVutKJz6U5UX0rVpAolTK?utm_source=generator"
+                src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins"
+                frameBorder="0"
                 width="100%"
-                height="152"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
+                height="80px"
                 title="Last Week's Sermon"
                 className="shadow-md max-w-xl"
-                onLoad={() => setIframeLoaded(true)}
               ></iframe>
             </div>
           </CardContent>
