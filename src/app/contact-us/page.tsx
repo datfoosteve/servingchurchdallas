@@ -3,6 +3,23 @@ import Link from 'next/link';
 import React from 'react';
 import { Card } from '@/components/ui/card'; // Corrected import
 import { Button } from '@/components/ui/button'; // Corrected import
+import { createMetadata } from '@/lib/seo';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = createMetadata({
+  title: 'Contact Us',
+  description: 'Get in touch with The Serving Church. Visit us at 222 Collins Rd, Sunnyvale, TX 75182, call (214) 738-6371, or email theservingchurchdallas@gmail.com. Submit a contact form or prayer request.',
+  keywords: [
+    'contact church',
+    'church location',
+    'Sunnyvale church address',
+    'church phone number',
+    'contact The Serving Church',
+    'prayer request',
+    'church email',
+  ],
+  path: '/contact-us',
+});
 
 const ContactUsPage = () => {
   return (

@@ -1,6 +1,24 @@
 // src/pages/sermons.tsx
 import React from 'react';
 import { Card, CardContent, CardTitle, CardHeader } from '@/components/ui/card';
+import { createMetadata } from '@/lib/seo';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = createMetadata({
+  title: 'Sermons',
+  description: 'Listen to inspiring sermons from The Serving Church. Access our latest messages on Spotify and Acast, featuring biblical teachings and worship messages from Pastor Sam Thomas.',
+  keywords: [
+    'church sermons',
+    'Christian sermons',
+    'biblical teaching',
+    'worship messages',
+    'Spotify sermons',
+    'podcast',
+    'The Serving Church sermons',
+    'Pastor Sam Thomas',
+  ],
+  path: '/sermons',
+});
 
 const SermonsPage = () => {
   return (
