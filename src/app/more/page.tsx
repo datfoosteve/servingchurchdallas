@@ -3,6 +3,22 @@ import React from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardTitle } from '@/components/ui/card'; // Assuming these are correctly exported
+import { createMetadata } from '@/lib/seo';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = createMetadata({
+  title: 'More',
+  description: 'Explore more about The Serving Church. Browse our photo gallery and meet our team including Pastor Sam Thomas, worship leaders, and ministry staff.',
+  keywords: [
+    'church gallery',
+    'church team',
+    'church staff',
+    'worship leaders',
+    'church photos',
+    'about our church',
+  ],
+  path: '/more',
+});
 
 const MorePage = () => {
   return (
