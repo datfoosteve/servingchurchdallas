@@ -1,3 +1,4 @@
+//component/welcomesection.tsx
 import React from "react";
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import CrossIcon  from '@/images/icons/CrossIcon';
