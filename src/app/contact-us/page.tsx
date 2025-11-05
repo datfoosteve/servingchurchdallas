@@ -29,18 +29,18 @@ const ContactUsPage = () => {
         <div className="p-4">
           <h2 className="text-2xl font-semibold">Contact Information</h2>
           <p><strong>Address:</strong> 222 Collins Rd, Sunnyvale, Texas, 75182</p>
-          <p><strong>Phone:</strong> (123) 456-7890</p>
-          <p><strong>Email:</strong> info@yourchurch.com</p>
+          <p><strong>Phone:</strong> (214) 738-6371</p>
+          <p><strong>Email:</strong> theservingchurchdallas@gmail.com</p>
         </div>
       </Card>
       <div className="grid grid-cols-2 gap-4">
         <Button asChild>
-          <Link href="/contact-church">
+          <Link href="/contact-us/contact-church">
             <div className="w-full h-full inline-flex justify-center items-center">Contact Church</div>
           </Link>
         </Button>
         <Button asChild>
-          <Link href="/prayer-request">
+          <Link href="/contact-us/prayer-request">
             <div className="w-full h-full inline-flex justify-center items-center">Prayer Requests</div>
           </Link>
         </Button>

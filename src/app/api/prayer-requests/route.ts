@@ -1,0 +1,152 @@
+import { NextRequest, NextResponse } from "next/server";
+import { Resend } from "resend";
+
+// Ensure Node runtime (Resend SDK expects Node) and no prerendering
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
+// Type for the prayer request data
+interface PrayerRequestData {
+  name: string;
+  email?: string;
+  request: string;
+  isPublic: boolean;
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body: PrayerRequestData = await request.json();
+    const { name, email, request: prayerRequest, isPublic } = body;
+
+    if (!name || !prayerRequest) {
+      return NextResponse.json(
+        { error: "Name and prayer request are required" },
+        { status: 400 }
+      );
+    }
+    if (prayerRequest.length < 10) {
+      return NextResponse.json(
+        { error: "Prayer request must be at least 10 characters" },
+        { status: 400 }
+      );
+    }
+
+    // Read env once per request
+    const apiKey = process.env.RESEND_API_KEY;
+    const toEmail =
+      process.env.PRAYER_REQUEST_EMAIL || "theservingchurchdallas@gmail.com";
+    const fromEmail =
+      process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev";
+
+    if (!apiKey) {
+      console.error("Missing RESEND_API_KEY");
+      return NextResponse.json(
+        { error: "Email service not configured" },
+        { status: 500 }
+      );
+    }
+
+    // ✅ Lazy-init Resend inside the handler
+    const resend = new Resend(apiKey);
+
+    const requestType = isPublic ? "Public" : "Private";
+    const subject = `${requestType} Prayer Request from ${name}`;
+
+    const submittedAt = new Date().toLocaleString("en-US", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZoneName: "short",
+    });
+
+    const htmlContent = `
+      <!doctype html>
+      <html><head><meta charset="utf-8">
+        <style>
+          body{font-family:Arial,system-ui;line-height:1.6;color:#333;max-width:600px;margin:0 auto;padding:20px}
+          .header{background:${isPublic ? "#3b82f6" : "#9333ea"};color:#fff;padding:20px;border-radius:8px 8px 0 0;margin-bottom:20px}
+          .badge{display:inline-block;background:${isPublic ? "#1d4ed8" : "#6b21a8"};color:#fff;padding:4px 12px;border-radius:12px;font:bold 12px/1 Arial;margin-top:8px}
+          .content{background:#f9fafb;padding:20px;border-radius:0 0 8px 8px}
+          .field{margin-bottom:16px}
+          .label{font-weight:bold;color:#6b7280;font-size:12px;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+          .value{color:#111827;font-size:16px}
+          .request-text{background:#fff;padding:16px;border-radius:6px;border-left:4px solid ${isPublic ? "#3b82f6" : "#9333ea"};white-space:pre-wrap;word-wrap:break-word}
+          .footer{margin-top:20px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;text-align:center}
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>New Prayer Request</h1>
+          <span class="badge">${requestType.toUpperCase()}</span>
+        </div>
+        <div class="content">
+          <div class="field"><div class="label">Submitted By</div><div class="value">${name}</div></div>
+          ${email ? `<div class="field"><div class="label">Email</div><div class="value"><a href="mailto:${email}">${email}</a></div></div>` : ""}
+          <div class="field"><div class="label">Prayer Request</div><div class="request-text">${prayerRequest}</div></div>
+          <div class="field"><div class="label">Request Type</div><div class="value">${isPublic ? "Public - May be shared with the congregation and prayer team" : "Private - Only for pastoral staff and prayer team leaders"}</div></div>
+          <div class="field"><div class="label">Submitted</div><div class="value">${submittedAt}</div></div>
+        </div>
+        <div class="footer">
+          <p>This prayer request was submitted through The Serving Church website.</p>
+          ${email ? `<p>You can reply directly to ${email} to follow up.</p>` : "<p>No email address was provided for follow-up.</p>"}
+        </div>
+      </body></html>
+    `;
+
+    const textContent = [
+      `New ${requestType} Prayer Request`,
+      `Submitted By: ${name}`,
+      email ? `Email: ${email}` : "No email provided",
+      "Prayer Request:",
+      prayerRequest,
+      `Request Type: ${isPublic ? "Public - May be shared with the congregation and prayer team" : "Private - Only for pastoral staff and prayer team leaders"}`,
+      `Submitted: ${submittedAt}`,
+      "---",
+      "This prayer request was submitted through The Serving Church website.",
+      email ? `You can reply directly to ${email} to follow up.` : "",
+    ].join("\n");
+
+    const data = await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
+      subject,
+      html: htmlContent,
+      text: textContent,
+      replyTo: email || undefined,
+    });
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Prayer request submitted successfully",
+        id: (data as any)?.data?.id,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error processing prayer request:", error);
+    return NextResponse.json(
+      {
+        error: "Failed to submit prayer request",
+        details: error instanceof Error ? error.message : "Unknown error",
+      },
+      { status: 500 }
+    );
+  }
+}
+
+// Handle OPTIONS request for CORS
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "POST, OPTIONS",
+      "Access-Control-Allow-Headers": "Content-Type",
+    },
+  });
+}
+
