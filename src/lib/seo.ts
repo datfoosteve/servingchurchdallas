@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 export const siteConfig = {
   name: 'The Serving Church',
   description: 'A church born to look like Christ. Join us in Sunnyvale, Texas for worship, community, and spiritual growth.',
-  url: 'https://theservingchurch.org',
-  ogImage: 'https://theservingchurch.org/og-image.jpg',
+  url: 'https://servingchurchdallas.com',
+  ogImage: 'https://servingchurchdallas.com/og-image.jpg',
   links: {
     facebook: 'https://facebook.com/theservingchurch',
     twitter: 'https://twitter.com/theservingchurch',

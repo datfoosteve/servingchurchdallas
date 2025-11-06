@@ -37,21 +37,21 @@ const EventsPage: React.FC = () => {
 
   return (
     <>
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
               Upcoming Events
-            </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
+            </h1>
+            <p className="mt-4 text-base md:text-lg text-gray-600">
               Join us for inspiring worship, fellowship, and growth.
             </p>
           </div>
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 lg:py-32">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Calendar Component */}
           <div className="flex justify-center">
             <Calendar
@@ -101,39 +101,39 @@ const EventsPage: React.FC = () => {
         </div>
       </section>
 
-      <section className="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
-        <div className="container px-4 md:px-6">
+      <section className="w-full py-12 md:py-24 lg:py-32 bg-white">
+        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
           <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2">
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold tracking-tighter">
+              <h2 className="text-2xl font-bold tracking-tighter">
                 Sunday Service
-              </h3>
-              <p className="text-gray-600">
+              </h2>
+              <p className="text-base text-gray-600">
                 Join us every Sunday at 10:30 AM for a time of worship, prayer,
                 and biblical teaching. Our service is designed to be a
                 welcoming, uplifting experience for all ages.
               </p>
               <Link
                 className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
-                href="#"
+                href="/about-us"
               >
                 Learn More
               </Link>
             </div>
             <div className="space-y-4">
-              <h3 className="text-2xl font-bold tracking-tighter">
+              <h2 className="text-2xl font-bold tracking-tighter">
                 Bible Study
-              </h3>
-              <p className="text-gray-600">
+              </h2>
+              <p className="text-base text-gray-600">
                 Deepen your understanding of God&apos;s Word through our weekly
                 Bible study. We offer groups for all ages and stages of life,
                 led by knowledgeable and caring leaders.
               </p>
               <Link
                 className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
-                href="#"
+                href="/contact-us/contact-church"
               >
-                Join a Group
+                Contact Us
               </Link>
             </div>
           </div>

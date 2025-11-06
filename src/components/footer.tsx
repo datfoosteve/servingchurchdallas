@@ -16,8 +16,8 @@ import MailIcon from '@/images/icons/MailIcon';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-200">
-      <div className="container mx-auto px-4 py-12">
+    <footer className="bg-gray-900 text-gray-200" aria-label="Site footer">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 py-12 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <Link className="flex items-center mb-6" href="/">
@@ -25,41 +25,81 @@ export default function Footer() {
               <span className="text-2xl font-semibold ml-2">The Serving Church</span>
             </Link>
             <p className="text-gray-400 mb-4">Living to Reflect the Image of Christ</p>
-            <div className="flex space-x-4">
-              <Link className="text-gray-400 hover:text-white transition-colors" href="https://www.facebook.com/theservingchurch">
-                <FacebookIcon className="h-5 w-5" />
+            <div className="flex space-x-4" role="list" aria-label="Social media links">
+              <Link
+                className="text-gray-400 hover:text-white transition-colors"
+                href="https://www.facebook.com/theservingchurch"
+                aria-label="Visit our Facebook page"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FacebookIcon className="h-5 w-5" aria-hidden="true" />
               </Link>
-              <Link className="text-gray-400 hover:text-white transition-colors" href="https://twitter.com/theservingchurch">
-                <TwitterIcon className="h-5 w-5" />
+              <Link
+                className="text-gray-400 hover:text-white transition-colors"
+                href="https://twitter.com/theservingchurch"
+                aria-label="Visit our Twitter profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TwitterIcon className="h-5 w-5" aria-hidden="true" />
               </Link>
-              <Link className="text-gray-400 hover:text-white transition-colors" href="https://www.instagram.com/theservingchurch">
-                <InstagramIcon className="h-5 w-5" />
+              <Link
+                className="text-gray-400 hover:text-white transition-colors"
+                href="https://www.instagram.com/theservingchurch"
+                aria-label="Visit our Instagram profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <InstagramIcon className="h-5 w-5" aria-hidden="true" />
               </Link>
             </div>
           </div>
-          <div>
+          <nav aria-label="Footer navigation">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2" role="list">
               <li><Link className="hover:text-white transition-colors" href="/">Home</Link></li>
               <li><Link className="hover:text-white transition-colors" href="/about-us">About Us</Link></li>
               <li><Link className="hover:text-white transition-colors" href="/events">Events</Link></li>
+              <li><Link className="hover:text-white transition-colors" href="/sermons">Sermons</Link></li>
               <li><Link className="hover:text-white transition-colors" href="/donate">Donate</Link></li>
             </ul>
-          </div>
+          </nav>
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <ul className="space-y-2">
-              <li><MapPinIcon className="h-5 w-5 inline-block mr-2" />222 Collins Rd, Sunnyvale, TX 75182</li>
-              <li><PhoneIcon className="h-5 w-5 inline-block mr-2" />(214) 738-6371</li>
-              <li><MailIcon className="h-5 w-5 inline-block mr-2" />theservingchurchdallas@gmail.com</li>
-            </ul>
+            <address className="not-italic space-y-2">
+              <div className="flex items-start gap-2">
+                <MapPinIcon className="h-5 w-5 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                <span>222 Collins Rd, Sunnyvale, TX 75182</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <PhoneIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                <a href="tel:+12147386371" className="hover:text-white transition-colors">(214) 738-6371</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <MailIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
+                <a href="mailto:theservingchurchdallas@gmail.com" className="hover:text-white transition-colors break-all">
+                  theservingchurchdallas@gmail.com
+                </a>
+              </div>
+            </address>
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Join Our Newsletter</h3>
             <p className="text-gray-400 mb-4">Stay updated with our latest news and events.</p>
-            <form className="flex">
-              <Input className="bg-gray-800 text-gray-200 py-2 px-4 rounded-l-md" placeholder="Enter your email" type="email" />
-              <Button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r-md transition-colors" type="submit">
+            <form className="flex" aria-label="Newsletter subscription">
+              <Input
+                className="bg-gray-800 text-gray-200 py-2 px-4 rounded-l-md"
+                placeholder="Enter your email"
+                type="email"
+                aria-label="Email address"
+                required
+              />
+              <Button
+                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r-md transition-colors"
+                type="submit"
+                aria-label="Subscribe to newsletter"
+              >
                 Subscribe
               </Button>
             </form>
@@ -72,52 +112,3 @@ export default function Footer() {
     </footer>
   );
 }
-
-
-//import React from 'react';
-// import Link from 'next/link';
-// import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
-// import { Button } from "@/components/ui/button";
-// import { Separator } from '@/components/ui/separator';
-
-// export function Footer (){
-//     return (
-//       <footer className="bg-slate-700 text-white py-12">
-//         <div className="container mx-auto px-4">
-//           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-//           <div className="text-center">
-//             <p className="mb-4">
-//               <strong>The Serving Church</strong><br />
-//               Sunnyvale High School <br />
-//               Sunnyvale, TX 75087<br />
-//              Sun: 9 AM - 12 PM<br />
-//               469.735.7590
-//             </p>
-            
-            
-//           </div>
-             
-//             <div className="flex container justify-center grid-flow-row grid-cols-2 space-x-6 mb-4">
-//               <Link href="https://www.facebook.com/theservingchurch" target="_blank" rel="noopener noreferrer">
-//                 <FaFacebook className="text-6xl hover:text-gray-300" />
-//               </Link>
-//               <Link href="https://twitter.com/theservingchurch" target="_blank" rel="noopener noreferrer">
-//                 <FaTwitter className="text-6xl hover:text-gray-300" />
-//               </Link>
-//               <Link href="https://www.instagram.com/theservingchurchdallas?igsh=MXJkNDA4bm4yY3dlNg==" target="_blank" rel="noopener noreferrer">
-//                 <FaInstagram className="text-6xl hover:text-gray-300" />
-//               </Link>
-//               <Button className="text-white hover:text-gray-300">
-//               CONTACT US
-//             </Button>
-//             </div>
-//           </div>
-//           <Separator className="border-gray-600" />
-//           <p className="text-sm text-center mb-4 pt-6">
-//               Copyright &copy; {new Date().getFullYear()} - The Serving Church - All Rights Reserved | Privacy Policy
-//             </p>
-            
-//         </div>
-//       </footer>
-//     );
-//   };
