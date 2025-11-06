@@ -28,8 +28,9 @@ CREATE TABLE IF NOT EXISTS prayer_responses (
 );
 
 -- ✅ FIX: Create unique index on expression (prevents same IP praying twice per day)
+-- Using date_trunc which is IMMUTABLE (::date cast is not immutable with TIMESTAMPTZ)
 CREATE UNIQUE INDEX IF NOT EXISTS unique_prayer_response_per_day
-  ON prayer_responses (prayer_id, ip_address, (created_at::date));
+  ON prayer_responses (prayer_id, ip_address, date_trunc('day', created_at));
 
 -- Indexes for better query performance
 CREATE INDEX IF NOT EXISTS idx_prayers_status ON prayers(status);
