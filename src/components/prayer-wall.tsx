@@ -115,7 +115,7 @@ export function PrayerWall() {
             Prayer Wall
           </h2>
           <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-            Join us in praying for our church family. Click "I'm Praying" to let them know you're lifting them up.
+            Join us in praying for our church family. Click &ldquo;I&rsquo;m Praying&rdquo; to let them know you&rsquo;re lifting them up.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import type { Prayer, PrayerStatus } from "@/lib/supabase/types";
@@ -18,23 +18,19 @@ export default function AdminPrayersPage() {
   const supabase = createClient();
 
   // Check authentication
-  useEffect(() => {
-    checkAuth();
-  }, []);
-
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       router.push("/admin/login");
     }
-  };
+  }, [supabase, router]);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   // Fetch prayers
-  useEffect(() => {
-    fetchPrayers();
-  }, [filter, search]);
-
-  const fetchPrayers = async () => {
+  const fetchPrayers = useCallback(async () => {
     setLoading(true);
     try {
       const params = new URLSearchParams();
@@ -52,7 +48,11 @@ export default function AdminPrayersPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [filter, search]);
+
+  useEffect(() => {
+    fetchPrayers();
+  }, [fetchPrayers]);
 
   const updateStatus = async (id: string, status: PrayerStatus) => {
     try {
