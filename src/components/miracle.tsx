@@ -18,15 +18,15 @@ const Link = React.lazy(() => import('next-view-transitions').then(module => ({ 
 
 export function MiracleSection() {
   return (
-    <section className="bg-gray-50 p-8 pt-10">
-      <h2 className="text-4xl font-bold text-center mb-4">
+    <section className="bg-gray-50 p-4 md:p-8 pt-6 md:pt-10">
+      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">
         Sermon Series - Pastor Sam Thomas
       </h2>
       <Separator className="bg-red-600" />
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 rounded-lg">
         <Card className="shadow-lg md:col-span-2">
           <CardHeader>
-            <CardTitle className="text-3xl font-bold mb-2 text-center py-0.5">Last Week&apos;s Sermon</CardTitle>
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center py-0.5">Last Week&apos;s Sermon</CardTitle>
             <Separator className="border-gray-200 mb-4" />
           </CardHeader>
           <CardContent>
@@ -42,21 +42,19 @@ export function MiracleSection() {
             </div>
           </CardContent>
         </Card>
-        <div className="relative rounded-lg">
+        <div className="relative rounded-lg w-full aspect-[4/3] md:aspect-square">
           <Image
             src={yourImagePath}
             alt="Background"
-            quality={100}
-            layout="responsive"
-            objectFit="cover"
-            className="rounded-lg shadow-md"
+            fill
+            className="rounded-lg shadow-md object-cover"
           />
         </div>
         <Card className="shadow-lg">
           <CardHeader>
-            <CardTitle className="text-3xl font-bold mb-2 text-center py-0.5">WHAT IS YOUR AIM IN LIFE?</CardTitle>
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center py-0.5">WHAT IS YOUR AIM IN LIFE?</CardTitle>
             <Separator className="border-gray-200 mb-4" />
-            <CardDescription className="text-lg text-gray-600 mb-4 py-0.5">
+            <CardDescription className="text-base md:text-lg text-gray-600 mb-4 py-0.5">
               We will be discussing the bigger questions of life and considering what God needs
               of us.
             </CardDescription>
