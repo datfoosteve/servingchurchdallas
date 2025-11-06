@@ -3,7 +3,7 @@ import React from "react";
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 import CrossIcon  from '@/images/icons/CrossIcon';
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, MapPin } from "lucide-react";
 
 export function WelcomeSection() {
   return (
@@ -22,7 +22,7 @@ export function WelcomeSection() {
       </p>
 
       {/* Enhanced CTA Section */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap max-w-4xl mx-auto">
         <Link href="/contact-us/contact-church">
           <Button
             size="lg"
@@ -32,6 +32,19 @@ export function WelcomeSection() {
             <div className="relative flex items-center justify-center gap-2 text-base md:text-lg font-semibold">
               <span>Connect With Us</span>
               <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </div>
+          </Button>
+        </Link>
+
+        <Link href="/location">
+          <Button
+            size="lg"
+            className="group relative overflow-hidden bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 hover:from-green-700 hover:via-emerald-700 hover:to-teal-700 text-white px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 animate-pulse hover:animate-none"
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
+            <div className="relative flex items-center justify-center gap-2 text-base md:text-lg font-semibold">
+              <MapPin className="h-5 w-5" />
+              <span>Get Directions</span>
             </div>
           </Button>
         </Link>
@@ -50,22 +63,23 @@ export function WelcomeSection() {
         </Link>
       </div>
 
+      {/* Location Helper Text */}
+      <div className="mt-6 text-center">
+        <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
+          <MapPin className="w-4 h-4" />
+          <span>We meet at Sunnyvale High School - Choir Room</span>
+        </p>
+      </div>
+
       {/* Service Times Quick Info */}
       <div className="mt-12 pt-8 border-t border-gray-200 max-w-2xl mx-auto">
         <p className="text-sm text-gray-500 mb-3">Join us for worship</p>
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center text-gray-700">
+        <div className="flex justify-center text-gray-700">
           <div className="flex items-center justify-center gap-2">
             <span className="text-2xl">⛪</span>
             <div className="text-left">
               <p className="font-semibold">Sunday Service</p>
               <p className="text-sm text-gray-600">10:30 AM - 12:00 PM</p>
-            </div>
-          </div>
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-2xl">📖</span>
-            <div className="text-left">
-              <p className="font-semibold">Bible Study</p>
-              <p className="text-sm text-gray-600">Thursday, 5:00 PM</p>
             </div>
           </div>
         </div>
