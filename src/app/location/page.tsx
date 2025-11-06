@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Navigation, Phone, AlertCircle, CheckCircle2, ParkingCircle } from "lucide-react";
-import schoolImage from "@/images/sunnyvalehighschool.jpg";
+import schoolImage from "@/images/sunnyvalehighschool.avif";
 
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 
