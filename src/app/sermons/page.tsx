@@ -33,14 +33,13 @@ const SermonsPage = () => {
         <CardContent>
           <div className="flex flex-col items-center">
             <iframe
-              style={{ borderRadius: '12px' }}
               src="https://open.spotify.com/embed/show/0aVutKJz6U5UX0rVpAolTK?utm_source=generator"
               width="100%"
               height="352"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
               title="Spotify Sermons"
-              className="w-full max-w-4xl shadow-md"
+              className="w-full max-w-4xl shadow-md rounded-xl"
             ></iframe>
           </div>
         </CardContent>
@@ -57,8 +56,7 @@ const SermonsPage = () => {
             <iframe
               src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins&feed=true"
               title="Acast Sermons"
-              className="w-full h-screen max-w-4xl shadow-md mb-8"
-              style={{ border: 'none' }}
+              className="w-full h-screen max-w-4xl shadow-md mb-8 border-none"
             ></iframe>
           </div>
         </CardContent>
