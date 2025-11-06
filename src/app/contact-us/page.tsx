@@ -111,8 +111,6 @@ const ContactUsPage = () => {
               <CardContent>
                 <p className="text-gray-900 font-semibold">Sunday Worship</p>
                 <p className="text-gray-600">10:30 AM - 12:00 PM</p>
-                <p className="text-gray-900 font-semibold mt-2">Bible Study</p>
-                <p className="text-gray-600">Thursday, 5:00 PM</p>
               </CardContent>
             </Card>
           </div>

@@ -216,31 +216,6 @@ const EventsPage: React.FC = () => {
               </CardContent>
             </Card>
 
-            {/* Bible Study */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-2xl">📖</span>
-                </div>
-                <CardTitle className="text-2xl">Bible Study</CardTitle>
-                <CardDescription className="text-base">Every Thursday at 5:00 PM</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Deepen your understanding of God&apos;s Word through our weekly
-                  Bible study. We offer groups for all ages and stages of life,
-                  led by knowledgeable and caring leaders.
-                </p>
-                <div className="flex items-start gap-2 text-sm text-gray-500 mb-4">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>Sam&apos;s House - Call for details</span>
-                </div>
-                <Button asChild variant="outline" className="w-full">
-                  <Link href="/contact-us/contact-church">Contact Us</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
             {/* Fasting Prayer */}
             <Card className="hover:shadow-lg transition-shadow">
               <CardHeader>

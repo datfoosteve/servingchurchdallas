@@ -2,7 +2,7 @@
 
 import React from "react";
 
-import { getFirstWeekendOfMonth, getAllThursdaysOfMonth, getAllSundaysOfMonth } from "./dateHelper";
+import { getFirstWeekendOfMonth, getAllSundaysOfMonth } from "./dateHelper";
 
 export const generateRecurringEvents = (year: number, month: number) => {
   const events = [];
@@ -14,17 +14,6 @@ export const generateRecurringEvents = (year: number, month: number) => {
     title: "Fasting Prayer",
     description: "Join us for Fasting Prayer at Sam's house.",
     location: "Sam's House - Call for details",
-  });
-
-  // Bible Study (Every Thursday)
-  const thursdays = getAllThursdaysOfMonth(year, month);
-  thursdays.forEach((thursday) => {
-    events.push({
-      date: thursday,
-      title: "Bible Study",
-      description: "Deepen your faith with our Bible study session.",
-      location: "Sam's House - 5PM to 8PM",
-    });
   });
 
   // Sunday Service (Every Sunday)
