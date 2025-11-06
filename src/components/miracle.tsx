@@ -52,11 +52,10 @@ export function MiracleSection() {
         </div>
         <Card className="shadow-lg">
           <CardHeader>
-            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center py-0.5">WHAT IS YOUR AIM IN LIFE?</CardTitle>
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center py-0.5">GETTING UNSTUCK</CardTitle>
             <Separator className="border-gray-200 mb-4" />
             <CardDescription className="text-base md:text-lg text-gray-600 mb-4 py-0.5">
-              We will be discussing the bigger questions of life and considering what God needs
-              of us.
+              We all face moments when life feels still — when faith, hope, or direction falter. Through Christ, we learn to rise, release the past, and move into the freedom of His light.
             </CardDescription>
           </CardHeader>
           <CardContent>
