@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
+import { createClient } from "@/lib/supabase/server";
 
 // Ensure Node runtime (Resend SDK expects Node) and no prerendering
 export const runtime = "nodejs";
@@ -18,6 +19,7 @@ export async function POST(request: NextRequest) {
     const body: PrayerRequestData = await request.json();
     const { name, email, request: prayerRequest, isPublic } = body;
 
+    // Validation
     if (!name || !prayerRequest) {
       return NextResponse.json(
         { error: "Name and prayer request are required" },
@@ -31,7 +33,28 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Read env once per request
+    // 1️⃣ Save to Supabase database
+    const supabase = createClient();
+    const { data: prayerData, error: dbError } = await supabase
+      .from("prayers")
+      .insert({
+        name,
+        email: email || null,
+        request: prayerRequest,
+        is_public: isPublic,
+        status: "new",
+        prayer_count: 0,
+      })
+      .select()
+      .single();
+
+    if (dbError) {
+      console.error("Database error:", dbError);
+      // Continue to email even if database fails
+      // In production, you might want to handle this differently
+    }
+
+    // 2️⃣ Send email notification (existing functionality)
     const apiKey = process.env.RESEND_API_KEY;
     const toEmail =
       process.env.PRAYER_REQUEST_EMAIL || "theservingchurchdallas@gmail.com";
@@ -46,9 +69,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // ✅ Lazy-init Resend inside the handler
     const resend = new Resend(apiKey);
-
     const requestType = isPublic ? "Public" : "Private";
     const subject = `${requestType} Prayer Request from ${name}`;
 
@@ -75,6 +96,7 @@ export async function POST(request: NextRequest) {
           .value{color:#111827;font-size:16px}
           .request-text{background:#fff;padding:16px;border-radius:6px;border-left:4px solid ${isPublic ? "#3b82f6" : "#9333ea"};white-space:pre-wrap;word-wrap:break-word}
           .footer{margin-top:20px;padding-top:20px;border-top:1px solid #e5e7eb;font-size:12px;color:#6b7280;text-align:center}
+          .dashboard-link{display:inline-block;margin-top:16px;padding:12px 24px;background:#3b82f6;color:#fff;text-decoration:none;border-radius:6px;font-weight:bold}
         </style>
       </head>
       <body>
@@ -88,10 +110,12 @@ export async function POST(request: NextRequest) {
           <div class="field"><div class="label">Prayer Request</div><div class="request-text">${prayerRequest}</div></div>
           <div class="field"><div class="label">Request Type</div><div class="value">${isPublic ? "Public - May be shared with the congregation and prayer team" : "Private - Only for pastoral staff and prayer team leaders"}</div></div>
           <div class="field"><div class="label">Submitted</div><div class="value">${submittedAt}</div></div>
+          ${prayerData ? `<div class="field"><div class="label">Database ID</div><div class="value">${prayerData.id}</div></div>` : ""}
         </div>
         <div class="footer">
           <p>This prayer request was submitted through The Serving Church website.</p>
           ${email ? `<p>You can reply directly to ${email} to follow up.</p>` : "<p>No email address was provided for follow-up.</p>"}
+          <p><a href="${process.env.NEXT_PUBLIC_SITE_URL || "https://servingchurchdallas.com"}/admin/prayers" class="dashboard-link">View in Admin Dashboard</a></p>
         </div>
       </body></html>
     `;
@@ -104,12 +128,14 @@ export async function POST(request: NextRequest) {
       prayerRequest,
       `Request Type: ${isPublic ? "Public - May be shared with the congregation and prayer team" : "Private - Only for pastoral staff and prayer team leaders"}`,
       `Submitted: ${submittedAt}`,
+      prayerData ? `Database ID: ${prayerData.id}` : "",
       "---",
       "This prayer request was submitted through The Serving Church website.",
       email ? `You can reply directly to ${email} to follow up.` : "",
+      `View in Admin Dashboard: ${process.env.NEXT_PUBLIC_SITE_URL || "https://servingchurchdallas.com"}/admin/prayers`,
     ].join("\n");
 
-    const data = await resend.emails.send({
+    const emailData = await resend.emails.send({
       from: fromEmail,
       to: toEmail,
       subject,
@@ -122,7 +148,8 @@ export async function POST(request: NextRequest) {
       {
         success: true,
         message: "Prayer request submitted successfully",
-        id: (data as any)?.data?.id,
+        prayerId: prayerData?.id,
+        emailId: (emailData as any)?.data?.id,
       },
       { status: 200 }
     );
@@ -149,4 +176,3 @@ export async function OPTIONS() {
     },
   });
 }
-
