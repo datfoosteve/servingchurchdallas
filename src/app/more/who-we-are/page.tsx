@@ -18,14 +18,15 @@ const WhoWeArePage = () => {
               { name: "Zion", role: "Pastor's Son", src: Miracle }
             ].map((person, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <Image
-                  alt={person.name}
-                  className="w-full h-48 object-cover"
-                  src={person.src}
-                  layout="responsive"
-                  width={400}
-                  height={400}
-                />
+                <div className="relative w-full aspect-square">
+                  <Image
+                    alt={person.name}
+                    className="object-cover"
+                    src={person.src}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  />
+                </div>
                 <div className="p-4 md:p-6">
                   <h3 className="text-xl font-semibold mb-2">{person.name}</h3>
                   <p className="text-gray-500 text-sm">{person.role}</p>
@@ -44,14 +45,15 @@ const WhoWeArePage = () => {
               { name: "Sam Thomas", role: "Worship Leader, Pianist", src: Miracle }
             ].map((leader, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <Image
-                  alt={leader.name}
-                  className="w-full h-48 object-cover"
-                  src={leader.src}
-                  layout="responsive"
-                  width={400}
-                  height={400}
-                />
+                <div className="relative w-full aspect-square">
+                  <Image
+                    alt={leader.name}
+                    className="object-cover"
+                    src={leader.src}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  />
+                </div>
                 <div className="p-4 md:p-6">
                   <h3 className="text-xl font-semibold mb-2">{leader.name}</h3>
                   <p className="text-gray-500 text-sm">{leader.role}</p>
@@ -71,14 +73,15 @@ const WhoWeArePage = () => {
               { name: "Justina Mathew", role: "Vocalist, Music Producer", src: Miracle }
             ].map((member, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
-                <Image
-                  alt={member.name}
-                  className="w-full h-48 object-cover"
-                  src={member.src}
-                  layout="responsive"
-                  width={400}
-                  height={400}
-                />
+                <div className="relative w-full aspect-square">
+                  <Image
+                    alt={member.name}
+                    className="object-cover"
+                    src={member.src}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+                  />
+                </div>
                 <div className="p-4 md:p-6">
                   <h3 className="text-xl font-semibold mb-2">{member.name}</h3>
                   <p className="text-gray-500 text-sm">{member.role}</p>
@@ -92,14 +95,15 @@ const WhoWeArePage = () => {
           <h2 className="text-3xl font-bold mb-6 md:mb-8">Lead Photographer and Videographer</h2>
           <div className="flex justify-center">
             <div className="bg-white rounded-lg shadow-sm overflow-hidden w-full sm:w-2/3 md:w-1/2">
-              <Image
-                alt="Marvin Mathew"
-                className="w-full h-48 object-cover"
-                src={Miracle}
-                layout="responsive"
-                width={400}
-                height={400}
-              />
+              <div className="relative w-full aspect-square">
+                <Image
+                  alt="Marvin Mathew"
+                  className="object-cover"
+                  src={Miracle}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 768px) 66vw, 50vw"
+                />
+              </div>
               <div className="p-4 md:p-6">
                 <h3 className="text-xl font-semibold mb-2">Marvin Mathew</h3>
                 <p className="text-gray-500 text-sm">Lead Photographer and Videographer</p>
