@@ -1,15 +1,13 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { MapPin, Clock, Navigation, Phone, AlertCircle, CheckCircle2, ParkingCircle, Building2 } from "lucide-react";
+import { MapPin, Clock, Navigation, Phone, AlertCircle, CheckCircle2, ParkingCircle } from "lucide-react";
+import schoolImage from "@/images/sunnyvalehighschool.jpg";
 
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
-
-// TODO: Add school image at src/images/sunnyvalehighschool.jpg
-// The pastor provided: https://imagescdn.homes.com/i2/4VIFH8CSG3g9zQSu80d7POpd00GvqT_RXOMP1OJk7BY/117/sunnyvale-high-school-sunnyvale-tx-primaryphoto.jpg
-// Download and save it as sunnyvalehighschool.jpg in the images folder
 
 export default function LocationPage() {
   return (
@@ -103,26 +101,26 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* Photo Section - Placeholder until school image is added */}
+      {/* Photo Section */}
       <section className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-5xl">
           <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-8">
             Sunnyvale High School
           </h2>
-          <Card className="shadow-2xl border-4 border-gray-200 bg-gradient-to-br from-blue-50 to-indigo-100">
-            <CardContent className="p-12 md:p-16 text-center">
-              <Building2 className="w-24 h-24 mx-auto text-blue-600 mb-6" />
-              <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                222 Collins Rd
-              </h3>
-              <p className="text-xl text-gray-700 mb-4">
-                Sunnyvale High School
-              </p>
-              <p className="text-lg text-gray-600">
-                Choir Room Entrance
-              </p>
-            </CardContent>
-          </Card>
+          <div className="relative rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200">
+            <Image
+              src={schoolImage}
+              alt="Sunnyvale High School - Where The Serving Church meets in the Choir Room every Sunday at 10:30 AM"
+              className="w-full h-auto"
+              width={1200}
+              height={675}
+              priority
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
+            />
+          </div>
+          <p className="text-center text-gray-600 mt-4 text-sm">
+            We meet in the Choir Room every Sunday at 10:30 AM
+          </p>
         </div>
       </section>
 
