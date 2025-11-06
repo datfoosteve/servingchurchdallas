@@ -78,7 +78,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-2">
                 <MailIcon className="h-5 w-5 flex-shrink-0" aria-hidden="true" />
-                <a href="mailto:theservingchurchdallas@gmail.com" className="hover:text-white transition-colors break-all">
+                <a href="mailto:theservingchurchdallas@gmail.com" className="hover:text-white transition-colors break-words">
                   theservingchurchdallas@gmail.com
                 </a>
               </div>
