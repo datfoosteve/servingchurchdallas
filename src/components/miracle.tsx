@@ -42,12 +42,12 @@ export function MiracleSection() {
             </div>
           </CardContent>
         </Card>
-        <div className="relative rounded-lg w-full aspect-[4/3] md:aspect-square">
+        <div className="relative rounded-lg w-full aspect-[4/3] md:aspect-[16/9] bg-gray-100 flex items-center justify-center">
           <Image
             src={yourImagePath}
-            alt="Background"
+            alt="What is your aim in life - Sermon series illustration"
             fill
-            className="rounded-lg shadow-md object-cover"
+            className="rounded-lg shadow-md object-contain p-2"
           />
         </div>
         <Card className="shadow-lg">
