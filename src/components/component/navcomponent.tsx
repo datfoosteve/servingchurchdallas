@@ -36,8 +36,8 @@ export function NavComponent() {
                 src={yourImagePath}
                 width={140}
                 height={35}
-                alt="Logo"
-                layout="intrinsic"
+                alt="The Serving Church Logo"
+                priority
               />
               <span className="sr-only">Serving Church</span>
             </div>
@@ -59,8 +59,7 @@ export function NavComponent() {
                     src={yourImagePath}
                     width={140}
                     height={35}
-                    alt="Logo"
-                    layout="intrinsic"
+                    alt="The Serving Church Logo"
                   />
                   <span className="sr-only">Serving Church</span>
                 </Link>
@@ -142,14 +141,12 @@ export function NavComponent() {
                           className="group grid h-auto w-full justify-start gap-1"
                           href="/more/gallery"
                         >
-                          <>
-                            <div className="text-sm font-medium leading-none group-hover:underline">
-                              Gallery
-                            </div>
-                            <div className="line-clamp-2 text-sm leading-snug text-gray-500">
-                              View our photo gallery.
-                            </div>
-                          </>
+                          <div className="text-sm font-medium leading-none group-hover:underline">
+                            Gallery
+                          </div>
+                          <div className="line-clamp-2 text-sm leading-snug text-gray-500">
+                            View our photo gallery.
+                          </div>
                         </Link>
                       </SheetTrigger>
 
@@ -158,14 +155,12 @@ export function NavComponent() {
                           className="group grid h-auto w-full justify-start gap-1"
                           href="/more/who-we-are"
                         >
-                          <>
-                            <div className="text-sm font-medium leading-none group-hover:underline">
-                              Who We Are
-                            </div>
-                            <div className="line-clamp-2 text-sm leading-snug text-gray-500">
-                              Learn more about our church.
-                            </div>
-                          </>
+                          <div className="text-sm font-medium leading-none group-hover:underline">
+                            Who We Are
+                          </div>
+                          <div className="line-clamp-2 text-sm leading-snug text-gray-500">
+                            Learn more about our church.
+                          </div>
                         </Link>
                       </SheetTrigger>
                     </div>

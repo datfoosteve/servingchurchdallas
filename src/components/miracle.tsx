@@ -52,9 +52,7 @@ export function MiracleSection() {
         </div>
         <Card className="shadow-lg">
           <CardHeader>
-            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center py-0.5">GETTING UNSTUCK</CardTitle>
-            <Separator className="border-gray-200 mb-4" />
-            <CardDescription className="text-base md:text-lg text-gray-600 mb-4 py-0.5">
+            <CardDescription className="text-base md:text-lg text-gray-700 leading-relaxed px-4">
               We all face moments when life feels still — when faith, hope, or direction falter. Through Christ, we learn to rise, release the past, and move into the freedom of His light.
             </CardDescription>
           </CardHeader>
