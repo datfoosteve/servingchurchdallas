@@ -11,6 +11,7 @@ export function MovementComponent() {
         alt="Church community gathering - The Serving Church"
         fill
         className="object-cover"
+        style={{ objectPosition: "80% center" }}
         priority
         sizes="100vw"
       />
