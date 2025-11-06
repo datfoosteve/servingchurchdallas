@@ -1,44 +1,36 @@
-//src\components\hero.tsx
-
 "use client";
 import React from "react";
 import Image from "next/image";
 import yourImagePath from "/src/images/samwise.png";
 
-
 export function MovementComponent() {
   return (
-    <div>
-  <section className="container mx-auto bg-gray-50">
-    <div className="relative overflow-hidden">
+    <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gray-50">
       <Image
         src={yourImagePath}
-        alt="Background"
-        layout="responsive"
-        objectFit="cover"
-        width={1920}
-        height={500}
-        className="w-full h-auto"
+        alt="Church community gathering - The Serving Church"
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
       />
-      <div className="absolute inset-0 bg-black bg-opacity-10 bg-gradient-to-l from-transparent from-30% to-black to-100%" />
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-        <h2 className="sm:text-left sm:text-base lg:text-6xl font-medium text-white shadow-lg">
-          <p className="bg-slate-500 bg-opacity-40 rounded-lg p-4 ">
-            A <strong className="text-transparent font-extrabold bg-gradient-to-br from-blue-200 to-rose-600 bg-clip-text">
-              FAMILY
-            </strong> TRYING TO LOOK LIKE 
-            <strong className="text-transparent font-extrabold bg-gradient-to-b from-amber-300 to-orange-500 bg-clip-text hover:animate-pulse animate-in">
-              CHRIST
-            </strong>
-          </p>
-        </h2>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
+      <div className="absolute inset-0 flex items-center justify-center px-4 md:px-6">
+        <div className="max-w-4xl w-full text-center md:text-left">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg">
+            <span className="block bg-slate-900/40 backdrop-blur-sm rounded-lg p-4 md:p-6">
+              A{" "}
+              <strong className="text-transparent font-extrabold bg-gradient-to-br from-blue-300 to-rose-500 bg-clip-text">
+                FAMILY
+              </strong>{" "}
+              TRYING TO LOOK LIKE{" "}
+              <strong className="text-transparent font-extrabold bg-gradient-to-b from-amber-300 to-orange-500 bg-clip-text">
+                CHRIST
+              </strong>
+            </span>
+          </h1>
+        </div>
       </div>
-
-
-
-    </div>
-  </section>
-</div>
-
+    </section>
   );
 }

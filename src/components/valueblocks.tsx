@@ -15,20 +15,19 @@ const cardData = [
 
 export function ValueBlocks() {
     return (
-        <section className="bg-white">
-            <div className="container mx-auto px-6 py-24">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+        <section className="bg-gray-50 py-16 md:py-24">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                     {cardData.map(card => (
-                        <Card key={card.id} className="shadow-lg transition duration-300 hover:bg-gray-100 hover:scale-105">
+                        <Card key={card.id} className="shadow-lg bg-white transition duration-300 hover:shadow-xl hover:scale-105">
                             <CardHeader>
-                                <CardTitle className="text-center">{card.title}</CardTitle>
+                                <CardTitle className="text-center text-base font-bold">{card.title}</CardTitle>
                             </CardHeader>
                             <CardContent className="flex flex-col items-center justify-center gap-4 p-6">
                                 {card.icon}
-                                <p className="text-center text-gray-600">
+                                <p className="text-center text-sm text-gray-600">
                                     {card.description}
                                 </p>
-                                
                             </CardContent>
                         </Card>
                     ))}
