@@ -35,15 +35,14 @@ export function NavComponent() {
         <div className="flex items-center gap-2 shrink-0">
           <Link href="/" passHref>
             <div className="flex gap-2 text-lg font-semibold md:text-base">
-              <div className="relative w-[140px] h-[35px] shrink-0">
-                <Image
-                  src={SUPABASE_IMAGES.logowordhome}
-                  fill
-                  alt="The Serving Church Logo"
-                  priority
-                  className="object-contain"
-                />
-              </div>
+              <Image
+                src={SUPABASE_IMAGES.logowordhome}
+                width={140}
+                height={35}
+                alt="The Serving Church Logo"
+                priority
+                style={{ width: '140px', height: '35px' }}
+              />
               <span className="sr-only">Serving Church</span>
             </div>
           </Link>
