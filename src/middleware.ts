@@ -60,7 +60,27 @@ export async function middleware(request: NextRequest) {
 
     if (!user) {
       // Redirect to login if not authenticated
-      return NextResponse.redirect(new URL('/admin/login', request.url));
+      return NextResponse.redirect(new URL('/auth/login', request.url));
+    }
+
+    // Check if user has admin/pastor role
+    const { data: member } = await supabase
+      .from('members')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+
+    if (!member || (member.role !== 'pastor' && member.role !== 'admin')) {
+      return NextResponse.redirect(new URL('/member/dashboard', request.url));
+    }
+  }
+
+  // Check authentication for member routes
+  if (request.nextUrl.pathname.startsWith('/member')) {
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) {
+      return NextResponse.redirect(new URL('/auth/login', request.url));
     }
   }
 
@@ -68,5 +88,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/admin/:path*'],
+  matcher: ['/admin/:path*', '/member/:path*'],
 };
