@@ -18,18 +18,28 @@ const Link = React.lazy(() => import('next-view-transitions').then(module => ({ 
 
 export function MiracleSection() {
   return (
-    <section className="bg-gray-50 p-4 md:p-8 pt-6 md:pt-10">
-      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-4">
-        Sermon Series - Pastor Sam Thomas
-      </h2>
-      <Separator className="bg-red-600" />
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mt-8 rounded-lg">
-        <Card className="shadow-lg md:col-span-2">
-          <CardHeader>
-            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 text-center py-0.5">Last Week&apos;s Sermon</CardTitle>
-            <Separator className="border-gray-200 mb-4" />
+    <section className="bg-gradient-to-b from-white via-gray-50 to-white py-16 md:py-24">
+      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+        {/* Section Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+            Sermon Series - Pastor Sam Thomas
+          </h2>
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="h-1 w-16 bg-gradient-to-r from-purple-400 to-blue-600 rounded-full"></div>
+            <div className="h-1 w-16 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"></div>
+            <div className="h-1 w-16 bg-gradient-to-r from-indigo-400 to-blue-600 rounded-full"></div>
+          </div>
+        </div>
+
+        {/* Last Week's Sermon Card */}
+        <Card className="shadow-xl border-2 border-gray-200 mb-8 md:mb-12 bg-white">
+          <CardHeader className="pb-6">
+            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-gray-900">
+              Last Week&apos;s Sermon
+            </CardTitle>
           </CardHeader>
-          <CardContent>
+          <CardContent className="pb-6">
             <div className="flex justify-center">
               <iframe
                 src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins"
@@ -37,43 +47,52 @@ export function MiracleSection() {
                 width="100%"
                 height="80px"
                 title="Last Week's Sermon"
-                className="shadow-md max-w-xl"
+                className="max-w-2xl rounded-lg"
               ></iframe>
             </div>
           </CardContent>
         </Card>
-        <div className="relative rounded-lg w-full aspect-[4/3] md:aspect-[16/9] bg-gray-100 flex items-center justify-center">
-          <Image
-            src={SUPABASE_IMAGES.aiminlife}
-            alt="What is your aim in life - Sermon series illustration"
-            fill
-            className="rounded-lg shadow-md object-contain p-2"
-          />
+
+        {/* Current Series Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+          {/* Series Image */}
+          <div className="relative rounded-2xl w-full aspect-[4/3] bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg border-2 border-purple-200 overflow-hidden">
+            <Image
+              src={SUPABASE_IMAGES.aiminlife}
+              alt="What is your aim in life - Sermon series illustration"
+              fill
+              className="object-contain p-4"
+            />
+          </div>
+
+          {/* Series Description Card */}
+          <Card className="shadow-xl border-2 border-purple-200 bg-gradient-to-br from-white to-purple-50">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+                Current Series
+              </CardTitle>
+              <CardDescription className="text-base md:text-lg text-gray-700 leading-relaxed">
+                We all face moments when life feels still — when faith, hope, or direction falter. Through Christ, we learn to rise, release the past, and move into the freedom of His light.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="pt-4">
+              <div className="h-1 bg-gradient-to-r from-purple-400 to-blue-600 rounded-full mb-6"></div>
+            </CardContent>
+            <CardFooter className="flex justify-center pb-6">
+              <Link href="/sermons">
+                <Button
+                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  size="lg"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <ChurchIcon className="h-5 w-5 fill-white" />
+                    <span className="font-semibold">Learn More</span>
+                  </div>
+                </Button>
+              </Link>
+            </CardFooter>
+          </Card>
         </div>
-        <Card className="shadow-lg">
-          <CardHeader>
-            <CardDescription className="text-base md:text-lg text-gray-700 leading-relaxed px-4">
-              We all face moments when life feels still — when faith, hope, or direction falter. Through Christ, we learn to rise, release the past, and move into the freedom of His light.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Separator className="border-gray-200 mb-4" />
-          </CardContent>
-          <CardFooter className="flex justify-center">
-            <Link href="/sermons">
-              <Button
-                className="relative overflow-hidden rounded-full px-6 py-3 font-semibold shadow-lg transition-all hover:shadow-none active:scale-95"
-                variant="ghost"
-              >
-                <div className="absolute -inset-px rounded-full bg-gradient-to-r from-purple-600 to-blue-600 opacity-20 blur-lg transition duration-1000 group-hover:opacity-100 group-hover:duration-300 animate-tilt" />
-                <div className="relative flex items-center justify-center gap-2">
-                  <ChurchIcon className="h-5 w-5 fill-white" />
-                  <span>Learn More</span>
-                </div>
-              </Button>
-            </Link>
-          </CardFooter>
-        </Card>
       </div>
     </section>
   );
