@@ -21,9 +21,12 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { Skeleton } from "@/components/ui/skeleton";
+import { Home, Info, Mic2, Calendar, Heart, MapPin, Mail, MessageSquare, Image as ImageIcon, Users, Menu, ChevronRight, DollarSign } from "lucide-react";
 
 import ChevronRightIcon from "@/images/icons/ChevronRightIcon";
 import MenuIcon from "@/images/icons/MenuIcon";
+import { CommandMenu } from "@/components/command-menu";
+import { PrayerBadge } from "@/components/prayer-badge";
 
 export function NavComponent() {
   return (
@@ -67,24 +70,58 @@ export function NavComponent() {
               <div className="grid gap-2 py-6">
                 <SheetTrigger asChild>
                   <Link
-                    className="flex w-full items-center text-lg font-semibold"
+                    className="flex w-full items-center gap-2 text-lg font-semibold"
                     href="/"
                   >
+                    <Home className="h-5 w-5" />
                     Home
                   </Link>
                 </SheetTrigger>
 
                 <SheetTrigger asChild>
                   <Link
-                    className="flex w-full items-center py-2 text-lg font-semibold"
+                    className="flex w-full items-center gap-2 py-2 text-lg font-semibold"
                     href="/about-us"
                   >
+                    <Info className="h-5 w-5" />
                     About Us
                   </Link>
                 </SheetTrigger>
 
+                <SheetTrigger asChild>
+                  <Link
+                    className="flex w-full items-center gap-2 py-2 text-lg font-semibold"
+                    href="/sermons"
+                  >
+                    <Mic2 className="h-5 w-5" />
+                    Sermons
+                  </Link>
+                </SheetTrigger>
+
+                <SheetTrigger asChild>
+                  <Link
+                    className="flex w-full items-center gap-2 py-2 text-lg font-semibold"
+                    href="/events"
+                  >
+                    <Calendar className="h-5 w-5" />
+                    Events
+                  </Link>
+                </SheetTrigger>
+
+                <SheetTrigger asChild>
+                  <Link
+                    className="flex w-full items-center gap-2 py-2 text-lg font-semibold"
+                    href="/prayers"
+                  >
+                    <Heart className="h-5 w-5" />
+                    Prayer Wall
+                    <PrayerBadge />
+                  </Link>
+                </SheetTrigger>
+
                 <Collapsible className="grid gap-4">
-                  <CollapsibleTrigger className="flex w-full items-center text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
+                  <CollapsibleTrigger className="flex w-full items-center gap-2 text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
+                    <Mail className="h-5 w-5" />
                     Contact Us
                     <ChevronRightIcon className="ml-auto h-5 w-5 transition-all" />
                   </CollapsibleTrigger>
@@ -93,9 +130,24 @@ export function NavComponent() {
                       <SheetTrigger asChild>
                         <Link
                           className="group grid h-auto w-full justify-start gap-1"
+                          href="/location"
+                        >
+                          <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                            <MapPin className="h-4 w-4" />
+                            Location & Directions
+                          </div>
+                          <div className="line-clamp-2 text-sm leading-snug text-gray-500">
+                            Find us at Sunnyvale High School.
+                          </div>
+                        </Link>
+                      </SheetTrigger>
+                      <SheetTrigger asChild>
+                        <Link
+                          className="group grid h-auto w-full justify-start gap-1"
                           href="/contact-us/contact-church"
                         >
-                          <div className="text-sm font-medium leading-none group-hover:underline">
+                          <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                            <Mail className="h-4 w-4" />
                             Contact Church
                           </div>
                           <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -108,7 +160,8 @@ export function NavComponent() {
                           className="group grid h-auto w-full justify-start gap-1"
                           href="/contact-us/prayer-request"
                         >
-                          <div className="text-sm font-medium leading-none group-hover:underline">
+                          <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                            <MessageSquare className="h-4 w-4" />
                             Prayer Request
                           </div>
                           <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -120,17 +173,9 @@ export function NavComponent() {
                   </CollapsibleContent>
                 </Collapsible>
 
-                <SheetTrigger asChild>
-                  <Link
-                    className="flex w-full items-center py-2 text-lg font-semibold"
-                    href="/events"
-                  >
-                    Events
-                  </Link>
-                </SheetTrigger>
-
                 <Collapsible className="grid gap-4">
-                  <CollapsibleTrigger className="flex w-full items-center text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
+                  <CollapsibleTrigger className="flex w-full items-center gap-2 text-lg font-semibold [&[data-state=open]>svg]:rotate-90">
+                    <Users className="h-5 w-5" />
                     More
                     <ChevronRightIcon className="ml-auto h-5 w-5 transition-all" />
                   </CollapsibleTrigger>
@@ -141,7 +186,8 @@ export function NavComponent() {
                           className="group grid h-auto w-full justify-start gap-1"
                           href="/more/gallery"
                         >
-                          <div className="text-sm font-medium leading-none group-hover:underline">
+                          <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                            <ImageIcon className="h-4 w-4" />
                             Gallery
                           </div>
                           <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -155,7 +201,8 @@ export function NavComponent() {
                           className="group grid h-auto w-full justify-start gap-1"
                           href="/more/who-we-are"
                         >
-                          <div className="text-sm font-medium leading-none group-hover:underline">
+                          <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                            <Users className="h-4 w-4" />
                             Who We Are
                           </div>
                           <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -166,14 +213,6 @@ export function NavComponent() {
                     </div>
                   </CollapsibleContent>
                 </Collapsible>
-                <SheetTrigger asChild>
-                  <Link
-                    className="flex w-full items-center py-2 text-lg font-semibold"
-                    href="/sermons"
-                  >
-                    Sermons
-                  </Link>
-                </SheetTrigger>
               </div>
             </SheetContent>
           </Sheet>
@@ -183,41 +222,74 @@ export function NavComponent() {
             <NavigationMenuList>
               <NavigationMenuLink asChild>
                 <Link
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
                   href="/about-us"
                 >
+                  <Info className="h-4 w-4" />
                   About Us
                 </Link>
               </NavigationMenuLink>
 
               <NavigationMenuLink asChild>
                 <Link
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
                   href="/sermons"
                 >
+                  <Mic2 className="h-4 w-4" />
                   Sermons
                 </Link>
               </NavigationMenuLink>
 
               <NavigationMenuLink asChild>
                 <Link
-                  className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
                   href="/events"
                 >
+                  <Calendar className="h-4 w-4" />
                   Events
                 </Link>
               </NavigationMenuLink>
 
+              <NavigationMenuLink asChild>
+                <Link
+                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                  href="/prayers"
+                >
+                  <Heart className="h-4 w-4" />
+                  Prayer Wall
+                  <PrayerBadge />
+                </Link>
+              </NavigationMenuLink>
+
               <NavigationMenuItem>
-                <NavigationMenuTrigger>Contact Us</NavigationMenuTrigger>
+                <NavigationMenuTrigger>
+                  <Mail className="h-4 w-4 mr-2" />
+                  Contact Us
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[500px] p-2">
                     <NavigationMenuLink asChild>
                       <Link
                         className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                        href="/location"
+                      >
+                        <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                          <MapPin className="h-4 w-4" />
+                          Location & Directions
+                        </div>
+                        <div className="line-clamp-2 text-sm leading-snug text-gray-500">
+                          Find us at Sunnyvale High School.
+                        </div>
+                      </Link>
+                    </NavigationMenuLink>
+
+                    <NavigationMenuLink asChild>
+                      <Link
+                        className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
                         href="/contact-us/contact-church"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
+                        <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                          <Mail className="h-4 w-4" />
                           Contact Church
                         </div>
                         <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -231,7 +303,8 @@ export function NavComponent() {
                         className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
                         href="/contact-us/prayer-request"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
+                        <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                          <MessageSquare className="h-4 w-4" />
                           Prayer Request
                         </div>
                         <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -244,7 +317,10 @@ export function NavComponent() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <NavigationMenuTrigger>More</NavigationMenuTrigger>
+                <NavigationMenuTrigger>
+                  <Users className="h-4 w-4 mr-2" />
+                  More
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <div className="grid w-[500px] p-2">
                     <NavigationMenuLink asChild>
@@ -252,7 +328,8 @@ export function NavComponent() {
                         className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
                         href="/more/gallery"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
+                        <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                          <ImageIcon className="h-4 w-4" />
                           Gallery
                         </div>
                         <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -265,7 +342,8 @@ export function NavComponent() {
                         className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
                         href="/more/who-we-are"
                       >
-                        <div className="text-sm font-medium leading-none group-hover:underline">
+                        <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
+                          <Users className="h-4 w-4" />
                           Who We Are
                         </div>
                         <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -279,12 +357,16 @@ export function NavComponent() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex justify-end">
+        <div className="flex items-center justify-end gap-3">
+          <CommandMenu />
           <Button
             asChild
-            className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+            className="inline-flex h-9 items-center justify-center gap-2 rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
           >
-            <Link href="/donate">Donate</Link>
+            <Link href="/donate" className="flex items-center gap-2">
+              <DollarSign className="h-4 w-4" />
+              Donate
+            </Link>
           </Button>
         </div>
       </header>
