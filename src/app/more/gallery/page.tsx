@@ -20,7 +20,7 @@ export default function GalleryPage() {
               {/* Carousel Items */}
               <CarouselItem>
                 <Image
-                  alt="Church Image"
+                  alt="The Serving Church community photos - Sunnyvale TX church events and worship"
                   className="aspect-video object-cover rounded-xl"
                   src={SUPABASE_IMAGES.miracle}
                   style={{ height: '675px', width: '1200px' }}
@@ -28,7 +28,7 @@ export default function GalleryPage() {
               </CarouselItem>
               <CarouselItem>
                 <Image
-                  alt="Church Image"
+                  alt="The Serving Church community photos - Sunnyvale TX church events and worship"
                   className="aspect-video object-cover rounded-xl"
                   src={SUPABASE_IMAGES.miracle}
                   style={{ height: '675px', width: '1200px' }}
@@ -36,7 +36,7 @@ export default function GalleryPage() {
               </CarouselItem>
               <CarouselItem>
                 <Image
-                  alt="Church Image"
+                  alt="The Serving Church community photos - Sunnyvale TX church events and worship"
                   className="aspect-video object-cover rounded-xl"
                   src={SUPABASE_IMAGES.miracle}
                   style={{ height: '675px', width: '1200px' }}
@@ -65,9 +65,9 @@ export default function GalleryPage() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 md:p-6">
             {/* Image placeholders */}
-            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="Gallery Image" />
-            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="Gallery Image" />
-            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="Gallery Image" />
+            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="The Serving Church community gallery - Sunnyvale TX worship and fellowship moments" />
+            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="The Serving Church community gallery - Sunnyvale TX worship and fellowship moments" />
+            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="The Serving Church community gallery - Sunnyvale TX worship and fellowship moments" />
           </div>
           {/* Pagination */}
           <Pagination>

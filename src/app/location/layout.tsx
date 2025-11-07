@@ -1,29 +1,30 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Location & Directions | The Serving Church",
-  description: "Find us at Sunnyvale High School Choir Room, 222 Collins Rd, Sunnyvale, TX 75182. Get step-by-step directions to our Sunday worship service at 10:30 AM. Free parking available.",
+  title: "Location & Directions | Visit The Serving Church Sunnyvale TX",
+  description: "Find us at Sunnyvale High School Choir Room, 222 Collins Rd, Sunnyvale, TX 75182. Get step-by-step directions to our Sunday worship service at 10 AM. Free parking available.",
   keywords: [
-    "Sunnyvale High School",
-    "church location",
-    "directions",
+    "church location Sunnyvale",
+    "Sunnyvale High School church",
+    "directions to church",
     "Sunnyvale TX church",
-    "222 Collins Rd",
-    "choir room",
-    "parking",
-    "how to find us"
+    "222 Collins Rd Sunnyvale",
+    "church near me",
+    "how to find us",
+    "church parking",
+    "visit church Sunnyvale"
   ],
   openGraph: {
-    title: "Location & Directions | The Serving Church",
-    description: "Join us at Sunnyvale High School Choir Room every Sunday at 10:30 AM. Get detailed directions and parking information.",
+    title: "Location & Directions | Visit The Serving Church Sunnyvale TX",
+    description: "Join us at Sunnyvale High School Choir Room every Sunday at 10 AM. Get detailed directions and parking information.",
     type: "website",
     locale: "en_US",
     siteName: "The Serving Church",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Location & Directions | The Serving Church",
-    description: "Find us at Sunnyvale High School Choir Room. Get directions, parking info, and what to expect.",
+    title: "Location & Directions | Visit The Serving Church Sunnyvale TX",
+    description: "Find us at Sunnyvale High School Choir Room, 222 Collins Rd, Sunnyvale, TX. Sundays at 10 AM.",
   },
 };
 

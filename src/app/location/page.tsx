@@ -110,7 +110,7 @@ export default function LocationPage() {
           <div className="relative rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200">
             <Image
               src={SUPABASE_IMAGES.sunnyvalehighschool}
-              alt="Sunnyvale High School - Where The Serving Church meets in the Choir Room every Sunday at 10:30 AM"
+              alt="Sunnyvale High School Choir Room - Where The Serving Church meets every Sunday at 10 AM in Sunnyvale TX"
               className="w-full h-auto"
               width={1200}
               height={675}
@@ -119,7 +119,7 @@ export default function LocationPage() {
             />
           </div>
           <p className="text-center text-gray-600 mt-4 text-sm">
-            We meet in the Choir Room every Sunday at 10:30 AM
+            We meet in the Choir Room every Sunday at 10:00 AM
           </p>
         </div>
       </section>

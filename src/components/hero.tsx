@@ -8,7 +8,7 @@ export function MovementComponent() {
     <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gray-50">
       <Image
         src={SUPABASE_IMAGES.samwise}
-        alt="Church community gathering - The Serving Church"
+        alt="The Serving Church community worship gathering in Sunnyvale TX"
         fill
         className="object-cover animate-[zoom-in_1.5s_ease-out]"
         style={{ objectPosition: "80% center" }}

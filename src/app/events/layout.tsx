@@ -2,17 +2,18 @@ import { Metadata } from "next";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "Events",
-  description: "Join us for inspiring worship, fellowship, and growth. Check out our upcoming church events including Sunday services at 10:30 AM, Bible studies, and community gatherings in Sunnyvale, TX.",
+  title: "Church Events & Sunday Services | The Serving Church Sunnyvale TX",
+  description: "Join us for inspiring worship, fellowship, and growth every Sunday at 10 AM. Check out our upcoming church events including Bible studies and community gatherings at The Serving Church in Sunnyvale, TX.",
   keywords: [
-    "church events",
-    "Sunday service",
+    "church events Sunnyvale",
+    "Sunday service Sunnyvale TX",
     "worship service",
-    "Bible study",
     "church calendar",
     "Sunnyvale church events",
+    "Bible study Sunnyvale",
     "community gatherings",
     "Christian fellowship",
+    "church near me",
   ],
   path: "/events",
 });

@@ -2,7 +2,8 @@ import { Metadata } from 'next';
 
 export const siteConfig = {
   name: 'The Serving Church',
-  description: 'A church born to look like Christ. Join us in Sunnyvale, Texas for worship, community, and spiritual growth.',
+  title: 'The Serving Church | Sunnyvale TX Church & Worship Community',
+  description: 'Join The Serving Church in Sunnyvale, Texas — a welcoming Christian community where faith, worship, and family grow together every Sunday at 10 AM.',
   url: 'https://servingchurchdallas.com',
   ogImage: 'https://servingchurchdallas.com/og-image.jpg',
   links: {
@@ -16,6 +17,7 @@ export const siteConfig = {
     state: 'TX',
     zip: '75182',
     full: '222 Collins Rd, Sunnyvale, TX 75182',
+    venue: 'Sunnyvale High School',
   },
   contact: {
     phone: '(214) 738-6371',
@@ -117,10 +119,13 @@ export function createLocalBusinessSchema() {
     '@type': 'Church',
     '@id': siteConfig.url,
     name: siteConfig.name,
+    alternateName: 'Serving Church Sunnyvale',
     description: siteConfig.description,
     url: siteConfig.url,
     telephone: siteConfig.contact.phone,
     email: siteConfig.contact.email,
+    image: siteConfig.ogImage,
+    priceRange: 'Free',
     address: {
       '@type': 'PostalAddress',
       streetAddress: siteConfig.address.street,
@@ -140,6 +145,26 @@ export function createLocalBusinessSchema() {
         dayOfWeek: 'Sunday',
         opens: '10:00',
         closes: '12:00',
+        description: 'Sunday Worship Service',
+      },
+    ],
+    hasMap: 'https://maps.google.com/?q=222+Collins+Rd,+Sunnyvale,+TX+75182',
+    areaServed: [
+      {
+        '@type': 'City',
+        name: 'Sunnyvale',
+      },
+      {
+        '@type': 'City',
+        name: 'Dallas',
+      },
+      {
+        '@type': 'City',
+        name: 'Mesquite',
+      },
+      {
+        '@type': 'City',
+        name: 'Garland',
       },
     ],
     sameAs: [
