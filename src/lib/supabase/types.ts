@@ -9,9 +9,16 @@ export interface Prayer {
   is_public: boolean;
   status: PrayerStatus;
   prayer_count: number;
+  member_id: string | null;
+  show_name: boolean;
   created_at: string;
   updated_at: string;
   archived_at: string | null;
+  member?: {
+    id: string;
+    full_name: string | null;
+    email: string;
+  };
 }
 
 export interface PrayerResponse {

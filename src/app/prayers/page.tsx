@@ -232,6 +232,20 @@ export default function PrayersPage() {
                 {prayers.map((prayer) => {
                   const isAnswered = prayer.status === "answered";
 
+                  // Determine display name based on member account and show_name preference
+                  const getDisplayName = () => {
+                    if (prayer.member_id && prayer.show_name === false) {
+                      return "Anonymous";
+                    }
+                    if (prayer.member_id && prayer.show_name && prayer.member?.full_name) {
+                      return prayer.member.full_name;
+                    }
+                    return prayer.name;
+                  };
+
+                  const displayName = getDisplayName();
+                  const isMember = !!prayer.member_id;
+
                   return (
                     <Card
                       key={prayer.id}
@@ -244,7 +258,14 @@ export default function PrayersPage() {
                       <CardHeader>
                         <div className="flex justify-between items-start">
                           <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                            {prayer.name}
+                            <div className="flex items-center gap-2">
+                              {displayName}
+                              {isMember && prayer.show_name && (
+                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 border border-blue-200">
+                                  Member
+                                </span>
+                              )}
+                            </div>
                             {isAnswered && (
                               <Sparkles className="w-5 h-5 text-green-600" />
                             )}

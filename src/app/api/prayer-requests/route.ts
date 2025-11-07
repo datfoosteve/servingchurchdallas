@@ -12,12 +12,14 @@ interface PrayerRequestData {
   email?: string;
   request: string;
   isPublic: boolean;
+  member_id?: string;
+  show_name?: boolean;
 }
 
 export async function POST(request: NextRequest) {
   try {
     const body: PrayerRequestData = await request.json();
-    const { name, email, request: prayerRequest, isPublic } = body;
+    const { name, email, request: prayerRequest, isPublic, member_id, show_name } = body;
 
     // Validation
     if (!name || !prayerRequest) {
@@ -35,16 +37,24 @@ export async function POST(request: NextRequest) {
 
     // 1️⃣ Save to Supabase database
     const supabase = createClient();
+    const insertData: any = {
+      name,
+      email: email || null,
+      request: prayerRequest,
+      is_public: isPublic,
+      status: "new",
+      prayer_count: 0,
+    };
+
+    // Add member-specific fields if provided
+    if (member_id) {
+      insertData.member_id = member_id;
+      insertData.show_name = show_name !== undefined ? show_name : true;
+    }
+
     const { data: prayerData, error: dbError } = await supabase
       .from("prayers")
-      .insert({
-        name,
-        email: email || null,
-        request: prayerRequest,
-        is_public: isPublic,
-        status: "new",
-        prayer_count: 0,
-      })
+      .insert(insertData)
       .select()
       .single();
 
@@ -105,8 +115,10 @@ export async function POST(request: NextRequest) {
           <span class="badge">${requestType.toUpperCase()}</span>
         </div>
         <div class="content">
-          <div class="field"><div class="label">Submitted By</div><div class="value">${name}</div></div>
+          <div class="field"><div class="label">Submitted By</div><div class="value">${name}${member_id ? ' <span style="background:#10b981;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;">MEMBER</span>' : ''}</div></div>
           ${email ? `<div class="field"><div class="label">Email</div><div class="value"><a href="mailto:${email}">${email}</a></div></div>` : ""}
+          ${member_id ? `<div class="field"><div class="label">Member Account</div><div class="value">Linked to member ID: ${member_id.substring(0, 8)}...</div></div>` : ""}
+          ${member_id && show_name !== undefined ? `<div class="field"><div class="label">Display Preference</div><div class="value">${show_name ? 'Show name on prayer wall' : 'Post anonymously'}</div></div>` : ""}
           <div class="field"><div class="label">Prayer Request</div><div class="request-text">${prayerRequest}</div></div>
           <div class="field"><div class="label">Request Type</div><div class="value">${isPublic ? "Public - May be shared with the congregation and prayer team" : "Private - Only for pastoral staff and prayer team leaders"}</div></div>
           <div class="field"><div class="label">Submitted</div><div class="value">${submittedAt}</div></div>
