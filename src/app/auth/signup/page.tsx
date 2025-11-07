@@ -93,7 +93,7 @@ export default function SignupPage() {
           </CardHeader>
           <CardContent>
             <p className="text-sm text-gray-600">
-              Please check your email to verify your account. You'll be redirected to your dashboard shortly...
+              Please check your email to verify your account. You&apos;ll be redirected to your dashboard shortly...
             </p>
           </CardContent>
         </Card>

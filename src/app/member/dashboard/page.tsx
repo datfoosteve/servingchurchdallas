@@ -16,22 +16,22 @@ export default function MemberDashboard() {
   const supabase = createClient();
 
   useEffect(() => {
-    loadUserData();
-  }, []);
+    const loadUserData = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (user) {
+        setUser(user);
+        const { data: memberData } = await supabase
+          .from("members")
+          .select("*")
+          .eq("id", user.id)
+          .single();
+        setMember(memberData);
+      }
+      setLoading(false);
+    };
 
-  const loadUserData = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
-    if (user) {
-      setUser(user);
-      const { data: memberData } = await supabase
-        .from("members")
-        .select("*")
-        .eq("id", user.id)
-        .single();
-      setMember(memberData);
-    }
-    setLoading(false);
-  };
+    loadUserData();
+  }, [supabase]);
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -75,7 +75,7 @@ export default function MemberDashboard() {
             Welcome back, {member?.full_name || user?.email}!
           </h2>
           <p className="text-gray-600">
-            Here's what's happening in our community
+            Here&apos;s what&apos;s happening in our community
           </p>
         </div>
 
