@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { toast } from 'sonner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -30,7 +31,6 @@ type PrayerRequestFormValues = z.infer<typeof prayerRequestSchema>;
 const PrayerRequestPage: React.FC = () => {
   const [isPublic, setIsPublic] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const form = useForm<PrayerRequestFormValues>({
     resolver: zodResolver(prayerRequestSchema),
@@ -43,7 +43,6 @@ const PrayerRequestPage: React.FC = () => {
 
   const onSubmit: SubmitHandler<PrayerRequestFormValues> = async (data) => {
     setIsSubmitting(true);
-    setSubmitStatus('idle');
 
     try {
       const response = await fetch('/api/prayer-requests', {
@@ -61,14 +60,26 @@ const PrayerRequestPage: React.FC = () => {
         throw new Error('Failed to submit prayer request');
       }
 
-      setSubmitStatus('success');
       form.reset();
 
-      // Clear success message after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      // Show success toast
+      if (isPublic) {
+        toast.success('Prayer Request Submitted!', {
+          description: 'Thank you for sharing. We will be praying for you!',
+          duration: 5000,
+        });
+      } else {
+        toast.success('Private Prayer Request Submitted!', {
+          description: 'Our pastoral team will be praying for you!',
+          duration: 5000,
+        });
+      }
     } catch (error) {
       console.error('Error submitting prayer request:', error);
-      setSubmitStatus('error');
+      toast.error('Submission Failed', {
+        description: 'There was an error submitting your request. Please try again or contact us directly.',
+        duration: 5000,
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -145,22 +156,6 @@ const PrayerRequestPage: React.FC = () => {
                 )}
               />
 
-              {submitStatus === 'success' && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-md">
-                  <p className="text-sm text-green-800">
-                    Thank you for sharing your prayer request. We will be praying for you!
-                  </p>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-                  <p className="text-sm text-red-800">
-                    There was an error submitting your request. Please try again or contact us directly.
-                  </p>
-                </div>
-              )}
-
               <Button type="submit" variant="default" disabled={isSubmitting}>
                 {isSubmitting ? 'Submitting...' : 'Submit Public Request'}
               </Button>
@@ -224,22 +219,6 @@ const PrayerRequestPage: React.FC = () => {
                   </FormItem>
                 )}
               />
-
-              {submitStatus === 'success' && (
-                <div className="p-4 bg-green-50 border border-green-200 rounded-md">
-                  <p className="text-sm text-green-800">
-                    Thank you for sharing your prayer request. Our pastoral team will be praying for you!
-                  </p>
-                </div>
-              )}
-
-              {submitStatus === 'error' && (
-                <div className="p-4 bg-red-50 border border-red-200 rounded-md">
-                  <p className="text-sm text-red-800">
-                    There was an error submitting your request. Please try again or contact us directly.
-                  </p>
-                </div>
-              )}
 
               <Button type="submit" variant="default" disabled={isSubmitting}>
                 {isSubmitting ? 'Submitting...' : 'Send Private Request'}

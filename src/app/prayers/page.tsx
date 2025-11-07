@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { Search, Filter, Heart, Clock, TrendingUp, Sparkles, Users } from "lucide-react";
 import type { Prayer } from "@/lib/supabase/types";
 
@@ -107,9 +108,9 @@ export default function PrayersPage() {
   };
 
   const filterButtons = [
-    { key: "recent" as FilterType, label: "Recent", icon: Clock },
-    { key: "most-prayed" as FilterType, label: "Most Prayed", icon: TrendingUp },
-    { key: "answered" as FilterType, label: "Answered", icon: Sparkles },
+    { key: "recent" as FilterType, label: "Recent", icon: Clock, tooltip: "Show the most recently submitted prayer requests" },
+    { key: "most-prayed" as FilterType, label: "Most Prayed", icon: TrendingUp, tooltip: "Show prayers that have received the most support from our community" },
+    { key: "answered" as FilterType, label: "Answered", icon: Sparkles, tooltip: "Celebrate answered prayers and God's faithfulness" },
   ];
 
   return (
@@ -158,16 +159,22 @@ export default function PrayersPage() {
           <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
             {/* Filter Buttons */}
             <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-              {filterButtons.map(({ key, label, icon: Icon }) => (
-                <Button
-                  key={key}
-                  variant={filter === key ? "default" : "outline"}
-                  onClick={() => setFilter(key)}
-                  className="flex items-center gap-2"
-                >
-                  <Icon className="w-4 h-4" />
-                  {label}
-                </Button>
+              {filterButtons.map(({ key, label, icon: Icon, tooltip }) => (
+                <Tooltip key={key}>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant={filter === key ? "default" : "outline"}
+                      onClick={() => setFilter(key)}
+                      className="flex items-center gap-2"
+                    >
+                      <Icon className="w-4 h-4" />
+                      {label}
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{tooltip}</p>
+                  </TooltipContent>
+                </Tooltip>
               ))}
             </div>
 

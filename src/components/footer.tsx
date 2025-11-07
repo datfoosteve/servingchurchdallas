@@ -25,35 +25,41 @@ export default function Footer() {
               <span className="text-2xl font-semibold ml-2">The Serving Church</span>
             </Link>
             <p className="text-gray-400 mb-4">Living to Reflect the Image of Christ</p>
-            <div className="flex space-x-4" role="list" aria-label="Social media links">
-              <Link
-                className="text-gray-400 hover:text-white transition-colors"
-                href="https://www.facebook.com/theservingchurch"
-                aria-label="Visit our Facebook page"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <FacebookIcon className="h-5 w-5" aria-hidden="true" />
-              </Link>
-              <Link
-                className="text-gray-400 hover:text-white transition-colors"
-                href="https://twitter.com/theservingchurch"
-                aria-label="Visit our Twitter profile"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <TwitterIcon className="h-5 w-5" aria-hidden="true" />
-              </Link>
-              <Link
-                className="text-gray-400 hover:text-white transition-colors"
-                href="https://www.instagram.com/theservingchurch"
-                aria-label="Visit our Instagram profile"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <InstagramIcon className="h-5 w-5" aria-hidden="true" />
-              </Link>
-            </div>
+            <ul className="flex space-x-4 list-none" aria-label="Social media links">
+              <li>
+                <Link
+                  className="text-gray-400 hover:text-white transition-colors"
+                  href="https://www.facebook.com/theservingchurch"
+                  aria-label="Visit our Facebook page"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <FacebookIcon className="h-5 w-5" aria-hidden="true" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-gray-400 hover:text-white transition-colors"
+                  href="https://twitter.com/theservingchurch"
+                  aria-label="Visit our Twitter profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <TwitterIcon className="h-5 w-5" aria-hidden="true" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="text-gray-400 hover:text-white transition-colors"
+                  href="https://www.instagram.com/theservingchurch"
+                  aria-label="Visit our Instagram profile"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <InstagramIcon className="h-5 w-5" aria-hidden="true" />
+                </Link>
+              </li>
+            </ul>
           </div>
           <nav aria-label="Footer navigation">
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
@@ -96,7 +102,7 @@ export default function Footer() {
                 required
               />
               <Button
-                className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-r-md transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-r-md transition-colors"
                 type="submit"
                 aria-label="Subscribe to newsletter"
               >

@@ -220,46 +220,54 @@ export function NavComponent() {
         <div className="hidden lg:flex w-full justify-center">
           <NavigationMenu className="hidden lg:flex">
             <NavigationMenuList>
-              <NavigationMenuLink asChild>
-                <Link
-                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
-                  href="/about-us"
-                >
-                  <Info className="h-4 w-4" />
-                  About Us
-                </Link>
-              </NavigationMenuLink>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                    href="/about-us"
+                  >
+                    <Info className="h-4 w-4" />
+                    About Us
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
 
-              <NavigationMenuLink asChild>
-                <Link
-                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
-                  href="/sermons"
-                >
-                  <Mic2 className="h-4 w-4" />
-                  Sermons
-                </Link>
-              </NavigationMenuLink>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                    href="/sermons"
+                  >
+                    <Mic2 className="h-4 w-4" />
+                    Sermons
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
 
-              <NavigationMenuLink asChild>
-                <Link
-                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
-                  href="/events"
-                >
-                  <Calendar className="h-4 w-4" />
-                  Events
-                </Link>
-              </NavigationMenuLink>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                    href="/events"
+                  >
+                    <Calendar className="h-4 w-4" />
+                    Events
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
 
-              <NavigationMenuLink asChild>
-                <Link
-                  className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
-                  href="/prayers"
-                >
-                  <Heart className="h-4 w-4" />
-                  Prayer Wall
-                  <PrayerBadge />
-                </Link>
-              </NavigationMenuLink>
+              <NavigationMenuItem>
+                <NavigationMenuLink asChild>
+                  <Link
+                    className="group inline-flex h-9 w-max items-center justify-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
+                    href="/prayers"
+                  >
+                    <Heart className="h-4 w-4" />
+                    Prayer Wall
+                    <PrayerBadge />
+                  </Link>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
 
               <NavigationMenuItem>
                 <NavigationMenuTrigger>

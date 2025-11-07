@@ -12,6 +12,8 @@ import { NavComponent } from "@/components/component/navcomponent";
 import { ThemeProvider } from "@/components/theme-provider";
 
 import  Footer  from "@/components/footer";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
 
 const ViewTransitions = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.ViewTransitions })));
 
@@ -126,8 +128,11 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
-          <Footer />
+          <TooltipProvider>
+            {children}
+            <Footer />
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
