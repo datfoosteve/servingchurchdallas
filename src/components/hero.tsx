@@ -23,11 +23,8 @@ export function MovementComponent() {
               <span className="inline-block animate-[fade-in-up_0.8s_ease-out_0.2s_both]">
                 A{" "}
               </span>
-              <strong className="inline-block relative text-transparent font-extrabold bg-gradient-to-br from-blue-300 via-purple-400 to-rose-500 bg-clip-text animate-[fade-in-up_0.8s_ease-out_0.4s_both,gradient-shift_4s_ease-in-out_infinite] bg-[length:200%_200%]">
-                <span className="relative">
-                  FAMILY
-                  <span className="absolute inset-0 blur-xl bg-gradient-to-br from-blue-400 to-rose-400 opacity-50 animate-pulse"></span>
-                </span>
+              <strong className="inline-block font-extrabold text-transparent bg-gradient-to-br from-blue-300 via-purple-400 to-rose-500 bg-clip-text animate-[fade-in-up_0.8s_ease-out_0.4s_both,gradient-shift_4s_ease-in-out_infinite] bg-[length:200%_200%] drop-shadow-[0_0_30px_rgba(147,51,234,0.5)]">
+                FAMILY
               </strong>{" "}
               <span className="inline-block animate-[fade-in-up_0.8s_ease-out_0.6s_both]">
                 TRYING TO
@@ -35,11 +32,8 @@ export function MovementComponent() {
               <span className="inline-block animate-[fade-in-up_0.8s_ease-out_0.8s_both]">
                 LOOK LIKE
               </span>{" "}
-              <strong className="inline-block relative text-transparent font-extrabold bg-gradient-to-br from-amber-300 via-orange-400 to-orange-500 bg-clip-text animate-[fade-in-up_0.8s_ease-out_1s_both,gradient-shift_4s_ease-in-out_infinite] bg-[length:200%_200%]">
-                <span className="relative">
-                  CHRIST
-                  <span className="absolute inset-0 blur-xl bg-gradient-to-br from-amber-400 to-orange-400 opacity-50 animate-pulse"></span>
-                </span>
+              <strong className="inline-block font-extrabold text-transparent bg-gradient-to-br from-amber-300 via-orange-400 to-orange-500 bg-clip-text animate-[fade-in-up_0.8s_ease-out_1s_both,gradient-shift_4s_ease-in-out_infinite] bg-[length:200%_200%] drop-shadow-[0_0_30px_rgba(251,146,60,0.5)]">
+                CHRIST
               </strong>
             </span>
           </h1>
