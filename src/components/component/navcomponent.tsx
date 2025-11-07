@@ -41,7 +41,7 @@ export function NavComponent() {
                 height={35}
                 alt="The Serving Church Logo"
                 priority
-                className="w-[155px] h-auto md:w-[140px]"
+                className="w-[150px] h-auto md:w-[140px]"
               />
               <span className="sr-only">Serving Church</span>
             </div>
