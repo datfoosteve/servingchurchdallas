@@ -156,8 +156,13 @@ export function PrayerWall() {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
           <Button asChild variant="outline" size="lg">
+            <a href="/prayers">
+              View All Prayers
+            </a>
+          </Button>
+          <Button asChild size="lg">
             <a href="/contact-us/prayer-request">
               Submit Your Prayer Request
             </a>
