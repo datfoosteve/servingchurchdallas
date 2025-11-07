@@ -114,7 +114,7 @@ export default function PrayersPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-purple-50">
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-purple-50">
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 text-white py-16 md:py-20">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
@@ -321,6 +321,6 @@ export default function PrayersPage() {
           </Button>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

@@ -59,7 +59,7 @@ const EventsPage: React.FC = () => {
   };
 
   return (
-    <>
+    <main>
       {/* Hero Section */}
       <section className="w-full py-12 md:py-20 bg-gradient-to-b from-blue-50 to-white">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
@@ -243,7 +243,7 @@ const EventsPage: React.FC = () => {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 };
 
