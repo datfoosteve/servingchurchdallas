@@ -278,12 +278,12 @@ export default function AdminDashboard() {
             </Card>
           </Link>
 
-          <Link href="/events">
+          <Link href="/admin/events">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-green-300">
               <CardHeader className="pb-3">
                 <Calendar className="h-8 w-8 text-green-600 mb-2" />
-                <CardTitle className="text-lg">Events</CardTitle>
-                <CardDescription>View church events calendar</CardDescription>
+                <CardTitle className="text-lg">Events Management</CardTitle>
+                <CardDescription>Create and manage church events</CardDescription>
               </CardHeader>
             </Card>
           </Link>
