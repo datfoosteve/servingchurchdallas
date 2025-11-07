@@ -1,9 +1,10 @@
 "use client"
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { Calendar } from "@/components/ui/calendar";
 import { format, isSameDay, isAfter, startOfToday } from "date-fns";
-import { generateRecurringEvents } from "@/components/eventHelper";
+import { generateMonthEvents, Event } from "@/lib/eventHelpers";
+import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Calendar as CalendarIcon, MapPin, Clock } from "lucide-react";
 const Link = React.lazy(() =>
@@ -20,26 +21,52 @@ import {
 
 const EventsPage: React.FC = () => {
   const [date, setDate] = useState<Date | undefined>(new Date());
+  const [dbEvents, setDbEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const supabase = createClient();
+
+  // Fetch events from database
+  useEffect(() => {
+    const loadEvents = async () => {
+      const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .eq("is_published", true)
+        .order("event_date", { ascending: true });
+
+      if (!error && data) {
+        setDbEvents(data);
+      }
+      setLoading(false);
+    };
+
+    loadEvents();
+  }, [supabase]);
 
   // Generate events dynamically for the year and month of the selected date
-  const events = generateRecurringEvents(
-    date ? date.getFullYear() : new Date().getFullYear(),
-    date ? date.getMonth() : new Date().getMonth()
-  );
+  const events = useMemo(() => {
+    if (loading) return [];
+    return generateMonthEvents(
+      dbEvents,
+      date ? date.getFullYear() : new Date().getFullYear(),
+      date ? date.getMonth() : new Date().getMonth()
+    );
+  }, [dbEvents, date, loading]);
 
   // Get upcoming events (next 3 events from today)
   const upcomingEvents = useMemo(() => {
+    if (loading) return [];
     const today = startOfToday();
     const allEvents = [
-      ...generateRecurringEvents(today.getFullYear(), today.getMonth()),
-      ...generateRecurringEvents(today.getFullYear(), today.getMonth() + 1),
+      ...generateMonthEvents(dbEvents, today.getFullYear(), today.getMonth()),
+      ...generateMonthEvents(dbEvents, today.getFullYear(), today.getMonth() + 1),
     ];
 
     return allEvents
       .filter(event => isAfter(event.date, today) || isSameDay(event.date, today))
       .sort((a, b) => a.date.getTime() - b.date.getTime())
       .slice(0, 3);
-  }, []);
+  }, [dbEvents, loading]);
 
   // Filter events for selected date
   const filteredEvents = events.filter((event) =>
@@ -51,10 +78,17 @@ const EventsPage: React.FC = () => {
     hasEvents: events.map((event) => event.date),
   };
 
-  const getEventIcon = (title: string) => {
-    if (title.includes("Sunday")) return "⛪";
-    if (title.includes("Bible Study")) return "📖";
-    if (title.includes("Prayer")) return "🙏";
+  const getEventIcon = (event: Event) => {
+    const category = event.category || "";
+    if (category === "service") return "⛪";
+    if (category === "bible-study") return "📖";
+    if (category === "prayer") return "🙏";
+    if (category === "fellowship") return "🤝";
+    if (category === "special-event") return "🎉";
+    // Fallback to title-based detection for compatibility
+    if (event.title.includes("Sunday")) return "⛪";
+    if (event.title.includes("Bible Study")) return "📖";
+    if (event.title.includes("Prayer")) return "🙏";
     return "📅";
   };
 
@@ -83,18 +117,26 @@ const EventsPage: React.FC = () => {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {upcomingEvents.map((event, index) => (
-              <Card key={index} className="hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-600">
+              <Card key={event.id || index} className="hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-600">
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-4xl">{getEventIcon(event.title)}</span>
+                    <span className="text-4xl">{getEventIcon(event)}</span>
                     <span className="text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
                       {format(event.date, "MMM d")}
                     </span>
                   </div>
                   <CardTitle className="text-xl">{event.title}</CardTitle>
-                  <CardDescription className="flex items-center gap-1 text-gray-600">
-                    <Clock className="w-4 h-4" />
-                    {format(event.date, "EEEE, MMMM d")}
+                  <CardDescription className="space-y-1 text-gray-600">
+                    <div className="flex items-center gap-1">
+                      <CalendarIcon className="w-4 h-4" />
+                      {format(event.date, "EEEE, MMMM d")}
+                    </div>
+                    {event.time && (
+                      <div className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {event.time}
+                      </div>
+                    )}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -154,13 +196,19 @@ const EventsPage: React.FC = () => {
                 {filteredEvents.length > 0 ? (
                   <div className="space-y-6">
                     {filteredEvents.map((event, index) => (
-                      <div key={index} className="pb-6 border-b last:border-b-0 last:pb-0">
+                      <div key={event.id || index} className="pb-6 border-b last:border-b-0 last:pb-0">
                         <div className="flex items-start gap-3">
-                          <span className="text-3xl">{getEventIcon(event.title)}</span>
+                          <span className="text-3xl">{getEventIcon(event)}</span>
                           <div className="flex-1">
                             <h4 className="text-xl font-bold text-gray-900 mb-2">
                               {event.title}
                             </h4>
+                            {event.time && (
+                              <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
+                                <Clock className="w-4 h-4" />
+                                <span>{event.time}</span>
+                              </div>
+                            )}
                             <p className="text-gray-600 mb-3">{event.description}</p>
                             <div className="flex items-start gap-2 text-sm text-gray-500">
                               <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
