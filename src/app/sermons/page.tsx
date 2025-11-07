@@ -22,7 +22,7 @@ export const metadata: Metadata = createMetadata({
 
 const SermonsPage = () => {
   return (
-    <div className="container mx-auto px-2 py-8 space-y-8">
+    <main className="container mx-auto px-2 py-8 space-y-8">
       <h1 className="text-4xl font-bold mb-4 text-center">Sermons</h1>
 
 
@@ -62,8 +62,8 @@ const SermonsPage = () => {
         </CardContent>
       </Card>
 
-      
-    </div>
+
+    </main>
   );
 };
 

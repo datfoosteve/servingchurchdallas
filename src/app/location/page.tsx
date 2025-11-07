@@ -11,7 +11,7 @@ const Link = React.lazy(() => import('next-view-transitions').then(module => ({ 
 
 export default function LocationPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+    <main className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       {/* Hero Section */}
       <section className="relative bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-700 text-white py-16 md:py-24">
         <div className="absolute inset-0 bg-black/20"></div>
@@ -279,6 +279,6 @@ export default function LocationPage() {
           </Button>
         </div>
       </section>
-    </div>
+    </main>
   );
 }

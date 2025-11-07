@@ -86,7 +86,7 @@ const PrayerRequestPage: React.FC = () => {
   };
 
   return (
-    <div className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+    <main className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-2xl">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">Prayer Requests</h1>
         <p className="text-base text-gray-600 mb-8 text-center max-w-xl mx-auto">
@@ -228,7 +228,7 @@ const PrayerRequestPage: React.FC = () => {
         </TabsContent>
         </Tabs>
       </div>
-    </div>
+    </main>
   );
 };
 
