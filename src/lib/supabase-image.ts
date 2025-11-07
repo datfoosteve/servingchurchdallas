@@ -47,6 +47,12 @@ export const SUPABASE_IMAGES = {
   // Locations
   church: `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/church.png`,
   sunnyvalehighschool: `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/sunnyvalehighschool.avif`,
+
+  // Logos & Branding
+  logowordhome: `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/logowordhome.svg`,
+
+  // People
+  pastorfamily: `${SUPABASE_URL}/storage/v1/object/public/${STORAGE_BUCKET}/pastorfamily.jpg`,
 } as const
 
 // Helper for responsive images with WebP conversion

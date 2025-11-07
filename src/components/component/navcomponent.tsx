@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from "next/image";
-import yourImagePath from "/src/images/logowordhome.svg";
+import { SUPABASE_IMAGES } from "@/lib/supabase-image";
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
@@ -36,7 +36,7 @@ export function NavComponent() {
           <Link href="/" passHref>
             <div className="flex gap-2 text-lg font-semibold md:text-base">
               <Image
-                src={yourImagePath}
+                src={SUPABASE_IMAGES.logowordhome}
                 width={140}
                 height={35}
                 alt="The Serving Church Logo"
@@ -59,7 +59,7 @@ export function NavComponent() {
                   href="/"
                 >
                   <Image
-                    src={yourImagePath}
+                    src={SUPABASE_IMAGES.logowordhome}
                     width={140}
                     height={35}
                     alt="The Serving Church Logo"

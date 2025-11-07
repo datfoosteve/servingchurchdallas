@@ -126,8 +126,8 @@ const PastorImage: React.FC = () => {
       )}
 
       <Image
-        // try real photo first; if it 404s, show church image
-        src={error ? "/src/images/church.png" : "/pastor-family.jpg"}
+        // Using Supabase CDN for pastor family photo
+        src={error ? SUPABASE_IMAGES.church : SUPABASE_IMAGES.pastorfamily}
         alt="Pastor Sam Thomas and family"
         fill
         className={`rounded-lg object-cover shadow transition-opacity duration-500 ${
