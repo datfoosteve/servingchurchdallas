@@ -5,7 +5,7 @@ import { Crown, Home, Sparkles } from 'lucide-react';
 const cardData = [
     {
         id: 1,
-        title: "LOOK LIKE CHRIST",
+        title: "AIM TO LOOK LIKE CHRIST",
         description: "Live each day reflecting the heart of Jesus—showing love, patience, humility, and grace. We strive to be His hands and feet in our homes, workplaces, and communities.",
         icon: Crown,
         gradient: "from-amber-400 via-orange-500 to-rose-500",
@@ -14,7 +14,7 @@ const cardData = [
     },
     {
         id: 2,
-        title: "HEAVENLY FAMILIES",
+        title: "FOSTER HEAVENLY FAMILIES",
         description: "Build homes where God's presence dwells and love leads the way. We nurture families rooted in faith, forgiveness, and the fruits of the Spirit, creating heaven on earth within our walls.",
         icon: Home,
         gradient: "from-blue-400 via-indigo-500 to-purple-600",
@@ -39,7 +39,7 @@ export function ValueBlocks() {
                 {/* Section Header */}
                 <div className="text-center mb-12 md:mb-16">
                     <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                        Our Core Beliefs
+                        What We Hope For
                     </h2>
                     <div className="flex items-center justify-center gap-3 mb-4">
                         <div className="h-1 w-16 bg-gradient-to-r from-amber-400 to-rose-500 rounded-full"></div>
