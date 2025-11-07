@@ -6,7 +6,7 @@ const Link = React.lazy(() =>
   import("next-view-transitions").then((m) => ({ default: m.Link }))
 );
 import Image from "next/image";
-import heroImage from "/src/images/church.png";
+import { SUPABASE_IMAGES } from "@/lib/supabase-image";
 
 import ChurchIcon from "../../images/icons/ChurchIcon";
 import HeartIcon from "../../images/icons/HeartIcon";
@@ -46,7 +46,7 @@ const AboutUsPage: React.FC = () => {
             </div>
             <div className="flex items-center justify-center">
               <Image
-                src={heroImage}
+                src={SUPABASE_IMAGES.church}
                 alt="Church Illustration"
                 className="max-w-full rounded-lg object-contain"
                 width={400}

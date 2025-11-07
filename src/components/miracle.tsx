@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import yourImagePath from "/src/images/aiminlife.png";
+import { SUPABASE_IMAGES } from "@/lib/supabase-image";
 import { Separator } from "@/components/ui/separator";
 import {
   Card,
@@ -44,7 +44,7 @@ export function MiracleSection() {
         </Card>
         <div className="relative rounded-lg w-full aspect-[4/3] md:aspect-[16/9] bg-gray-100 flex items-center justify-center">
           <Image
-            src={yourImagePath}
+            src={SUPABASE_IMAGES.aiminlife}
             alt="What is your aim in life - Sermon series illustration"
             fill
             className="rounded-lg shadow-md object-contain p-2"
