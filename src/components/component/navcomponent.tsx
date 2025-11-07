@@ -32,16 +32,18 @@ export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="w-[100px] h-[20px] rounded-full" />}>
       <header className="flex h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90 justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <Link href="/" passHref>
             <div className="flex gap-2 text-lg font-semibold md:text-base">
-              <Image
-                src={SUPABASE_IMAGES.logowordhome}
-                width={140}
-                height={35}
-                alt="The Serving Church Logo"
-                priority
-              />
+              <div className="relative w-[140px] h-[35px] shrink-0">
+                <Image
+                  src={SUPABASE_IMAGES.logowordhome}
+                  fill
+                  alt="The Serving Church Logo"
+                  priority
+                  className="object-contain"
+                />
+              </div>
               <span className="sr-only">Serving Church</span>
             </div>
           </Link>
@@ -217,8 +219,8 @@ export function NavComponent() {
             </SheetContent>
           </Sheet>
         </div>
-        <div className="hidden lg:flex w-full justify-center">
-          <NavigationMenu className="hidden lg:flex">
+        <div className="hidden lg:flex flex-1 justify-center">
+          <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
                 <NavigationMenuLink asChild>
