@@ -133,6 +133,7 @@ const PastorImage: React.FC = () => {
         className={`rounded-lg object-cover shadow transition-opacity duration-500 ${
           loaded ? "opacity-100" : "opacity-0"
         }`}
+        style={{ objectPosition: "center top" }}
         onLoadingComplete={() => setLoaded(true)}
         onError={() => setError(true)}
         sizes="(min-width: 1024px) 400px, 100vw"
