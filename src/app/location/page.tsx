@@ -5,7 +5,7 @@ import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { MapPin, Clock, Navigation, Phone, AlertCircle, CheckCircle2, ParkingCircle } from "lucide-react";
-import schoolImage from "@/images/sunnyvalehighschool.avif";
+import { SUPABASE_IMAGES } from "@/lib/supabase-image";
 
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
 
@@ -109,7 +109,7 @@ export default function LocationPage() {
           </h2>
           <div className="relative rounded-xl overflow-hidden shadow-2xl border-4 border-gray-200">
             <Image
-              src={schoolImage}
+              src={SUPABASE_IMAGES.sunnyvalehighschool}
               alt="Sunnyvale High School - Where The Serving Church meets in the Choir Room every Sunday at 10:30 AM"
               className="w-full h-auto"
               width={1200}

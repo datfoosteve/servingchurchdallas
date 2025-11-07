@@ -3,7 +3,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import Miracle from "/src/images/miracle.png";
+import { SUPABASE_IMAGES } from '@/lib/supabase-image';
 
 const WhoWeArePage = () => {
   return (
@@ -13,9 +13,9 @@ const WhoWeArePage = () => {
           <h2 className="text-3xl font-bold mb-6 md:mb-8">Pastor and Family</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {[
-              { name: "Pastor Sam Thomas", role: "Lead Pastor, Husband, Father", src: Miracle },
-              { name: "Hepsy Sam", role: "Pastor's Wife, Mother", src: Miracle },
-              { name: "Zion", role: "Pastor's Son", src: Miracle }
+              { name: "Pastor Sam Thomas", role: "Lead Pastor, Husband, Father", src: SUPABASE_IMAGES.miracle },
+              { name: "Hepsy Sam", role: "Pastor's Wife, Mother", src: SUPABASE_IMAGES.miracle },
+              { name: "Zion", role: "Pastor's Son", src: SUPABASE_IMAGES.miracle }
             ].map((person, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="relative w-full aspect-square">
@@ -40,9 +40,9 @@ const WhoWeArePage = () => {
           <h2 className="text-3xl font-bold mb-6 md:mb-8">Worship Leaders</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {[
-              { name: "Arlie Sam", role: "Worship Leader, Vocalist", src: Miracle },
-              { name: "Jessica Thomas", role: "Worship Leader, Guitarist", src: Miracle },
-              { name: "Sam Thomas", role: "Worship Leader, Pianist", src: Miracle }
+              { name: "Arlie Sam", role: "Worship Leader, Vocalist", src: SUPABASE_IMAGES.miracle },
+              { name: "Jessica Thomas", role: "Worship Leader, Guitarist", src: SUPABASE_IMAGES.miracle },
+              { name: "Sam Thomas", role: "Worship Leader, Pianist", src: SUPABASE_IMAGES.miracle }
             ].map((leader, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="relative w-full aspect-square">
@@ -68,9 +68,9 @@ const WhoWeArePage = () => {
           <h2 className="text-3xl font-bold mb-6 md:mb-8">Music Production Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
             {[
-              { name: "Jacob", role: "Guitarist, Music Producer", src: Miracle },
-              { name: "Sam Thomas", role: "Pianist, Music Producer", src: Miracle },
-              { name: "Justina Mathew", role: "Vocalist, Music Producer", src: Miracle }
+              { name: "Jacob", role: "Guitarist, Music Producer", src: SUPABASE_IMAGES.miracle },
+              { name: "Sam Thomas", role: "Pianist, Music Producer", src: SUPABASE_IMAGES.miracle },
+              { name: "Justina Mathew", role: "Vocalist, Music Producer", src: SUPABASE_IMAGES.miracle }
             ].map((member, index) => (
               <div key={index} className="bg-white rounded-lg shadow-sm overflow-hidden">
                 <div className="relative w-full aspect-square">
@@ -99,7 +99,7 @@ const WhoWeArePage = () => {
                 <Image
                   alt="Marvin Mathew"
                   className="object-cover"
-                  src={Miracle}
+                  src={SUPABASE_IMAGES.miracle}
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 768px) 66vw, 50vw"
                 />

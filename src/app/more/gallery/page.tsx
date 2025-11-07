@@ -6,7 +6,7 @@
 import React from 'react';
 import { Carousel, CarouselItem, CarouselContent, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
 import { Pagination, PaginationPrevious, PaginationItem, PaginationLink, PaginationNext, PaginationEllipsis } from '@/components/ui/pagination';
-import Miracle from "/src/images/miracle.png";
+import { SUPABASE_IMAGES } from '@/lib/supabase-image';
 import Image from 'next/image';
 
 export default function GalleryPage() {
@@ -22,7 +22,7 @@ export default function GalleryPage() {
                 <Image
                   alt="Church Image"
                   className="aspect-video object-cover rounded-xl"
-                  src={Miracle}
+                  src={SUPABASE_IMAGES.miracle}
                   style={{ height: '675px', width: '1200px' }}
                 />
               </CarouselItem>
@@ -30,7 +30,7 @@ export default function GalleryPage() {
                 <Image
                   alt="Church Image"
                   className="aspect-video object-cover rounded-xl"
-                  src={Miracle}
+                  src={SUPABASE_IMAGES.miracle}
                   style={{ height: '675px', width: '1200px' }}
                 />
               </CarouselItem>
@@ -38,7 +38,7 @@ export default function GalleryPage() {
                 <Image
                   alt="Church Image"
                   className="aspect-video object-cover rounded-xl"
-                  src={Miracle}
+                  src={SUPABASE_IMAGES.miracle}
                   style={{ height: '675px', width: '1200px' }}
                 />
               </CarouselItem>
@@ -65,9 +65,9 @@ export default function GalleryPage() {
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 md:p-6">
             {/* Image placeholders */}
-            <Image className="object-cover w-full h-60 rounded-lg" src={Miracle} alt="Gallery Image" />
-            <Image className="object-cover w-full h-60 rounded-lg" src={Miracle} alt="Gallery Image" />
-            <Image className="object-cover w-full h-60 rounded-lg" src={Miracle} alt="Gallery Image" />
+            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="Gallery Image" />
+            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="Gallery Image" />
+            <Image className="object-cover w-full h-60 rounded-lg" src={SUPABASE_IMAGES.miracle} alt="Gallery Image" />
           </div>
           {/* Pagination */}
           <Pagination>

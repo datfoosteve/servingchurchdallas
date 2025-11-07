@@ -6,7 +6,7 @@ const Link = React.lazy(() =>
   import("next-view-transitions").then((m) => ({ default: m.Link }))
 );
 import Image from "next/image";
-import heroImage from "/src/images/church.png";
+import { SUPABASE_IMAGES } from "@/lib/supabase-image";
 
 import ChurchIcon from "../../images/icons/ChurchIcon";
 import HeartIcon from "../../images/icons/HeartIcon";
@@ -46,7 +46,7 @@ const AboutUsPage: React.FC = () => {
             </div>
             <div className="flex items-center justify-center">
               <Image
-                src={heroImage}
+                src={SUPABASE_IMAGES.church}
                 alt="Church Illustration"
                 className="max-w-full rounded-lg object-contain"
                 width={400}
@@ -126,8 +126,8 @@ const PastorImage: React.FC = () => {
       )}
 
       <Image
-        // try real photo first; if it 404s, show church image
-        src={error ? "/src/images/church.png" : "/pastor-family.jpg"}
+        // Using Supabase CDN for pastor family photo
+        src={error ? SUPABASE_IMAGES.church : SUPABASE_IMAGES.pastorfamily}
         alt="Pastor Sam Thomas and family"
         fill
         className={`rounded-lg object-cover shadow transition-opacity duration-500 ${

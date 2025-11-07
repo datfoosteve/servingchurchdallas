@@ -1,13 +1,13 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import yourImagePath from "/src/images/samwise.png";
+import { SUPABASE_IMAGES } from "@/lib/supabase-image";
 
 export function MovementComponent() {
   return (
     <section className="relative w-full h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden bg-gray-50">
       <Image
-        src={yourImagePath}
+        src={SUPABASE_IMAGES.samwise}
         alt="Church community gathering - The Serving Church"
         fill
         className="object-cover"
