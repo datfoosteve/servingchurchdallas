@@ -2,14 +2,14 @@ import { Metadata } from "next";
 import { createMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = createMetadata({
-  title: "Contact Church",
-  description: "Send a message to The Serving Church. Fill out our contact form and we'll get back to you soon. We'd love to hear from you and answer any questions you may have.",
+  title: "Contact The Serving Church | Sunnyvale TX",
+  description: "Contact The Serving Church in Sunnyvale, TX. Fill out our contact form and we'll get back to you soon. We'd love to hear from you and answer any questions about our church.",
   keywords: [
-    "contact church form",
+    "contact church Sunnyvale",
+    "Sunnyvale TX church contact",
     "message church",
     "church inquiry",
-    "contact form",
-    "reach out to church",
+    "contact The Serving Church",
     "church communication",
   ],
   path: "/contact-us/contact-church",

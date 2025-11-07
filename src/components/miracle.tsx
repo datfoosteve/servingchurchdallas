@@ -59,7 +59,7 @@ export function MiracleSection() {
           <div className="relative rounded-2xl w-full aspect-[4/3] bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg border-2 border-purple-200 overflow-hidden">
             <Image
               src={SUPABASE_IMAGES.aiminlife}
-              alt="What is your aim in life - Sermon series illustration"
+              alt="What is your aim in life sermon series - The Serving Church Sunnyvale TX"
               fill
               className="object-contain p-4"
             />

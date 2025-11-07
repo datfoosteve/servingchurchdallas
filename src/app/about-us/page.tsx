@@ -23,7 +23,7 @@ const AboutUsPage: React.FC = () => {
               <span>About Us</span>
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Who We Are
+              About The Serving Church
             </h1>
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="h-1 w-20 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"></div>
