@@ -122,7 +122,7 @@ You now have a **complete, production-ready member portal system** with integrat
 You need to run these SQL migrations in Supabase to enable all features:
 
 ### Migration 003: Member Portal (REQUIRED)
-**File:** `/supabase/migrations/003_member_portal_fixed.sql`
+**File:** `/supabase/migrations/003_member_portal_SAFE.sql`
 
 Creates:
 - `members` table with role-based access
@@ -149,13 +149,21 @@ Adds to existing `prayers` table:
 - RLS policy for members to view own prayers
 - Helper function for display names
 
+### Migration 006: Admin Member Management (REQUIRED)
+**File:** `/supabase/migrations/006_add_admin_member_management_policy.sql`
+
+Adds RLS policy:
+- Allows pastors/admins to update any member's role
+- Enables member management page functionality
+- Safe to run multiple times
+
 **How to Run:**
 1. Go to Supabase Dashboard
 2. Click **SQL Editor** in left sidebar
 3. Click **"New query"**
 4. Copy entire migration file contents
 5. Paste and click **Run**
-6. Repeat for each migration file
+6. Repeat for each migration file (003, 004, 005, 006)
 
 ---
 
