@@ -17,10 +17,20 @@ export async function GET(request: NextRequest) {
     const search = searchParams.get("search") || "";
     const offset = (page - 1) * limit;
 
-    // Build base query
+    // Build base query with member join
     let query = supabase
       .from("prayers")
-      .select("id, name, request, prayer_count, created_at, status", { count: "exact" })
+      .select(`
+        id,
+        name,
+        request,
+        prayer_count,
+        created_at,
+        status,
+        member_id,
+        show_name,
+        member:members(id, full_name, email)
+      `, { count: "exact" })
       .eq("is_public", true)
       .is("archived_at", null);
 
