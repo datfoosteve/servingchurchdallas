@@ -29,13 +29,15 @@ CREATE INDEX IF NOT EXISTS idx_events_recurring ON public.events(is_recurring);
 -- Enable RLS
 ALTER TABLE public.events ENABLE ROW LEVEL SECURITY;
 
--- RLS Policies
+-- RLS Policies (with DROP IF EXISTS for safety)
 -- Everyone can view published events
+DROP POLICY IF EXISTS "Anyone can view published events" ON public.events;
 CREATE POLICY "Anyone can view published events" ON public.events
   FOR SELECT
   USING (is_published = TRUE);
 
 -- Pastor/Admin can view all events (including drafts)
+DROP POLICY IF EXISTS "Pastor/Admin can view all events" ON public.events;
 CREATE POLICY "Pastor/Admin can view all events" ON public.events
   FOR SELECT TO authenticated
   USING (
@@ -46,6 +48,7 @@ CREATE POLICY "Pastor/Admin can view all events" ON public.events
   );
 
 -- Pastor/Admin can insert events
+DROP POLICY IF EXISTS "Pastor/Admin can insert events" ON public.events;
 CREATE POLICY "Pastor/Admin can insert events" ON public.events
   FOR INSERT TO authenticated
   WITH CHECK (
@@ -56,6 +59,7 @@ CREATE POLICY "Pastor/Admin can insert events" ON public.events
   );
 
 -- Pastor/Admin can update events
+DROP POLICY IF EXISTS "Pastor/Admin can update events" ON public.events;
 CREATE POLICY "Pastor/Admin can update events" ON public.events
   FOR UPDATE TO authenticated
   USING (
@@ -72,6 +76,7 @@ CREATE POLICY "Pastor/Admin can update events" ON public.events
   );
 
 -- Pastor/Admin can delete events
+DROP POLICY IF EXISTS "Pastor/Admin can delete events" ON public.events;
 CREATE POLICY "Pastor/Admin can delete events" ON public.events
   FOR DELETE TO authenticated
   USING (
@@ -81,26 +86,27 @@ CREATE POLICY "Pastor/Admin can delete events" ON public.events
     )
   );
 
--- Insert default recurring events
+-- Insert default recurring events (only if they don't exist)
 INSERT INTO public.events (title, description, location, event_date, event_time, is_recurring, recurrence_pattern, category)
-VALUES
-  (
-    'Sunday Service',
-    'Join us every Sunday for worship, prayer, and biblical teaching. Our service is designed to be a welcoming, uplifting experience for all ages.',
-    'Sunnyvale High School - Choir Room',
-    '2024-01-07 10:30:00-06', -- First Sunday of 2024
-    '10:30 AM - 12:00 PM',
-    TRUE,
-    'weekly-sunday',
-    'service'
-  ),
-  (
-    'Fasting Prayer',
-    'Join us for a special time of fasting and prayer. This is a powerful time to seek God together as a community and intercede for our church and community.',
-    'Sam''s House - Call for details',
-    '2024-01-05 19:00:00-06', -- First Friday of 2024
-    '7:00 PM',
-    TRUE,
-    'monthly-first-friday',
-    'prayer'
-  );
+SELECT
+  'Sunday Service',
+  'Join us every Sunday for worship, prayer, and biblical teaching. Our service is designed to be a welcoming, uplifting experience for all ages.',
+  'Sunnyvale High School - Choir Room',
+  '2024-01-07 10:30:00-06',
+  '10:30 AM - 12:00 PM',
+  TRUE,
+  'weekly-sunday',
+  'service'
+WHERE NOT EXISTS (SELECT 1 FROM public.events WHERE title = 'Sunday Service' AND is_recurring = TRUE);
+
+INSERT INTO public.events (title, description, location, event_date, event_time, is_recurring, recurrence_pattern, category)
+SELECT
+  'Fasting Prayer',
+  'Join us for a special time of fasting and prayer. This is a powerful time to seek God together as a community and intercede for our church and community.',
+  'Sam''s House - Call for details',
+  '2024-01-05 19:00:00-06',
+  '7:00 PM',
+  TRUE,
+  'monthly-first-friday',
+  'prayer'
+WHERE NOT EXISTS (SELECT 1 FROM public.events WHERE title = 'Fasting Prayer' AND is_recurring = TRUE);
