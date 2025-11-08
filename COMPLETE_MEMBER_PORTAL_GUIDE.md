@@ -15,17 +15,21 @@ You now have a **complete, production-ready member portal system** with integrat
 - `/auth/login` - Member login page
 - `/auth/signup` - Member registration with email verification
 - `/auth/callback` - Email verification handler
+- `/auth/forgot-password` - Request password reset email
+- `/auth/reset-password` - Set new password via email link
 - `/member/dashboard` - Main member hub with quick actions
 - `/member/announcements` - View all church announcements
 - `/member/profile` - Edit name, phone, view account info
+- `/not-found` - Custom 404 error page
 
 #### Features:
 - Email/password authentication via Supabase
 - Email verification on signup
+- Complete password reset flow (forgot → email → reset)
 - Role-based access (member, pastor, admin)
 - Protected routes via middleware
 - Auto-create member profile on signup
-- Password reset capability
+- Custom branded 404 page with quick links
 
 ---
 
@@ -35,13 +39,14 @@ You now have a **complete, production-ready member portal system** with integrat
 #### Admin Pages:
 - `/admin/dashboard` - Overview with stats cards
 - `/admin/announcements` - Create/edit/delete announcements
-- `/admin/members` - View all members, change roles
+- `/admin/members` - View all members, change roles, delete members
 - `/admin/events` - Create/edit/delete church events
 - `/admin/prayers` - Manage prayer requests (already existed)
 
 #### Features:
 - Real-time stats (total members, announcements, prayers)
 - Role-based routing (pastors go to admin, members to member dashboard)
+- Delete member functionality with confirmation
 - Beautiful gradient UI throughout
 - Success/error notifications
 - Confirmation dialogs for destructive actions
