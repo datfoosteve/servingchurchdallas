@@ -62,7 +62,7 @@ export default function AdminDashboard() {
           .select("*", { count: "exact", head: true });
 
         const { count: prayersCount } = await supabase
-          .from("prayer_requests")
+          .from("prayers")
           .select("*", { count: "exact", head: true });
 
         // Get recent signups (last 7 days)
@@ -226,7 +226,7 @@ export default function AdminDashboard() {
               </div>
             </CardHeader>
             <CardContent>
-              <Link href="/admin/announcements/new">
+              <Link href="/admin/announcements">
                 <Button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
                   <Plus className="h-4 w-4 mr-2" />
                   New Announcement

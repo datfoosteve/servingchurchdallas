@@ -15,17 +15,21 @@ You now have a **complete, production-ready member portal system** with integrat
 - `/auth/login` - Member login page
 - `/auth/signup` - Member registration with email verification
 - `/auth/callback` - Email verification handler
+- `/auth/forgot-password` - Request password reset email
+- `/auth/reset-password` - Set new password via email link
 - `/member/dashboard` - Main member hub with quick actions
 - `/member/announcements` - View all church announcements
 - `/member/profile` - Edit name, phone, view account info
+- `/not-found` - Custom 404 error page
 
 #### Features:
 - Email/password authentication via Supabase
 - Email verification on signup
+- Complete password reset flow (forgot → email → reset)
 - Role-based access (member, pastor, admin)
 - Protected routes via middleware
 - Auto-create member profile on signup
-- Password reset capability
+- Custom branded 404 page with quick links
 
 ---
 
@@ -35,13 +39,14 @@ You now have a **complete, production-ready member portal system** with integrat
 #### Admin Pages:
 - `/admin/dashboard` - Overview with stats cards
 - `/admin/announcements` - Create/edit/delete announcements
-- `/admin/members` - View all members, change roles
+- `/admin/members` - View all members, change roles, delete members
 - `/admin/events` - Create/edit/delete church events
 - `/admin/prayers` - Manage prayer requests (already existed)
 
 #### Features:
 - Real-time stats (total members, announcements, prayers)
 - Role-based routing (pastors go to admin, members to member dashboard)
+- Delete member functionality with confirmation
 - Beautiful gradient UI throughout
 - Success/error notifications
 - Confirmation dialogs for destructive actions
@@ -117,7 +122,7 @@ You now have a **complete, production-ready member portal system** with integrat
 You need to run these SQL migrations in Supabase to enable all features:
 
 ### Migration 003: Member Portal (REQUIRED)
-**File:** `/supabase/migrations/003_member_portal_fixed.sql`
+**File:** `/supabase/migrations/003_member_portal_SAFE.sql`
 
 Creates:
 - `members` table with role-based access
@@ -144,13 +149,30 @@ Adds to existing `prayers` table:
 - RLS policy for members to view own prayers
 - Helper function for display names
 
+### Migration 006: Admin Member Management (REQUIRED)
+**File:** `/supabase/migrations/006_add_admin_member_management_policy.sql`
+
+Adds RLS policy:
+- Allows pastors/admins to update any member's role
+- Enables member management page functionality
+- Safe to run multiple times
+
+### Migration 007: Secure Role Updates (CRITICAL SECURITY)
+**File:** `/supabase/migrations/007_secure_member_role_updates.sql`
+
+Security fix:
+- Prevents regular members from changing their own role
+- Only pastors/admins can change roles
+- Members can still update their name, phone, etc.
+- CRITICAL: Run this immediately after 006
+
 **How to Run:**
 1. Go to Supabase Dashboard
 2. Click **SQL Editor** in left sidebar
 3. Click **"New query"**
 4. Copy entire migration file contents
 5. Paste and click **Run**
-6. Repeat for each migration file
+6. Repeat for each migration file (003, 004, 005, 006, 007)
 
 ---
 

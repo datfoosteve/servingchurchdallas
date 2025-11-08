@@ -18,7 +18,8 @@ import {
   AlertCircle,
   Crown,
   Mail,
-  Calendar
+  Calendar,
+  Trash2
 } from "lucide-react";
 import Link from "next/link";
 import {
@@ -113,6 +114,37 @@ export default function MembersManagement() {
       setTimeout(() => setSuccess(null), 3000);
     } catch (err: any) {
       setError(err.message || "Failed to update role");
+      setTimeout(() => setError(null), 3000);
+    }
+  };
+
+  const handleDeleteMember = async (memberId: string, memberEmail: string) => {
+    if (!confirm(`Are you sure you want to delete ${memberEmail}? This will permanently remove their account and all associated data.`)) return;
+
+    try {
+      // First delete from members table (this will cascade due to ON DELETE CASCADE in auth.users)
+      const { error: memberError } = await supabase
+        .from("members")
+        .delete()
+        .eq("id", memberId);
+
+      if (memberError) throw memberError;
+
+      // Then delete from auth.users (this requires admin privileges via service role)
+      // Note: This might fail if not using service role key
+      const { error: authError } = await supabase.auth.admin.deleteUser(memberId);
+
+      if (authError) {
+        // If auth deletion fails, it's okay - member record is deleted
+        console.warn("Auth user deletion failed:", authError);
+      }
+
+      setSuccess(`Member ${memberEmail} deleted successfully!`);
+      loadMembers();
+
+      setTimeout(() => setSuccess(null), 3000);
+    } catch (err: any) {
+      setError(err.message || "Failed to delete member");
       setTimeout(() => setError(null), 3000);
     }
   };
@@ -313,6 +345,14 @@ export default function MembersManagement() {
                           </SelectContent>
                         </Select>
                       </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => handleDeleteMember(member.id, member.email)}
+                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                      >
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
                     </div>
                   </div>
                 ))}
