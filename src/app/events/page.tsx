@@ -232,65 +232,7 @@ const EventsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Regular Events Info Section */}
-      <section className="w-full py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
-            Weekly Schedule
-          </h2>
-          <div className="grid gap-8 lg:grid-cols-3">
-            {/* Sunday Service */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-2xl">⛪</span>
-                </div>
-                <CardTitle className="text-2xl">Sunday Service</CardTitle>
-                <CardDescription className="text-base">Every Sunday at 10:30 AM</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Join us every Sunday for a time of worship, prayer,
-                  and biblical teaching. Our service is designed to be a
-                  welcoming, uplifting experience for all ages.
-                </p>
-                <div className="flex items-start gap-2 text-sm text-gray-500 mb-4">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>Sunnyvale High School - Choir Room</span>
-                </div>
-                <Button asChild className="w-full">
-                  <Link href="/about-us">Learn More</Link>
-                </Button>
-              </CardContent>
-            </Card>
-
-            {/* Fasting Prayer */}
-            <Card className="hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
-                  <span className="text-2xl">🙏</span>
-                </div>
-                <CardTitle className="text-2xl">Fasting Prayer</CardTitle>
-                <CardDescription className="text-base">First Friday of the Month</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Join us for a special time of fasting and prayer.
-                  This is a powerful time to seek God together as a community
-                  and intercede for our church and community.
-                </p>
-                <div className="flex items-start gap-2 text-sm text-gray-500 mb-4">
-                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                  <span>Sam&apos;s House - Call for details</span>
-                </div>
-                <Button asChild variant="outline" className="w-full">
-                  <Link href="/contact-us/contact-church">Get Details</Link>
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+      {/* Note: "Weekly Schedule" section removed - all events managed via admin panel */}
     </main>
   );
 };
