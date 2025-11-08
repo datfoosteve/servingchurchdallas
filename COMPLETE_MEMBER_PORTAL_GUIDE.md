@@ -157,13 +157,22 @@ Adds RLS policy:
 - Enables member management page functionality
 - Safe to run multiple times
 
+### Migration 007: Secure Role Updates (CRITICAL SECURITY)
+**File:** `/supabase/migrations/007_secure_member_role_updates.sql`
+
+Security fix:
+- Prevents regular members from changing their own role
+- Only pastors/admins can change roles
+- Members can still update their name, phone, etc.
+- CRITICAL: Run this immediately after 006
+
 **How to Run:**
 1. Go to Supabase Dashboard
 2. Click **SQL Editor** in left sidebar
 3. Click **"New query"**
 4. Copy entire migration file contents
 5. Paste and click **Run**
-6. Repeat for each migration file (003, 004, 005, 006)
+6. Repeat for each migration file (003, 004, 005, 006, 007)
 
 ---
 
