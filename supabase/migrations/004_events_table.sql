@@ -86,27 +86,6 @@ CREATE POLICY "Pastor/Admin can delete events" ON public.events
     )
   );
 
--- Insert default recurring events (only if they don't exist)
-INSERT INTO public.events (title, description, location, event_date, event_time, is_recurring, recurrence_pattern, category)
-SELECT
-  'Sunday Service',
-  'Join us every Sunday for worship, prayer, and biblical teaching. Our service is designed to be a welcoming, uplifting experience for all ages.',
-  'Sunnyvale High School - Choir Room',
-  '2024-01-07 10:30:00-06',
-  '10:30 AM - 12:00 PM',
-  TRUE,
-  'weekly-sunday',
-  'service'
-WHERE NOT EXISTS (SELECT 1 FROM public.events WHERE title = 'Sunday Service' AND is_recurring = TRUE);
+-- Note: Default events removed - pastor can create events via admin panel
+-- This prevents unwanted events from being re-inserted on migration re-runs
 
-INSERT INTO public.events (title, description, location, event_date, event_time, is_recurring, recurrence_pattern, category)
-SELECT
-  'Fasting Prayer',
-  'Join us for a special time of fasting and prayer. This is a powerful time to seek God together as a community and intercede for our church and community.',
-  'Sam''s House - Call for details',
-  '2024-01-05 19:00:00-06',
-  '7:00 PM',
-  TRUE,
-  'monthly-first-friday',
-  'prayer'
-WHERE NOT EXISTS (SELECT 1 FROM public.events WHERE title = 'Fasting Prayer' AND is_recurring = TRUE);
