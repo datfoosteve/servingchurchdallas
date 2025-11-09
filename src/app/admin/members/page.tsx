@@ -145,7 +145,7 @@ export default function MembersManagement() {
     if (!confirm(`Are you sure you want to delete ${memberEmail}? This will permanently remove their account and all associated data.`)) return;
 
     try {
-      // First delete from members table
+      // Delete from members table
       const { error: memberError } = await supabase
         .from("members")
         .delete()
@@ -156,21 +156,15 @@ export default function MembersManagement() {
         throw memberError;
       }
 
-      // Then delete from auth.users (this requires admin privileges via service role)
-      const { error: authError } = await supabase.auth.admin.deleteUser(memberId);
-
-      if (authError) {
-        console.warn("Auth user deletion failed:", authError);
-      }
-
       // Immediately update local state by filtering out the deleted member
       setMembers(prevMembers => prevMembers.filter(m => m.id !== memberId));
 
       setSuccess(`Member ${memberEmail} deleted successfully!`);
       setTimeout(() => setSuccess(null), 3000);
 
-      // Also reload from server to ensure consistency
-      loadMembers();
+      // Note: Auth user deletion requires service role key
+      // The auth user will remain but won't have access without member record
+      // Consider creating an API endpoint with service role for complete deletion
     } catch (err: any) {
       console.error("Delete member error:", err);
       setError(err.message || "Failed to delete member");
