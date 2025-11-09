@@ -7,14 +7,32 @@ Beautiful, professional email templates for Supabase authentication emails.
 ### 1. **Email Confirmation** (`email-template-enhanced.html`)
 - For new member signups
 - Use in: **Authentication → Email Templates → Confirm signup**
+- Theme: Blue/Purple gradient
 
 ### 2. **Password Reset** (`email-template-password-reset.html`)
 - For password recovery
 - Use in: **Authentication → Email Templates → Reset Password**
+- Theme: Red/Orange gradient
 
 ### 3. **Magic Link** (`email-template-magic-link.html`)
 - For passwordless login
 - Use in: **Authentication → Email Templates → Magic Link**
+- Theme: Green/Emerald gradient
+
+### 4. **Change Email Address** (`email-template-change-email.html`)
+- For email address updates
+- Use in: **Authentication → Email Templates → Change Email Address**
+- Theme: Cyan/Teal gradient
+
+### 5. **Invite User** (`email-template-invite-user.html`)
+- For admin-invited members
+- Use in: **Authentication → Email Templates → Invite User**
+- Theme: Purple/Violet gradient
+
+### 6. **Reauthentication** (`email-template-reauthentication.html`)
+- For identity verification on sensitive actions
+- Use in: **Authentication → Email Templates → Reauthentication**
+- Theme: Amber/Yellow gradient
 
 ---
 
@@ -67,6 +85,9 @@ Choose which template you want to update:
 - **Confirm signup** → Use `email-template-enhanced.html`
 - **Reset Password** → Use `email-template-password-reset.html`
 - **Magic Link** → Use `email-template-magic-link.html`
+- **Change Email Address** → Use `email-template-change-email.html`
+- **Invite User** → Use `email-template-invite-user.html`
+- **Reauthentication** → Use `email-template-reauthentication.html`
 
 ### Step 3: Paste the HTML
 1. Open the corresponding `.html` file from this directory
@@ -76,9 +97,12 @@ Choose which template you want to update:
 
 ### Step 4: Test
 Send a test email to verify:
-- Confirm signup: Create a new test account
-- Reset Password: Click "Forgot Password" on login
-- Magic Link: Use the magic link login option
+- **Confirm signup**: Create a new test account
+- **Reset Password**: Click "Forgot Password" on login
+- **Magic Link**: Use the magic link login option
+- **Change Email**: Update email in account settings
+- **Invite User**: Invite a test email from admin panel
+- **Reauthentication**: Attempt sensitive account action (if implemented)
 
 ---
 
@@ -101,20 +125,41 @@ Send a test email to verify:
 
 ## 🎨 Color Schemes
 
-### Confirmation Email (Blue/Purple)
+### 1. Confirmation Email (Blue/Purple)
 - Primary: `#2563eb` (Blue 600)
 - Secondary: `#7c3aed` (Purple 600)
 - Accent: `#eff6ff` → `#f3e8ff` (Gradient backgrounds)
+- Message: Welcome, exciting, new beginning
 
-### Password Reset (Red/Orange)
+### 2. Password Reset (Red/Orange)
 - Primary: `#dc2626` (Red 600)
 - Secondary: `#ea580c` (Orange 600)
 - Warning: `#fef2f2` (Red 50 background)
+- Message: Account update, change needed
 
-### Magic Link (Green)
+### 3. Magic Link (Green/Emerald)
 - Primary: `#059669` (Emerald 600)
 - Secondary: `#10b981` (Emerald 500)
 - Success: `#ecfdf5` (Emerald 50 background)
+- Message: Easy, magical, instant access
+
+### 4. Change Email (Cyan/Teal)
+- Primary: `#0891b2` (Cyan 600)
+- Secondary: `#06b6d4` (Cyan 500)
+- Info: `#ecfeff` (Cyan 50 background)
+- Message: Account modification, update
+
+### 5. Invite User (Purple/Violet)
+- Primary: `#7c3aed` (Purple 600)
+- Secondary: `#a855f7` (Purple 500)
+- Accent: `#faf5ff` (Purple 50 background)
+- Message: Welcome, invitation, special
+
+### 6. Reauthentication (Amber/Yellow)
+- Primary: `#f59e0b` (Amber 500)
+- Secondary: `#eab308` (Yellow 500)
+- Caution: `#fffbeb` (Amber 50 background)
+- Message: Verification, security, attention
 
 ---
 
