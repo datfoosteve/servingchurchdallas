@@ -144,49 +144,27 @@ export default function MembersManagement() {
   const handleDeleteMember = async (memberId: string, memberEmail: string) => {
     if (!confirm(`Are you sure you want to delete ${memberEmail}? This will permanently remove their account and all associated data.`)) return;
 
-    console.log("Attempting to delete member:", memberId, memberEmail);
-    console.log("Current members count:", members.length);
-
     try {
-      // First delete from members table
-      const { error: memberError, data: deleteData } = await supabase
+      // Delete from members table
+      const { error: memberError } = await supabase
         .from("members")
         .delete()
-        .eq("id", memberId)
-        .select();
-
-      console.log("Delete response:", { error: memberError, data: deleteData });
+        .eq("id", memberId);
 
       if (memberError) {
         console.error("Member deletion error:", memberError);
         throw memberError;
       }
 
-      // Then delete from auth.users (this requires admin privileges via service role)
-      const { error: authError } = await supabase.auth.admin.deleteUser(memberId);
-
-      if (authError) {
-        console.warn("Auth user deletion failed:", authError);
-      }
-
-      console.log("About to filter out member from state");
-      console.log("Member ID to remove:", memberId);
-
       // Immediately update local state by filtering out the deleted member
-      setMembers(prevMembers => {
-        console.log("Previous members:", prevMembers.length);
-        const filtered = prevMembers.filter(m => m.id !== memberId);
-        console.log("After filtering:", filtered.length);
-        return filtered;
-      });
+      setMembers(prevMembers => prevMembers.filter(m => m.id !== memberId));
 
       setSuccess(`Member ${memberEmail} deleted successfully!`);
       setTimeout(() => setSuccess(null), 3000);
 
-      // Also reload from server to ensure consistency
-      console.log("Reloading members from server...");
-      await loadMembers();
-      console.log("Reload complete");
+      // Note: Auth user deletion requires service role key
+      // The auth user will remain but won't have access without member record
+      // Consider creating an API endpoint with service role for complete deletion
     } catch (err: any) {
       console.error("Delete member error:", err);
       setError(err.message || "Failed to delete member");
