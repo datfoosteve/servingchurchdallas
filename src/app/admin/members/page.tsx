@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function MembersManagement() {
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function MembersManagement() {
   const [filteredMembers, setFilteredMembers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [roleFilter, setRoleFilter] = useState<string>("all");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const supabase = createClient();
@@ -75,25 +77,46 @@ export default function MembersManagement() {
     if (error) {
       console.error("Error loading members:", error);
       setError("Failed to load members");
+      setMembers([]);
     } else {
       setMembers(data || []);
-      setFilteredMembers(data || []);
     }
     setLoading(false);
   };
 
+  const applyFilters = useCallback((searchTerm: string, roleFilterValue: string) => {
+    let filtered = members;
+
+    // Apply role filter
+    if (roleFilterValue !== "all") {
+      filtered = filtered.filter(member => member.role === roleFilterValue);
+    }
+
+    // Apply search filter
+    if (searchTerm.trim() !== "") {
+      filtered = filtered.filter(
+        (member) =>
+          member.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          member.email?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setFilteredMembers(filtered);
+  }, [members]);
+
+  // Reapply filters whenever members, searchQuery, or roleFilter changes
+  useEffect(() => {
+    applyFilters(searchQuery, roleFilter);
+  }, [members, searchQuery, roleFilter, applyFilters]);
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    if (query.trim() === "") {
-      setFilteredMembers(members);
-    } else {
-      const filtered = members.filter(
-        (member) =>
-          member.full_name?.toLowerCase().includes(query.toLowerCase()) ||
-          member.email?.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredMembers(filtered);
-    }
+    applyFilters(query, roleFilter);
+  };
+
+  const handleRoleFilter = (filter: string) => {
+    setRoleFilter(filter);
+    applyFilters(searchQuery, filter);
   };
 
   const handleRoleChange = async (memberId: string, newRole: string) => {
@@ -122,28 +145,28 @@ export default function MembersManagement() {
     if (!confirm(`Are you sure you want to delete ${memberEmail}? This will permanently remove their account and all associated data.`)) return;
 
     try {
-      // First delete from members table (this will cascade due to ON DELETE CASCADE in auth.users)
+      // Delete from members table
       const { error: memberError } = await supabase
         .from("members")
         .delete()
         .eq("id", memberId);
 
-      if (memberError) throw memberError;
-
-      // Then delete from auth.users (this requires admin privileges via service role)
-      // Note: This might fail if not using service role key
-      const { error: authError } = await supabase.auth.admin.deleteUser(memberId);
-
-      if (authError) {
-        // If auth deletion fails, it's okay - member record is deleted
-        console.warn("Auth user deletion failed:", authError);
+      if (memberError) {
+        console.error("Member deletion error:", memberError);
+        throw memberError;
       }
 
-      setSuccess(`Member ${memberEmail} deleted successfully!`);
-      loadMembers();
+      // Immediately update local state by filtering out the deleted member
+      setMembers(prevMembers => prevMembers.filter(m => m.id !== memberId));
 
+      setSuccess(`Member ${memberEmail} deleted successfully!`);
       setTimeout(() => setSuccess(null), 3000);
+
+      // Note: Auth user deletion requires service role key
+      // The auth user will remain but won't have access without member record
+      // Consider creating an API endpoint with service role for complete deletion
     } catch (err: any) {
+      console.error("Delete member error:", err);
       setError(err.message || "Failed to delete member");
       setTimeout(() => setError(null), 3000);
     }
@@ -261,6 +284,32 @@ export default function MembersManagement() {
             </CardHeader>
           </Card>
         </div>
+
+        {/* Filter Buttons */}
+        <Card className="mb-6 shadow-lg">
+          <CardContent className="pt-6">
+            <Tabs value={roleFilter} onValueChange={handleRoleFilter} className="w-full">
+              <TabsList className="grid grid-cols-4 w-full max-w-2xl">
+                <TabsTrigger value="all" className="flex items-center gap-2">
+                  <Users className="h-4 w-4" />
+                  All ({stats.total})
+                </TabsTrigger>
+                <TabsTrigger value="member" className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  Members ({stats.members})
+                </TabsTrigger>
+                <TabsTrigger value="pastor" className="flex items-center gap-2">
+                  <Shield className="h-4 w-4" />
+                  Pastors ({stats.pastors})
+                </TabsTrigger>
+                <TabsTrigger value="admin" className="flex items-center gap-2">
+                  <Crown className="h-4 w-4" />
+                  Admins ({stats.admins})
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </CardContent>
+        </Card>
 
         {/* Search Bar */}
         <Card className="mb-6 shadow-lg">

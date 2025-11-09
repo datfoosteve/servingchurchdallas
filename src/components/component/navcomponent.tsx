@@ -32,17 +32,17 @@ import { UserDropdown } from "@/components/UserDropdown";
 export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="w-[100px] h-[20px] rounded-full" />}>
-      <header className="flex h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90 justify-between">
-        <div className="flex items-center gap-2 shrink-0">
-          <Link href="/" passHref>
+      <header className="flex h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90 justify-between max-w-[100vw] overflow-x-hidden">
+        <div className="flex items-center gap-2 shrink-0 min-w-0">
+          <Link href="/" passHref className="shrink-0">
             <div className="flex gap-2 text-lg font-semibold md:text-base">
               <Image
                 src={SUPABASE_IMAGES.logowordhome}
-                width={140}
-                height={35}
+                width={120}
+                height={30}
                 alt="The Serving Church Logo"
                 priority
-                className="w-[150px] h-auto md:w-[140px]"
+                className="w-[120px] h-auto md:w-[140px]"
               />
               <span className="sr-only">Serving Church</span>
             </div>
@@ -50,7 +50,7 @@ export function NavComponent() {
           <Sheet>
             <SheetTrigger asChild>
               <Button className="self-center lg:hidden" size="icon" variant="outline">
-                <MenuIcon className="h-8 w-8" />
+                <MenuIcon className="h-6 w-6" />
                 <span className="sr-only">Toggle navigation menu</span>
               </Button>
             </SheetTrigger>
@@ -216,6 +216,16 @@ export function NavComponent() {
                     </div>
                   </CollapsibleContent>
                 </Collapsible>
+
+                <SheetTrigger asChild>
+                  <Link
+                    className="flex w-full items-center gap-2 py-2 text-lg font-semibold"
+                    href="/donate"
+                  >
+                    <DollarSign className="h-5 w-5" />
+                    Donate
+                  </Link>
+                </SheetTrigger>
               </div>
             </SheetContent>
           </Sheet>
@@ -368,12 +378,14 @@ export function NavComponent() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <div className="flex items-center justify-end gap-3">
-          <CommandMenu />
+        <div className="flex items-center justify-end gap-2 md:gap-3 shrink-0">
+          <div className="hidden sm:block">
+            <CommandMenu />
+          </div>
           <UserDropdown />
           <Button
             asChild
-            className="inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
+            className="hidden sm:inline-flex h-9 items-center justify-center rounded-md bg-gray-900 px-4 py-2 text-sm font-medium text-gray-50 shadow transition-colors hover:bg-gray-900/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50"
           >
             <Link href="/donate">
               Donate

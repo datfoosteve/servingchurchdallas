@@ -1,0 +1,396 @@
+<!--
+  Premium Email Template for The Serving Church
+  Enhanced with sophisticated design elements and visual polish
+
+  Use in: Supabase Dashboard > Authentication > Email Templates > Confirm signup
+
+  Available variables:
+  {{ .ConfirmationURL }} - Email confirmation link
+  {{ .Token }} - Confirmation token
+  {{ .TokenHash }} - Confirmation token hash
+  {{ .SiteURL }} - Your site URL
+  {{ .Email }} - User's email
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Welcome to The Serving Church</title>
+  <!--[if mso]>
+  <style type="text/css">
+    body, table, td {font-family: Arial, Helvetica, sans-serif !important;}
+  </style>
+  <![endif]-->
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%); -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;">
+
+  <!-- Preheader Text (hidden but shows in email preview) -->
+  <div style="display: none; max-height: 0; overflow: hidden; opacity: 0;">
+    Welcome to The Serving Church family! Confirm your email to get started with our community.
+  </div>
+
+  <!-- Main Container -->
+  <table role="presentation" style="width: 100%; border-collapse: collapse; background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%); padding: 0; margin: 0;">
+    <tr>
+      <td align="center" style="padding: 50px 20px;">
+
+        <!-- Email Card with Shadow -->
+        <table role="presentation" style="max-width: 650px; width: 100%; border-collapse: collapse; background-color: #ffffff; border-radius: 24px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.08); overflow: hidden;">
+
+          <!-- Decorative Top Border -->
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #2563eb 0%, #7c3aed 50%, #2563eb 100%); background-size: 200% 100%; padding: 0;"></td>
+          </tr>
+
+          <!-- Header with Enhanced Gradient and Pattern -->
+          <tr>
+            <td style="background: linear-gradient(135deg, #1e40af 0%, #2563eb 25%, #7c3aed 75%, #9333ea 100%); padding: 0; position: relative;">
+
+              <!-- Subtle Pattern Overlay -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 50px 40px; text-align: center; background-image: url('data:image/svg+xml,%3Csvg width=&quot;60&quot; height=&quot;60&quot; viewBox=&quot;0 0 60 60&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot;%3E%3Cg fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;%3E%3Cg fill=&quot;%23ffffff&quot; fill-opacity=&quot;0.03&quot;%3E%3Cpath d=&quot;M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z&quot;/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); background-size: 30px 30px;">
+
+                    <!-- Elevated Church Icon with Glow -->
+                    <div style="margin-bottom: 24px;">
+                      <table role="presentation" style="display: inline-block; border-collapse: collapse;">
+                        <tr>
+                          <td style="background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); border-radius: 20px; padding: 20px; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);">
+                            <svg width="72" height="72" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block;">
+                              <!-- Church Building -->
+                              <path d="M12 2L4 7V20H9V14H15V20H20V7L12 2Z" fill="white" opacity="0.95"/>
+                              <!-- Cross -->
+                              <path d="M12 4V10M9 7H15" stroke="#2563eb" stroke-width="1.5" stroke-linecap="round"/>
+                              <!-- Door -->
+                              <rect x="10.5" y="16" width="3" height="4" fill="#2563eb" opacity="0.3" rx="0.5"/>
+                            </svg>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+
+                    <!-- Church Name with Better Typography -->
+                    <h1 style="margin: 0 0 8px 0; color: #ffffff; font-size: 32px; font-weight: 800; line-height: 1.2; letter-spacing: -0.5px; text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
+                      The Serving Church
+                    </h1>
+                    <p style="margin: 0; color: rgba(255, 255, 255, 0.95); font-size: 17px; font-weight: 500; letter-spacing: 0.3px;">
+                      Sunnyvale, Texas
+                    </p>
+
+                    <!-- Decorative Line -->
+                    <div style="margin: 24px auto 0 auto; width: 60px; height: 3px; background: rgba(255, 255, 255, 0.4); border-radius: 2px;"></div>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Main Content Area -->
+          <tr>
+            <td style="padding: 50px 40px;">
+
+              <!-- Welcome Badge -->
+              <table role="presentation" style="margin: 0 auto 30px auto; border-collapse: collapse;">
+                <tr>
+                  <td style="background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%); border: 2px solid #e0e7ff; border-radius: 100px; padding: 8px 20px;">
+                    <span style="color: #4338ca; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">
+                      ✨ New Member
+                    </span>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Main Heading -->
+              <h2 style="margin: 0 0 24px 0; color: #0f172a; font-size: 28px; font-weight: 800; line-height: 1.3; text-align: center; letter-spacing: -0.5px;">
+                Welcome to Our<br/>Church Family!
+              </h2>
+
+              <!-- Main Message -->
+              <p style="margin: 0 0 20px 0; color: #475569; font-size: 17px; line-height: 1.7; text-align: center; font-weight: 400;">
+                We're <strong style="color: #2563eb; font-weight: 600;">thrilled</strong> to have you join us! You're just one click away from accessing your member portal and becoming part of our vibrant community.
+              </p>
+
+              <p style="margin: 0 0 36px 0; color: #64748b; font-size: 16px; line-height: 1.6; text-align: center;">
+                Click the button below to confirm your email and activate your account:
+              </p>
+
+              <!-- Premium CTA Button with Enhanced Design -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse; margin-bottom: 40px;">
+                <tr>
+                  <td align="center" style="padding: 0;">
+                    <!-- Button Container with Shadow -->
+                    <table role="presentation" style="border-collapse: collapse; display: inline-block;">
+                      <tr>
+                        <td style="border-radius: 14px; background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%); box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35), 0 4px 10px rgba(124, 58, 237, 0.2);">
+                          <a href="{{ .ConfirmationURL }}" style="display: inline-block; background: transparent; color: #ffffff; text-decoration: none; padding: 18px 48px; border-radius: 14px; font-size: 17px; font-weight: 700; letter-spacing: 0.3px; border: 2px solid rgba(255, 255, 255, 0.2);">
+                            ✓ Confirm Your Email Address
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Decorative Divider with Gradient -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse; margin: 40px 0;">
+                <tr>
+                  <td style="padding: 0;">
+                    <div style="height: 1px; background: linear-gradient(90deg, transparent 0%, #e2e8f0 20%, #cbd5e1 50%, #e2e8f0 80%, transparent 100%);"></div>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Alternative Link Section with Better Design -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse; margin-bottom: 36px;">
+                <tr>
+                  <td style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px;">
+                    <p style="margin: 0 0 12px 0; color: #64748b; font-size: 14px; line-height: 1.6; font-weight: 600;">
+                      Button not working?
+                    </p>
+                    <p style="margin: 0 0 8px 0; color: #475569; font-size: 13px; line-height: 1.5;">
+                      Copy and paste this link into your browser:
+                    </p>
+                    <p style="margin: 0; padding: 12px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; word-break: break-all;">
+                      <a href="{{ .ConfirmationURL }}" style="color: #2563eb; font-size: 13px; text-decoration: none; font-family: 'Courier New', monospace;">{{ .ConfirmationURL }}</a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- Enhanced Info Box with Icons -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="background: linear-gradient(135deg, #eff6ff 0%, #f3e8ff 100%); border-left: 5px solid #2563eb; border-radius: 12px; padding: 28px; box-shadow: 0 4px 12px rgba(37, 99, 235, 0.08);">
+
+                    <!-- Title with Icon -->
+                    <table role="presentation" style="border-collapse: collapse; margin-bottom: 16px;">
+                      <tr>
+                        <td style="padding-right: 12px; vertical-align: middle;">
+                          <div style="width: 32px; height: 32px; background: linear-gradient(135deg, #2563eb, #7c3aed); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                            <span style="font-size: 18px;">🎯</span>
+                          </div>
+                        </td>
+                        <td style="vertical-align: middle;">
+                          <p style="margin: 0; color: #1e40af; font-size: 16px; font-weight: 700; letter-spacing: 0.3px;">
+                            What's Waiting for You
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Features List with Better Styling -->
+                    <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <table role="presentation" style="border-collapse: collapse;">
+                            <tr>
+                              <td style="padding-right: 12px; vertical-align: top; width: 24px;">
+                                <div style="width: 20px; height: 20px; background: rgba(37, 99, 235, 0.15); border-radius: 50%; text-align: center; line-height: 20px;">
+                                  <span style="color: #2563eb; font-size: 11px; font-weight: 700;">✓</span>
+                                </div>
+                              </td>
+                              <td style="vertical-align: top;">
+                                <p style="margin: 0; color: #4338ca; font-size: 15px; line-height: 1.5; font-weight: 500;">
+                                  Access your personalized member dashboard
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <table role="presentation" style="border-collapse: collapse;">
+                            <tr>
+                              <td style="padding-right: 12px; vertical-align: top; width: 24px;">
+                                <div style="width: 20px; height: 20px; background: rgba(37, 99, 235, 0.15); border-radius: 50%; text-align: center; line-height: 20px;">
+                                  <span style="color: #2563eb; font-size: 11px; font-weight: 700;">✓</span>
+                                </div>
+                              </td>
+                              <td style="vertical-align: top;">
+                                <p style="margin: 0; color: #4338ca; font-size: 15px; line-height: 1.5; font-weight: 500;">
+                                  View upcoming events and RSVP instantly
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <table role="presentation" style="border-collapse: collapse;">
+                            <tr>
+                              <td style="padding-right: 12px; vertical-align: top; width: 24px;">
+                                <div style="width: 20px; height: 20px; background: rgba(37, 99, 235, 0.15); border-radius: 50%; text-align: center; line-height: 20px;">
+                                  <span style="color: #2563eb; font-size: 11px; font-weight: 700;">✓</span>
+                                </div>
+                              </td>
+                              <td style="vertical-align: top;">
+                                <p style="margin: 0; color: #4338ca; font-size: 15px; line-height: 1.5; font-weight: 500;">
+                                  Submit and view prayer requests from our community
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td style="padding: 8px 0;">
+                          <table role="presentation" style="border-collapse: collapse;">
+                            <tr>
+                              <td style="padding-right: 12px; vertical-align: top; width: 24px;">
+                                <div style="width: 20px; height: 20px; background: rgba(37, 99, 235, 0.15); border-radius: 50%; text-align: center; line-height: 20px;">
+                                  <span style="color: #2563eb; font-size: 11px; font-weight: 700;">✓</span>
+                                </div>
+                              </td>
+                              <td style="vertical-align: top;">
+                                <p style="margin: 0; color: #4338ca; font-size: 15px; line-height: 1.5; font-weight: 500;">
+                                  Stay connected with church news and updates
+                                </p>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Enhanced Footer -->
+          <tr>
+            <td style="padding: 0; background: linear-gradient(to bottom, #ffffff 0%, #f8fafc 100%); border-top: 1px solid #e2e8f0;">
+
+              <!-- Contact Information Card -->
+              <table role="presentation" style="width: 100%; border-collapse: collapse;">
+                <tr>
+                  <td style="padding: 40px 40px 32px 40px;">
+
+                    <!-- Church Info Header -->
+                    <p style="margin: 0 0 20px 0; color: #0f172a; font-size: 16px; font-weight: 700; text-align: center; letter-spacing: 0.3px;">
+                      The Serving Church
+                    </p>
+
+                    <!-- Contact Grid -->
+                    <table role="presentation" style="width: 100%; max-width: 500px; margin: 0 auto; border-collapse: collapse;">
+                      <tr>
+                        <td style="padding: 12px; text-align: center; vertical-align: top; width: 33.33%;">
+                          <div style="background: #eff6ff; border-radius: 10px; padding: 16px 12px;">
+                            <p style="margin: 0 0 6px 0; font-size: 20px;">📍</p>
+                            <p style="margin: 0; color: #475569; font-size: 13px; line-height: 1.5; font-weight: 500;">
+                              222 Collins Rd<br/>Sunnyvale, TX 75182
+                            </p>
+                          </div>
+                        </td>
+                        <td style="padding: 12px; text-align: center; vertical-align: top; width: 33.33%;">
+                          <div style="background: #f0fdf4; border-radius: 10px; padding: 16px 12px;">
+                            <p style="margin: 0 0 6px 0; font-size: 20px;">📞</p>
+                            <p style="margin: 0; color: #475569; font-size: 13px; line-height: 1.5; font-weight: 500;">
+                              (214) 738-6371
+                            </p>
+                          </div>
+                        </td>
+                        <td style="padding: 12px; text-align: center; vertical-align: top; width: 33.33%;">
+                          <div style="background: #fef3f2; border-radius: 10px; padding: 16px 12px;">
+                            <p style="margin: 0 0 6px 0; font-size: 20px;">📧</p>
+                            <p style="margin: 0; color: #475569; font-size: 11px; line-height: 1.5; font-weight: 500; word-break: break-word;">
+                              team@serving<br/>churchdallas.com
+                            </p>
+                          </div>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Social Links with Better Design -->
+                    <table role="presentation" style="margin: 32px auto 24px auto; border-collapse: collapse;">
+                      <tr>
+                        <td align="center">
+                          <table role="presentation" style="display: inline-block; border-collapse: collapse;">
+                            <tr>
+                              <td style="padding: 0 8px;">
+                                <a href="https://facebook.com/theservingchurch" style="display: inline-block; padding: 10px 16px; background: #1877f2; color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; border-radius: 8px; box-shadow: 0 2px 8px rgba(24, 119, 242, 0.25);">
+                                  Facebook
+                                </a>
+                              </td>
+                              <td style="padding: 0 8px;">
+                                <a href="https://instagram.com/theservingchurch" style="display: inline-block; padding: 10px 16px; background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; border-radius: 8px; box-shadow: 0 2px 8px rgba(131, 58, 180, 0.25);">
+                                  Instagram
+                                </a>
+                              </td>
+                              <td style="padding: 0 8px;">
+                                <a href="https://servingchurchdallas.com" style="display: inline-block; padding: 10px 16px; background: linear-gradient(135deg, #2563eb, #7c3aed); color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; border-radius: 8px; box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);">
+                                  Website
+                                </a>
+                              </td>
+                            </tr>
+                          </table>
+                        </td>
+                      </tr>
+                    </table>
+
+                    <!-- Divider -->
+                    <div style="margin: 24px 0; height: 1px; background: linear-gradient(90deg, transparent, #e2e8f0, transparent);"></div>
+
+                    <!-- Fine Print -->
+                    <p style="margin: 0; color: #94a3b8; font-size: 12px; line-height: 1.7; text-align: center;">
+                      This email was sent because you created an account at <strong style="color: #64748b;">servingchurchdallas.com</strong>
+                      <br/>
+                      If you didn't request this, you can safely ignore this email.
+                    </p>
+
+                    <!-- Security Notice -->
+                    <table role="presentation" style="margin: 20px auto 0 auto; border-collapse: collapse;">
+                      <tr>
+                        <td style="background: #fef3c7; border: 1px solid #fde68a; border-radius: 8px; padding: 12px 20px;">
+                          <p style="margin: 0; color: #92400e; font-size: 11px; line-height: 1.5; text-align: center;">
+                            <strong>🔒 Security Tip:</strong> This confirmation link expires in 24 hours
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- Bottom Decorative Border -->
+          <tr>
+            <td style="height: 6px; background: linear-gradient(90deg, #2563eb 0%, #7c3aed 50%, #2563eb 100%); background-size: 200% 100%; padding: 0;"></td>
+          </tr>
+
+        </table>
+        <!-- End Email Card -->
+
+        <!-- Footer Text Outside Card -->
+        <table role="presentation" style="max-width: 650px; width: 100%; border-collapse: collapse; margin-top: 24px;">
+          <tr>
+            <td style="padding: 0 20px;">
+              <p style="margin: 0; color: #94a3b8; font-size: 11px; line-height: 1.6; text-align: center;">
+                © 2024 The Serving Church. All rights reserved.
+                <br/>
+                <a href="https://servingchurchdallas.com/privacy" style="color: #64748b; text-decoration: none;">Privacy Policy</a>
+                <span style="color: #cbd5e1; margin: 0 6px;">•</span>
+                <a href="https://servingchurchdallas.com/terms" style="color: #64748b; text-decoration: none;">Terms of Service</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>

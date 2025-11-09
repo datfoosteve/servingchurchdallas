@@ -21,8 +21,8 @@ export function MovementComponent() {
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white drop-shadow-lg animate-[fade-in-up_1s_ease-out]">
             <span className="block bg-slate-900/40 backdrop-blur-sm rounded-lg p-4 md:p-6 border border-white/10 shadow-2xl">
               <span className="inline-block animate-[fade-in-up_0.8s_ease-out_0.2s_both]">
-                A{" "}
-              </span>
+                A
+              </span>{" "}
               <strong className="inline-block font-extrabold text-transparent bg-gradient-to-br from-blue-300 via-purple-400 to-rose-500 bg-clip-text animate-[fade-in-up_0.8s_ease-out_0.4s_both,gradient-shift_4s_ease-in-out_infinite] bg-[length:200%_200%] drop-shadow-[0_0_30px_rgba(147,51,234,0.5)]">
                 FAMILY
               </strong>{" "}

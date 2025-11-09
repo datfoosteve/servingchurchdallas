@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { User, ArrowLeft, Church, AlertCircle, CheckCircle, Mail, Calendar, Shield } from "lucide-react";
 import Link from "next/link";
+import { NotificationSettings } from "@/components/NotificationSettings";
 
 export default function MemberProfilePage() {
   const router = useRouter();
@@ -235,6 +236,11 @@ export default function MemberProfilePage() {
             </form>
           </CardContent>
         </Card>
+
+        {/* Notification Settings */}
+        <div className="mt-6">
+          <NotificationSettings />
+        </div>
 
         {/* Additional Info */}
         <Card className="shadow-lg mt-6 bg-blue-50 border-blue-200">
