@@ -105,7 +105,7 @@ export function Announcements() {
             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Latest Announcements
             </h2>
-            <p className="text-gray-600 mt-1">Stay updated with what's happening at The Serving Church</p>
+            <p className="text-gray-600 mt-1">Stay updated with what&apos;s happening at The Serving Church</p>
           </div>
           <Megaphone className="h-8 w-8 text-purple-600" />
         </div>
