@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Trash2 } from "lucide-react";
 
 export default function AdminPrayersPage() {
   const [prayers, setPrayers] = useState<Prayer[]>([]);
@@ -86,6 +87,31 @@ export default function AdminPrayersPage() {
       }
     } catch (error) {
       console.error("Error archiving prayer:", error);
+    }
+  };
+
+  const deletePrayer = async (id: string, prayerText: string) => {
+    // Confirm deletion with preview of prayer text
+    const confirmed = confirm(
+      `Are you sure you want to permanently delete this prayer?\n\n"${prayerText.slice(0, 100)}${prayerText.length > 100 ? '...' : ''}"\n\nThis action cannot be undone.`
+    );
+
+    if (!confirmed) return;
+
+    try {
+      const response = await fetch(`/api/admin/prayers/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        fetchPrayers(); // Refresh list
+      } else {
+        const data = await response.json();
+        alert(`Failed to delete prayer: ${data.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error("Error deleting prayer:", error);
+      alert("An error occurred while deleting the prayer. Please try again.");
     }
   };
 
@@ -228,6 +254,15 @@ export default function AdminPrayersPage() {
                       className="text-gray-600"
                     >
                       Archive
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      onClick={() => deletePrayer(prayer.id, prayer.request)}
+                      className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                    >
+                      <Trash2 className="w-4 h-4 mr-1" />
+                      Delete
                     </Button>
                   </div>
                 </CardContent>
