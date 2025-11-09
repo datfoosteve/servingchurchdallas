@@ -144,12 +144,18 @@ export default function MembersManagement() {
   const handleDeleteMember = async (memberId: string, memberEmail: string) => {
     if (!confirm(`Are you sure you want to delete ${memberEmail}? This will permanently remove their account and all associated data.`)) return;
 
+    console.log("Attempting to delete member:", memberId, memberEmail);
+    console.log("Current members count:", members.length);
+
     try {
       // First delete from members table
-      const { error: memberError } = await supabase
+      const { error: memberError, data: deleteData } = await supabase
         .from("members")
         .delete()
-        .eq("id", memberId);
+        .eq("id", memberId)
+        .select();
+
+      console.log("Delete response:", { error: memberError, data: deleteData });
 
       if (memberError) {
         console.error("Member deletion error:", memberError);
@@ -163,14 +169,24 @@ export default function MembersManagement() {
         console.warn("Auth user deletion failed:", authError);
       }
 
+      console.log("About to filter out member from state");
+      console.log("Member ID to remove:", memberId);
+
       // Immediately update local state by filtering out the deleted member
-      setMembers(prevMembers => prevMembers.filter(m => m.id !== memberId));
+      setMembers(prevMembers => {
+        console.log("Previous members:", prevMembers.length);
+        const filtered = prevMembers.filter(m => m.id !== memberId);
+        console.log("After filtering:", filtered.length);
+        return filtered;
+      });
 
       setSuccess(`Member ${memberEmail} deleted successfully!`);
       setTimeout(() => setSuccess(null), 3000);
 
       // Also reload from server to ensure consistency
-      loadMembers();
+      console.log("Reloading members from server...");
+      await loadMembers();
+      console.log("Reload complete");
     } catch (err: any) {
       console.error("Delete member error:", err);
       setError(err.message || "Failed to delete member");
