@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
-import { createClient } from "@/lib/supabase/server";
+import { createServiceRoleClient } from "@/lib/supabase/server";
 
 // Ensure Node runtime (Resend SDK expects Node) and no prerendering
 export const runtime = "nodejs";
@@ -36,13 +36,14 @@ export async function POST(request: NextRequest) {
     }
 
     // 1️⃣ Save to Supabase database
-    const supabase = createClient();
+    // Use service role client to bypass RLS policies
+    const supabase = createServiceRoleClient();
     const insertData: any = {
       name,
       email: email || null,
       request: prayerRequest,
       is_public: isPublic,
-      status: "new",
+      status: isPublic ? "public" : "new",
       prayer_count: 0,
     };
 
@@ -60,8 +61,10 @@ export async function POST(request: NextRequest) {
 
     if (dbError) {
       console.error("Database error:", dbError);
-      // Continue to email even if database fails
-      // In production, you might want to handle this differently
+      return NextResponse.json(
+        { error: "Failed to save prayer request to database", details: dbError.message },
+        { status: 500 }
+      );
     }
 
     // 2️⃣ Send email notification (existing functionality)
