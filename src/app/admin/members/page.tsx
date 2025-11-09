@@ -29,6 +29,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function MembersManagement() {
   const router = useRouter();
@@ -36,6 +37,7 @@ export default function MembersManagement() {
   const [filteredMembers, setFilteredMembers] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
+  const [roleFilter, setRoleFilter] = useState<string>("all");
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const supabase = createClient();
@@ -77,23 +79,43 @@ export default function MembersManagement() {
       setError("Failed to load members");
     } else {
       setMembers(data || []);
-      setFilteredMembers(data || []);
     }
     setLoading(false);
   };
 
+  // Reapply filters whenever members data changes
+  useEffect(() => {
+    applyFilters(searchQuery, roleFilter);
+  }, [members]);
+
+  const applyFilters = (searchTerm: string, roleFilterValue: string) => {
+    let filtered = members;
+
+    // Apply role filter
+    if (roleFilterValue !== "all") {
+      filtered = filtered.filter(member => member.role === roleFilterValue);
+    }
+
+    // Apply search filter
+    if (searchTerm.trim() !== "") {
+      filtered = filtered.filter(
+        (member) =>
+          member.full_name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          member.email?.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+
+    setFilteredMembers(filtered);
+  };
+
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    if (query.trim() === "") {
-      setFilteredMembers(members);
-    } else {
-      const filtered = members.filter(
-        (member) =>
-          member.full_name?.toLowerCase().includes(query.toLowerCase()) ||
-          member.email?.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredMembers(filtered);
-    }
+    applyFilters(query, roleFilter);
+  };
+
+  const handleRoleFilter = (filter: string) => {
+    setRoleFilter(filter);
+    applyFilters(searchQuery, filter);
   };
 
   const handleRoleChange = async (memberId: string, newRole: string) => {
@@ -140,7 +162,9 @@ export default function MembersManagement() {
       }
 
       setSuccess(`Member ${memberEmail} deleted successfully!`);
-      loadMembers();
+
+      // Reload members and wait for it to complete
+      await loadMembers();
 
       setTimeout(() => setSuccess(null), 3000);
     } catch (err: any) {
@@ -261,6 +285,32 @@ export default function MembersManagement() {
             </CardHeader>
           </Card>
         </div>
+
+        {/* Filter Buttons */}
+        <Card className="mb-6 shadow-lg">
+          <CardContent className="pt-6">
+            <Tabs value={roleFilter} onValueChange={handleRoleFilter} className="w-full">
+              <TabsList className="grid grid-cols-4 w-full max-w-2xl">
+                <TabsTrigger value="all" className="flex items-center gap-2">
+                  <Users className="h-4 w-4" />
+                  All ({stats.total})
+                </TabsTrigger>
+                <TabsTrigger value="member" className="flex items-center gap-2">
+                  <User className="h-4 w-4" />
+                  Members ({stats.members})
+                </TabsTrigger>
+                <TabsTrigger value="pastor" className="flex items-center gap-2">
+                  <Shield className="h-4 w-4" />
+                  Pastors ({stats.pastors})
+                </TabsTrigger>
+                <TabsTrigger value="admin" className="flex items-center gap-2">
+                  <Crown className="h-4 w-4" />
+                  Admins ({stats.admins})
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </CardContent>
+        </Card>
 
         {/* Search Bar */}
         <Card className="mb-6 shadow-lg">
