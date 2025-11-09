@@ -183,9 +183,9 @@ export default function AdminDashboard() {
               </div>
             </CardHeader>
             <CardContent>
-              <Link href="/prayers">
+              <Link href="/admin/prayers">
                 <Button variant="secondary" size="sm" className="w-full bg-white/20 hover:bg-white/30 text-white border-0">
-                  View All
+                  Manage
                 </Button>
               </Link>
             </CardContent>
@@ -257,7 +257,7 @@ export default function AdminDashboard() {
         </div>
 
         {/* Management Links */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Link href="/admin/members">
             <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-blue-300">
               <CardHeader className="pb-3">
@@ -274,6 +274,16 @@ export default function AdminDashboard() {
                 <Megaphone className="h-8 w-8 text-purple-600 mb-2" />
                 <CardTitle className="text-lg">Announcements</CardTitle>
                 <CardDescription>Create and manage announcements</CardDescription>
+              </CardHeader>
+            </Card>
+          </Link>
+
+          <Link href="/admin/prayers">
+            <Card className="hover:shadow-lg transition-shadow cursor-pointer border-2 hover:border-rose-300">
+              <CardHeader className="pb-3">
+                <Heart className="h-8 w-8 text-rose-600 mb-2" />
+                <CardTitle className="text-lg">Prayer Management</CardTitle>
+                <CardDescription>Manage and moderate prayer requests</CardDescription>
               </CardHeader>
             </Card>
           </Link>
