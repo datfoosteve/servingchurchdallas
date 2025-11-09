@@ -1,0 +1,12 @@
+# Supabase Edge Functions (deployed separately to Supabase)
+supabase/functions
+
+# Supabase migrations (run directly in Supabase)
+supabase/migrations
+
+# Documentation
+docs
+
+# Local environment files
+.env.local
+.env*.local
