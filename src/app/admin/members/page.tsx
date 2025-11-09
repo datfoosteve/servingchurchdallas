@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -77,18 +77,14 @@ export default function MembersManagement() {
     if (error) {
       console.error("Error loading members:", error);
       setError("Failed to load members");
+      setMembers([]);
     } else {
       setMembers(data || []);
     }
     setLoading(false);
   };
 
-  // Reapply filters whenever members data changes
-  useEffect(() => {
-    applyFilters(searchQuery, roleFilter);
-  }, [members]);
-
-  const applyFilters = (searchTerm: string, roleFilterValue: string) => {
+  const applyFilters = useCallback((searchTerm: string, roleFilterValue: string) => {
     let filtered = members;
 
     // Apply role filter
@@ -106,7 +102,12 @@ export default function MembersManagement() {
     }
 
     setFilteredMembers(filtered);
-  };
+  }, [members]);
+
+  // Reapply filters whenever members, searchQuery, or roleFilter changes
+  useEffect(() => {
+    applyFilters(searchQuery, roleFilter);
+  }, [members, searchQuery, roleFilter, applyFilters]);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
@@ -144,30 +145,34 @@ export default function MembersManagement() {
     if (!confirm(`Are you sure you want to delete ${memberEmail}? This will permanently remove their account and all associated data.`)) return;
 
     try {
-      // First delete from members table (this will cascade due to ON DELETE CASCADE in auth.users)
+      // First delete from members table
       const { error: memberError } = await supabase
         .from("members")
         .delete()
         .eq("id", memberId);
 
-      if (memberError) throw memberError;
+      if (memberError) {
+        console.error("Member deletion error:", memberError);
+        throw memberError;
+      }
 
       // Then delete from auth.users (this requires admin privileges via service role)
-      // Note: This might fail if not using service role key
       const { error: authError } = await supabase.auth.admin.deleteUser(memberId);
 
       if (authError) {
-        // If auth deletion fails, it's okay - member record is deleted
         console.warn("Auth user deletion failed:", authError);
       }
 
+      // Immediately update local state by filtering out the deleted member
+      setMembers(prevMembers => prevMembers.filter(m => m.id !== memberId));
+
       setSuccess(`Member ${memberEmail} deleted successfully!`);
-
-      // Reload members and wait for it to complete
-      await loadMembers();
-
       setTimeout(() => setSuccess(null), 3000);
+
+      // Also reload from server to ensure consistency
+      loadMembers();
     } catch (err: any) {
+      console.error("Delete member error:", err);
       setError(err.message || "Failed to delete member");
       setTimeout(() => setError(null), 3000);
     }
