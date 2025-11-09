@@ -41,6 +41,7 @@ export default function AnnouncementsManagement() {
     priority: "normal",
     category: "general",
     is_published: true,
+    send_notification: false,
   });
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
@@ -96,13 +97,19 @@ export default function AnnouncementsManagement() {
 
     try {
       const { data: { user } } = await supabase.auth.getUser();
+      const shouldSendNotification = formData.send_notification && formData.is_published;
+      let announcementId = editingId;
 
       if (editingId) {
         // Update existing announcement
         const { error } = await supabase
           .from("announcements")
           .update({
-            ...formData,
+            title: formData.title,
+            content: formData.content,
+            priority: formData.priority,
+            category: formData.category,
+            is_published: formData.is_published,
             updated_at: new Date().toISOString(),
           })
           .eq("id", editingId);
@@ -111,15 +118,46 @@ export default function AnnouncementsManagement() {
         setSuccess("Announcement updated successfully!");
       } else {
         // Create new announcement
-        const { error } = await supabase
+        const { data: newAnnouncement, error } = await supabase
           .from("announcements")
           .insert({
-            ...formData,
+            title: formData.title,
+            content: formData.content,
+            priority: formData.priority,
+            category: formData.category,
+            is_published: formData.is_published,
             author_id: user?.id,
-          });
+          })
+          .select()
+          .single();
 
         if (error) throw error;
+        announcementId = newAnnouncement.id;
         setSuccess("Announcement created successfully!");
+      }
+
+      // Send push notification if checkbox was checked
+      if (shouldSendNotification && announcementId) {
+        try {
+          const notifResponse = await fetch('/api/push/send', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              announcementId,
+              title: formData.title,
+              body: formData.content.substring(0, 100) + (formData.content.length > 100 ? '...' : ''),
+              priority: formData.priority,
+            }),
+          });
+
+          if (notifResponse.ok) {
+            const result = await notifResponse.json();
+            setSuccess(`Announcement saved! Notifications sent to ${result.sent} members.`);
+          }
+        } catch (notifError) {
+          console.error('Error sending notifications:', notifError);
+          setSuccess('Announcement saved, but failed to send notifications.');
+        }
       }
 
       // Reset form
@@ -129,6 +167,7 @@ export default function AnnouncementsManagement() {
         priority: "normal",
         category: "general",
         is_published: true,
+        send_notification: false,
       });
       setEditingId(null);
       setShowForm(false);
@@ -145,6 +184,7 @@ export default function AnnouncementsManagement() {
       priority: announcement.priority,
       category: announcement.category,
       is_published: announcement.is_published,
+      send_notification: false,
     });
     setEditingId(announcement.id);
     setShowForm(true);
@@ -219,6 +259,7 @@ export default function AnnouncementsManagement() {
                 priority: "normal",
                 category: "general",
                 is_published: true,
+                send_notification: false,
               });
             }}
             className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
@@ -336,6 +377,21 @@ export default function AnnouncementsManagement() {
                   </div>
                 </div>
 
+                {/* Push Notification Toggle */}
+                <div className="flex items-center space-x-2 p-4 bg-blue-50 border-2 border-blue-200 rounded-lg">
+                  <input
+                    type="checkbox"
+                    id="send_notification"
+                    checked={formData.send_notification}
+                    onChange={(e) => setFormData({ ...formData, send_notification: e.target.checked })}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <Label htmlFor="send_notification" className="flex items-center gap-2 cursor-pointer">
+                    <span className="text-sm font-medium">📱 Send Push Notification</span>
+                    <span className="text-xs text-gray-600">(Members will receive instant notification)</span>
+                  </Label>
+                </div>
+
                 <div className="flex gap-3">
                   <Button
                     type="submit"
@@ -355,6 +411,7 @@ export default function AnnouncementsManagement() {
                         priority: "normal",
                         category: "general",
                         is_published: true,
+                        send_notification: false,
                       });
                     }}
                   >
