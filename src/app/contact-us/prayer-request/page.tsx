@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -14,7 +15,7 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { User, UserX, Info } from 'lucide-react';
+import { User, UserX, Info, Shield } from 'lucide-react';
 import {
   Form,
   FormField,
@@ -24,6 +25,12 @@ import {
   FormMessage,
   FormDescription,
 } from '@/components/ui/form';
+
+// Dynamic import for Turnstile to avoid SSR issues
+const Turnstile = dynamic(
+  () => import("@marsidev/react-turnstile").then((mod) => mod.Turnstile),
+  { ssr: false }
+);
 
 const prayerRequestSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }),
@@ -40,7 +47,11 @@ const PrayerRequestPage: React.FC = () => {
   const [user, setUser] = useState<any>(null);
   const [member, setMember] = useState<any>(null);
   const [showName, setShowName] = useState(true);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<any>(null);
   const supabase = createClient();
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   const form = useForm<PrayerRequestFormValues>({
     resolver: zodResolver(prayerRequestSchema),
@@ -81,12 +92,22 @@ const PrayerRequestPage: React.FC = () => {
   }, [supabase, form]);
 
   const onSubmit: SubmitHandler<PrayerRequestFormValues> = async (data) => {
+    // Validate Turnstile
+    if (!turnstileToken) {
+      toast.error('Security Verification Required', {
+        description: 'Please complete the security verification below.',
+        duration: 5000,
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
       const requestBody: any = {
         ...data,
         isPublic,
+        turnstileToken,
       };
 
       // If logged in, include member_id and show_name preference
@@ -104,10 +125,17 @@ const PrayerRequestPage: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit prayer request');
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to submit prayer request');
       }
 
       form.reset();
+
+      // Reset Turnstile after successful submission
+      if (turnstileRef.current) {
+        turnstileRef.current.reset();
+      }
+      setTurnstileToken(null);
 
       // Show success toast
       if (isPublic) {
@@ -129,10 +157,17 @@ const PrayerRequestPage: React.FC = () => {
         form.setValue('name', member.full_name || user.email || '');
         form.setValue('email', user.email || '');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error submitting prayer request:', error);
+
+      // Reset Turnstile on error
+      if (turnstileRef.current) {
+        turnstileRef.current.reset();
+      }
+      setTurnstileToken(null);
+
       toast.error('Submission Failed', {
-        description: 'There was an error submitting your request. Please try again or contact us directly.',
+        description: error.message || 'There was an error submitting your request. Please try again or contact us directly.',
         duration: 5000,
       });
     } finally {
@@ -276,10 +311,39 @@ const PrayerRequestPage: React.FC = () => {
                   )}
                 />
 
+                {/* Cloudflare Turnstile */}
+                <div className="flex flex-col items-center gap-2 py-4">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                    <Shield className="h-4 w-4" />
+                    <span>Security Verification</span>
+                  </div>
+                  {siteKey ? (
+                    <Turnstile
+                      ref={turnstileRef}
+                      siteKey={siteKey}
+                      onSuccess={(token) => setTurnstileToken(token)}
+                      onError={() => {
+                        toast.error('Security verification failed', {
+                          description: 'Please refresh the page and try again.',
+                          duration: 5000,
+                        });
+                        setTurnstileToken(null);
+                      }}
+                      onExpire={() => setTurnstileToken(null)}
+                      options={{
+                        theme: 'light',
+                        size: 'normal',
+                      }}
+                    />
+                  ) : (
+                    <p className="text-sm text-red-600">Security verification not configured</p>
+                  )}
+                </div>
+
                 <Button
                   type="submit"
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !turnstileToken}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Prayer Request'}
                 </Button>
@@ -362,10 +426,39 @@ const PrayerRequestPage: React.FC = () => {
                   )}
                 />
 
+                {/* Cloudflare Turnstile */}
+                <div className="flex flex-col items-center gap-2 py-4">
+                  <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                    <Shield className="h-4 w-4" />
+                    <span>Security Verification</span>
+                  </div>
+                  {siteKey ? (
+                    <Turnstile
+                      ref={turnstileRef}
+                      siteKey={siteKey}
+                      onSuccess={(token) => setTurnstileToken(token)}
+                      onError={() => {
+                        toast.error('Security verification failed', {
+                          description: 'Please refresh the page and try again.',
+                          duration: 5000,
+                        });
+                        setTurnstileToken(null);
+                      }}
+                      onExpire={() => setTurnstileToken(null)}
+                      options={{
+                        theme: 'light',
+                        size: 'normal',
+                      }}
+                    />
+                  ) : (
+                    <p className="text-sm text-red-600">Security verification not configured</p>
+                  )}
+                </div>
+
                 <Button
                   type="submit"
                   className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !turnstileToken}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Private Prayer Request'}
                 </Button>
