@@ -12,6 +12,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Skeleton } from "@/components/ui/skeleton";
 import { User, LogOut, LayoutDashboard, Shield, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
@@ -81,9 +82,14 @@ export function UserDropdown() {
     return "User";
   };
 
-  // Show nothing while loading
+  // Show skeleton while loading to maintain layout
   if (loading) {
-    return <div className="w-24 h-10"></div>;
+    return (
+      <div className="flex items-center gap-2">
+        <Skeleton className="h-10 w-10 rounded-full" />
+        <Skeleton className="hidden sm:block h-4 w-20" />
+      </div>
+    );
   }
 
   // Not logged in - show login button
