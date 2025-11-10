@@ -66,7 +66,7 @@ export function NotificationSettings() {
         setSuccess("Push notifications disabled");
       } else {
         await subscribe();
-        setSuccess("Push notifications enabled! You'll receive notifications for new announcements.");
+        setSuccess("Push notifications enabled! You&apos;ll receive notifications for new announcements.");
       }
 
       setTimeout(() => setSuccess(null), 3000);
@@ -195,7 +195,7 @@ export function NotificationSettings() {
               <div className="p-3 bg-green-100 border border-green-300 rounded-md">
                 <p className="text-sm text-green-800 flex items-center gap-2">
                   <CheckCircle className="h-4 w-4" />
-                  You're subscribed to push notifications on this device
+                  You&apos;re subscribed to push notifications on this device
                 </p>
               </div>
             )}
