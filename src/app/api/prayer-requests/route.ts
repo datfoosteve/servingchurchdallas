@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
       email: email || null,
       request: prayerRequest,
       is_public: isPublic,
-      status: isPublic ? "public" : "new",
+      status: "new", // Use 'new' status for all prayers per database CHECK constraint
       prayer_count: 0,
     };
 
