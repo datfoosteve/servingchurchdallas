@@ -77,9 +77,14 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
     shortcut: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
+    apple: '/apple-icon.png',
   },
-  manifest: '/site.webmanifest',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Serving',
+  },
   robots: {
     index: true,
     follow: true,
