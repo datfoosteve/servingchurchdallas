@@ -14,9 +14,9 @@ CREATE INDEX IF NOT EXISTS idx_prayer_responses_prayer_id ON public.prayer_respo
 CREATE INDEX IF NOT EXISTS idx_prayer_responses_created_at ON public.prayer_responses(created_at);
 
 -- Create unique index to prevent duplicate prayers per IP per day
--- Using an expression index since we can't use DATE() in a UNIQUE constraint
+-- Using an expression index with cast operator (immutable)
 CREATE UNIQUE INDEX IF NOT EXISTS idx_prayer_responses_unique_daily
-  ON public.prayer_responses(prayer_id, ip_address, DATE(created_at));
+  ON public.prayer_responses(prayer_id, ip_address, (created_at::date));
 
 -- Enable RLS
 ALTER TABLE public.prayer_responses ENABLE ROW LEVEL SECURITY;
