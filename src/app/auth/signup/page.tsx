@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
@@ -9,7 +9,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import { Church, Mail, Lock, User, AlertCircle, Loader2, CheckCircle2 } from "lucide-react";
+import { Church, Mail, Lock, User, AlertCircle, Loader2, CheckCircle2, Shield } from "lucide-react";
+import Turnstile from "@marsidev/react-turnstile";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -22,12 +23,21 @@ export default function SignupPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<any>(null);
   const supabase = createClient();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+
+    // Validate Turnstile
+    if (!turnstileToken) {
+      setError("Please complete the security verification");
+      setLoading(false);
+      return;
+    }
 
     // Validate passwords match
     if (formData.password !== formData.confirmPassword) {
@@ -44,6 +54,17 @@ export default function SignupPage() {
     }
 
     try {
+      // Verify Turnstile token on server-side via API route
+      const verifyResponse = await fetch('/api/verify-turnstile', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: turnstileToken }),
+      });
+
+      if (!verifyResponse.ok) {
+        throw new Error('Security verification failed. Please try again.');
+      }
+
       const { data, error: signUpError } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password,
@@ -64,6 +85,11 @@ export default function SignupPage() {
       }, 3000);
     } catch (err: any) {
       setError(err.message || "Failed to create account. Please try again.");
+      // Reset Turnstile on error
+      if (turnstileRef.current) {
+        turnstileRef.current.reset();
+      }
+      setTurnstileToken(null);
     } finally {
       setLoading(false);
     }
@@ -100,6 +126,8 @@ export default function SignupPage() {
       </main>
     );
   }
+
+  const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
@@ -198,13 +226,44 @@ export default function SignupPage() {
                 />
               </div>
             </div>
+
+            {/* Cloudflare Turnstile */}
+            <div className="flex flex-col items-center gap-2 py-4">
+              <div className="flex items-center gap-2 text-sm text-gray-600 mb-2">
+                <Shield className="h-4 w-4" />
+                <span>Security Verification</span>
+              </div>
+              {siteKey ? (
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={siteKey}
+                  onSuccess={(token) => setTurnstileToken(token)}
+                  onError={() => {
+                    setError("Security verification failed. Please refresh the page.");
+                    setTurnstileToken(null);
+                  }}
+                  onExpire={() => setTurnstileToken(null)}
+                  options={{
+                    theme: 'light',
+                    size: 'normal',
+                  }}
+                />
+              ) : (
+                <Alert variant="destructive" className="mt-2">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription>
+                    Security verification is not configured. Please contact support.
+                  </AlertDescription>
+                </Alert>
+              )}
+            </div>
           </CardContent>
 
           <CardFooter className="flex-col space-y-4">
             <Button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-              disabled={loading}
+              disabled={loading || !turnstileToken}
             >
               {loading ? (
                 <>

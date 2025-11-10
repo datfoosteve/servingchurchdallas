@@ -18,8 +18,8 @@ interface PrayerRequestData {
 
 export async function POST(request: NextRequest) {
   try {
-    const body: PrayerRequestData = await request.json();
-    const { name, email, request: prayerRequest, isPublic, member_id, show_name } = body;
+    const body: PrayerRequestData & { turnstileToken?: string } = await request.json();
+    const { name, email, request: prayerRequest, isPublic, member_id, show_name, turnstileToken } = body;
 
     // Validation
     if (!name || !prayerRequest) {
@@ -32,6 +32,51 @@ export async function POST(request: NextRequest) {
       return NextResponse.json(
         { error: "Prayer request must be at least 10 characters" },
         { status: 400 }
+      );
+    }
+
+    // Verify Turnstile token (server-side)
+    if (!turnstileToken) {
+      return NextResponse.json(
+        { error: "Security verification is required" },
+        { status: 403 }
+      );
+    }
+
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
+    if (!secretKey) {
+      console.error("TURNSTILE_SECRET_KEY is not configured");
+      return NextResponse.json(
+        { error: "Security verification not configured" },
+        { status: 500 }
+      );
+    }
+
+    // Get client IP
+    const ip = request.headers.get("x-forwarded-for") ||
+               request.headers.get("x-real-ip") ||
+               "unknown";
+
+    // Verify with Cloudflare Turnstile
+    const verifyResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: secretKey,
+          response: turnstileToken,
+          remoteip: ip,
+        }),
+      }
+    );
+
+    const verifyData = await verifyResponse.json();
+    if (!verifyData.success) {
+      console.error("Turnstile verification failed:", verifyData);
+      return NextResponse.json(
+        { error: "Security verification failed" },
+        { status: 403 }
       );
     }
 
