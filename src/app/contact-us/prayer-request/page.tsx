@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
 import { SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,7 +25,12 @@ import {
   FormMessage,
   FormDescription,
 } from '@/components/ui/form';
-import { Turnstile } from "@marsidev/react-turnstile";
+
+// Dynamic import for Turnstile to avoid SSR issues
+const Turnstile = dynamic(
+  () => import("@marsidev/react-turnstile").then((mod) => mod.Turnstile),
+  { ssr: false }
+);
 
 const prayerRequestSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }),
