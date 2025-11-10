@@ -1,6 +1,15 @@
 -- Migration: Add prayer interaction tracking
 -- Creates prayer_responses table and increment_prayer_count function
 
+-- Create immutable function for date extraction
+CREATE OR REPLACE FUNCTION public.prayer_date(ts TIMESTAMP WITH TIME ZONE)
+RETURNS DATE
+LANGUAGE sql
+IMMUTABLE
+AS $$
+  SELECT ts::date;
+$$;
+
 -- Create prayer_responses table to track who has prayed
 CREATE TABLE IF NOT EXISTS public.prayer_responses (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -14,9 +23,9 @@ CREATE INDEX IF NOT EXISTS idx_prayer_responses_prayer_id ON public.prayer_respo
 CREATE INDEX IF NOT EXISTS idx_prayer_responses_created_at ON public.prayer_responses(created_at);
 
 -- Create unique index to prevent duplicate prayers per IP per day
--- Using an expression index with cast operator (immutable)
+-- Using our immutable function for date extraction
 CREATE UNIQUE INDEX IF NOT EXISTS idx_prayer_responses_unique_daily
-  ON public.prayer_responses(prayer_id, ip_address, (created_at::date));
+  ON public.prayer_responses(prayer_id, ip_address, prayer_date(created_at));
 
 -- Enable RLS
 ALTER TABLE public.prayer_responses ENABLE ROW LEVEL SECURITY;
