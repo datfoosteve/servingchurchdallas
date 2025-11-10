@@ -8,15 +8,153 @@ import { SUPABASE_IMAGES } from '@/lib/supabase-image';
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 
-// Placeholder images - replace with your actual Supabase images
+// Gallery images from Family Conference event at Sunnyvale High School Auditorium
 const GALLERY_IMAGES = [
-  { id: 1, url: SUPABASE_IMAGES.miracle, alt: "The Serving Church community - Worship service" },
-  { id: 2, url: SUPABASE_IMAGES.miracle, alt: "The Serving Church community - Fellowship event" },
-  { id: 3, url: SUPABASE_IMAGES.miracle, alt: "The Serving Church community - Church gathering" },
-  { id: 4, url: SUPABASE_IMAGES.miracle, alt: "The Serving Church community - Prayer meeting" },
-  { id: 5, url: SUPABASE_IMAGES.miracle, alt: "The Serving Church community - Youth service" },
-  { id: 6, url: SUPABASE_IMAGES.miracle, alt: "The Serving Church community - Community outreach" },
-  // Add more images here as you upload them to Supabase
+  {
+    id: 1,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08206.jpg",
+    alt: "The Serving Church Sunnyvale TX - Family Conference group photo at Sunnyvale High School Auditorium"
+  },
+  {
+    id: 2,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07102.jpg",
+    alt: "Pastor Sam Thomas preparing for Family Conference worship service in Sunnyvale TX"
+  },
+  {
+    id: 3,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07104.jpg",
+    alt: "The Serving Church worship team leading praise and worship at Family Conference Sunnyvale"
+  },
+  {
+    id: 4,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07125-Enhanced-NR.jpg",
+    alt: "Congregation worshipping at The Serving Church Family Conference in Sunnyvale TX"
+  },
+  {
+    id: 5,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07134-Enhanced-NR.jpg",
+    alt: "Community worship moment at The Serving Church Dallas Family Conference event"
+  },
+  {
+    id: 6,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07140.jpg",
+    alt: "Powerful worship experience at Sunnyvale church Family Conference 2024"
+  },
+  {
+    id: 7,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07156.jpg",
+    alt: "Guest speaker teaching about Christian marriage at The Serving Church Sunnyvale TX"
+  },
+  {
+    id: 8,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07165.jpg",
+    alt: "Marriage conference message at The Serving Church Dallas Family Conference"
+  },
+  {
+    id: 9,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07169.jpg",
+    alt: "Pastor Sam Thomas and wife Hepsy Thomas praying at Family Conference Sunnyvale"
+  },
+  {
+    id: 10,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07175.jpg",
+    alt: "Church volunteer Jessica preparing Chick-fil-A food for Family Conference attendees"
+  },
+  {
+    id: 11,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07232.jpg",
+    alt: "The Serving Church volunteers serving meals at Family Conference event Sunnyvale"
+  },
+  {
+    id: 12,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07330.jpg",
+    alt: "Fellowship and community connection at The Serving Church Dallas Family Conference"
+  },
+  {
+    id: 13,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07400.jpg",
+    alt: "Joyful church members at The Serving Church Sunnyvale TX Family Conference"
+  },
+  {
+    id: 14,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07417.jpg",
+    alt: "Pastor Sam Thomas connecting with congregation at Sunnyvale church event"
+  },
+  {
+    id: 15,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07596.jpg",
+    alt: "Altar worship and prayer at The Serving Church Family Conference Dallas TX"
+  },
+  {
+    id: 16,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07640.jpg",
+    alt: "Engaged congregation during Family Conference message at The Serving Church Sunnyvale"
+  },
+  {
+    id: 17,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07692.jpg",
+    alt: "Women and children of The Serving Church Dallas at Family Conference event"
+  },
+  {
+    id: 18,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07756.jpg",
+    alt: "Church members Arlie, Kaius, and Stephen at The Serving Church Sunnyvale TX"
+  },
+  {
+    id: 19,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07816.jpg",
+    alt: "Spiritual worship moment at The Serving Church Dallas Family Conference 2024"
+  },
+  {
+    id: 20,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07821.jpg",
+    alt: "Live worship music at The Serving Church Sunnyvale TX Family Conference"
+  },
+  {
+    id: 21,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC07839.jpg",
+    alt: "Guest speaker worshipping at The Serving Church Dallas Family Conference"
+  },
+  {
+    id: 22,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08009.jpg",
+    alt: "Guest speaker delivering message at The Serving Church Sunnyvale Family Conference"
+  },
+  {
+    id: 23,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08083.jpg",
+    alt: "Food service setup at The Serving Church Dallas Family Conference event"
+  },
+  {
+    id: 24,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08117.jpg",
+    alt: "The Serving Church family photo at Sunnyvale High School Auditorium event"
+  },
+  {
+    id: 25,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08138.jpg",
+    alt: "Church community group photo at The Serving Church Dallas Family Conference"
+  },
+  {
+    id: 26,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08145.jpg",
+    alt: "Congregation members at The Serving Church Sunnyvale TX Family Conference 2024"
+  },
+  {
+    id: 27,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08167.jpg",
+    alt: "Church photographer Marvin and wife Justina at The Serving Church Sunnyvale event"
+  },
+  {
+    id: 28,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08183.jpg",
+    alt: "Marvin with baby Kaius at The Serving Church Dallas Family Conference"
+  },
+  {
+    id: 29,
+    url: "https://nftofcjmsuwrzzrahozd.supabase.co/storage/v1/object/public/church-images/DSC08219.jpg",
+    alt: "Justina with Pastor's children at The Serving Church Sunnyvale TX Family Conference"
+  },
 ];
 
 export default function GalleryPage() {
