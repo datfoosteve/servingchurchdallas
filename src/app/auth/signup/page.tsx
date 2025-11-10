@@ -10,7 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Church, Mail, Lock, User, AlertCircle, Loader2, CheckCircle2, Shield } from "lucide-react";
-import Turnstile from "@marsidev/react-turnstile";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function SignupPage() {
   const router = useRouter();

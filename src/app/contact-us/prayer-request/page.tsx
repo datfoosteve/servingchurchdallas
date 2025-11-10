@@ -24,7 +24,7 @@ import {
   FormMessage,
   FormDescription,
 } from '@/components/ui/form';
-import Turnstile from "@marsidev/react-turnstile";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 const prayerRequestSchema = z.object({
   name: z.string().min(1, { message: 'Name is required' }),
