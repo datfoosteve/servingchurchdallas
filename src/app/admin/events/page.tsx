@@ -236,43 +236,45 @@ export default function EventsManagement() {
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link href="/admin/dashboard">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
-              </Button>
-            </Link>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-3">
-              <CalendarIcon className="h-8 w-8 text-blue-600" />
-              <div>
-                <h1 className="text-xl font-bold">Events Management</h1>
-                <p className="text-sm text-gray-600">Manage church events</p>
+              <Link href="/admin/dashboard">
+                <Button variant="ghost" size="sm">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back
+                </Button>
+              </Link>
+              <div className="flex items-center gap-3">
+                <CalendarIcon className="h-8 w-8 text-blue-600" />
+                <div>
+                  <h1 className="text-xl font-bold">Events Management</h1>
+                  <p className="text-sm text-gray-600 hidden sm:block">Manage church events</p>
+                </div>
               </div>
             </div>
+            <Button
+              onClick={() => {
+                setShowForm(!showForm);
+                setEditingId(null);
+                setFormData({
+                  title: "",
+                  description: "",
+                  location: "",
+                  event_date: "",
+                  event_time: "",
+                  is_recurring: false,
+                  recurrence_pattern: "",
+                  category: "service",
+                  is_published: true,
+                });
+              }}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 w-full sm:w-auto"
+            >
+              <Plus className="h-4 w-4 mr-2" />
+              New Event
+            </Button>
           </div>
-          <Button
-            onClick={() => {
-              setShowForm(!showForm);
-              setEditingId(null);
-              setFormData({
-                title: "",
-                description: "",
-                location: "",
-                event_date: "",
-                event_time: "",
-                is_recurring: false,
-                recurrence_pattern: "",
-                category: "service",
-                is_published: true,
-              });
-            }}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            New Event
-          </Button>
         </div>
       </header>
 

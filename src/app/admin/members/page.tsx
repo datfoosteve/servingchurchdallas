@@ -347,15 +347,15 @@ export default function MembersManagement() {
                 {filteredMembers.map((member) => (
                   <div
                     key={member.id}
-                    className="flex items-center justify-between p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors"
+                    className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 p-4 bg-gray-50 rounded-lg border border-gray-200 hover:border-blue-300 transition-colors"
                   >
                     <div className="flex items-center gap-4 flex-1">
                       <div className="bg-gradient-to-br from-blue-500 to-purple-500 p-3 rounded-full">
                         <User className="h-6 w-6 text-white" />
                       </div>
 
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-1">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1 flex-wrap">
                           <h3 className="font-semibold text-lg">
                             {member.full_name || "No Name"}
                           </h3>
@@ -365,10 +365,10 @@ export default function MembersManagement() {
                           </span>
                         </div>
 
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-sm text-gray-600">
                           <div className="flex items-center gap-1">
                             <Mail className="h-4 w-4" />
-                            {member.email}
+                            <span className="truncate">{member.email}</span>
                           </div>
                           <div className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
@@ -378,8 +378,8 @@ export default function MembersManagement() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3">
-                      <div className="w-40">
+                    <div className="flex items-center gap-3 w-full md:w-auto">
+                      <div className="flex-1 md:flex-none md:w-40">
                         <Select
                           value={member.role}
                           onValueChange={(value) => handleRoleChange(member.id, value)}

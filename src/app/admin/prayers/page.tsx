@@ -155,15 +155,17 @@ export default function AdminPrayersPage() {
                 onChange={(e) => setSearch(e.target.value)}
                 className="md:max-w-md"
               />
-              <Tabs value={filter} onValueChange={setFilter} className="w-full md:w-auto">
-                <TabsList>
-                  <TabsTrigger value="all">All</TabsTrigger>
-                  <TabsTrigger value="new">New</TabsTrigger>
-                  <TabsTrigger value="praying">Praying</TabsTrigger>
-                  <TabsTrigger value="answered">Answered</TabsTrigger>
-                  <TabsTrigger value="ongoing">Ongoing</TabsTrigger>
-                </TabsList>
-              </Tabs>
+              <div className="overflow-x-auto">
+                <Tabs value={filter} onValueChange={setFilter} className="w-full md:w-auto">
+                  <TabsList className="w-full md:w-auto">
+                    <TabsTrigger value="all" className="flex-1 md:flex-none">All</TabsTrigger>
+                    <TabsTrigger value="new" className="flex-1 md:flex-none">New</TabsTrigger>
+                    <TabsTrigger value="praying" className="flex-1 md:flex-none">Praying</TabsTrigger>
+                    <TabsTrigger value="answered" className="flex-1 md:flex-none">Answered</TabsTrigger>
+                    <TabsTrigger value="ongoing" className="flex-1 md:flex-none">Ongoing</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
             </div>
           </CardContent>
         </Card>
