@@ -6,15 +6,17 @@ CREATE TABLE IF NOT EXISTS public.prayer_responses (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   prayer_id UUID NOT NULL REFERENCES public.prayers(id) ON DELETE CASCADE,
   ip_address TEXT NOT NULL,
-  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-
-  -- Unique constraint: one prayer per IP per day
-  CONSTRAINT prayer_responses_unique UNIQUE (prayer_id, ip_address, DATE(created_at))
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
 
 -- Create index for faster lookups
 CREATE INDEX IF NOT EXISTS idx_prayer_responses_prayer_id ON public.prayer_responses(prayer_id);
 CREATE INDEX IF NOT EXISTS idx_prayer_responses_created_at ON public.prayer_responses(created_at);
+
+-- Create unique index to prevent duplicate prayers per IP per day
+-- Using an expression index since we can't use DATE() in a UNIQUE constraint
+CREATE UNIQUE INDEX IF NOT EXISTS idx_prayer_responses_unique_daily
+  ON public.prayer_responses(prayer_id, ip_address, DATE(created_at));
 
 -- Enable RLS
 ALTER TABLE public.prayer_responses ENABLE ROW LEVEL SECURITY;
