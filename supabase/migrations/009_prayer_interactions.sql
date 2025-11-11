@@ -1,6 +1,9 @@
 -- Migration: Add prayer interaction tracking
 -- Creates prayer_responses table and increment_prayer_count function
 
+-- Drop existing function if it exists (to handle reruns)
+DROP FUNCTION IF EXISTS public.increment_prayer_count(UUID);
+
 -- Create immutable function for date extraction
 CREATE OR REPLACE FUNCTION public.prayer_date(ts TIMESTAMP WITH TIME ZONE)
 RETURNS DATE
@@ -30,6 +33,10 @@ CREATE UNIQUE INDEX IF NOT EXISTS idx_prayer_responses_unique_daily
 -- Enable RLS
 ALTER TABLE public.prayer_responses ENABLE ROW LEVEL SECURITY;
 
+-- Drop existing policies if they exist (to handle reruns)
+DROP POLICY IF EXISTS "Anyone can record prayer" ON public.prayer_responses;
+DROP POLICY IF EXISTS "Anyone can view prayer responses" ON public.prayer_responses;
+
 -- Allow anyone to insert prayer responses (public can pray)
 CREATE POLICY "Anyone can record prayer" ON public.prayer_responses
   FOR INSERT
@@ -41,7 +48,7 @@ CREATE POLICY "Anyone can view prayer responses" ON public.prayer_responses
   USING (true);
 
 -- Create RPC function to increment prayer count
-CREATE OR REPLACE FUNCTION public.increment_prayer_count(prayer_uuid UUID)
+CREATE FUNCTION public.increment_prayer_count(prayer_uuid UUID)
 RETURNS TABLE(prayer_count INTEGER)
 LANGUAGE plpgsql
 SECURITY DEFINER
