@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { Home, Info, Mic2, Calendar, Heart, MapPin, Mail, MessageSquare, Image as ImageIcon, Users, Menu, ChevronRight, DollarSign } from "lucide-react";
+import { Home, Info, Mic2, Calendar, Heart, MapPin, Mail, MessageSquare, Image as ImageIcon, Users, Menu, ChevronRight, DollarSign, Bible } from "lucide-react";
 
 import ChevronRightIcon from "@/images/icons/ChevronRightIcon";
 import MenuIcon from "@/images/icons/MenuIcon";
@@ -202,14 +202,14 @@ export function NavComponent() {
                       <SheetTrigger asChild>
                         <Link
                           className="group grid h-auto w-full justify-start gap-1"
-                          href="/more/who-we-are"
+                          href="/beliefs"
                         >
                           <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
-                            <Users className="h-4 w-4" />
-                            Who We Are
+                            <Bible className="h-4 w-4" />
+                            Our Beliefs
                           </div>
                           <div className="line-clamp-2 text-sm leading-snug text-gray-500">
-                            Learn more about our church.
+                            Discover what we believe.
                           </div>
                         </Link>
                       </SheetTrigger>
@@ -361,14 +361,14 @@ export function NavComponent() {
                     <NavigationMenuLink asChild>
                       <Link
                         className="group grid h-auto w-full items-center justify-start gap-1 rounded-md bg-white p-4 text-sm font-medium transition-colors hover:bg-gray-100 hover:text-gray-900 focus:bg-gray-100 focus:text-gray-900 focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-gray-100/50 data-[state=open]:bg-gray-100/50"
-                        href="/more/who-we-are"
+                        href="/beliefs"
                       >
                         <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
-                          <Users className="h-4 w-4" />
-                          Who We Are
+                          <Bible className="h-4 w-4" />
+                          Our Beliefs
                         </div>
                         <div className="line-clamp-2 text-sm leading-snug text-gray-500">
-                          Learn more about our church.
+                          Discover what we believe.
                         </div>
                       </Link>
                     </NavigationMenuLink>
