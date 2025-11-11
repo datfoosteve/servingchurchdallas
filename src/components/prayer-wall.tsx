@@ -38,8 +38,9 @@ export function PrayerWall() {
       });
 
       const data = await response.json();
+      console.log("Prayer response:", data); // Debug log
 
-      if (data.success) {
+      if (response.ok && data.success) {
         // Update local state
         setPrayers((prev) =>
           prev.map((p) =>
@@ -58,9 +59,14 @@ export function PrayerWall() {
             return newSet;
           });
         }, 3000);
+      } else {
+        // Log error details
+        console.error("Prayer failed:", data);
+        alert(data.message || data.error || "Failed to record prayer");
       }
     } catch (error) {
       console.error("Error praying:", error);
+      alert("Network error. Please try again.");
     }
   };
 
