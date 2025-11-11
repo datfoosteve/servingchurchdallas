@@ -24,6 +24,7 @@ import {
   Users,
   DollarSign,
   Search,
+  Book,
 } from "lucide-react";
 
 const pages = [
@@ -49,7 +50,7 @@ const pages = [
     group: "More",
     items: [
       { name: "Gallery", href: "/more/gallery", icon: ImageIcon },
-      { name: "Who We Are", href: "/more/who-we-are", icon: Users },
+      { name: "Our Beliefs", href: "/beliefs", icon: Book },
     ],
   },
   {
