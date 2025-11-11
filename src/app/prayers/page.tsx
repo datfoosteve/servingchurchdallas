@@ -73,7 +73,8 @@ export default function PrayersPage() {
       const data = await response.json();
       console.log("Prayer response:", data); // Debug log
 
-      if (response.ok && data.success) {
+      if (response.ok) {
+        // Update local state with the prayer count
         setPrayers((prev) =>
           prev.map((p) =>
             p.id === prayerId
@@ -81,6 +82,8 @@ export default function PrayersPage() {
               : p
           )
         );
+
+        // Mark as praying temporarily for visual feedback
         setPrayingFor((prev) => new Set(prev).add(prayerId));
 
         setTimeout(() => {
@@ -90,6 +93,12 @@ export default function PrayersPage() {
             return newSet;
           });
         }, 3000);
+
+        // Show message if already prayed
+        if (!data.success && data.message) {
+          // Use a subtle notification instead of alert
+          console.info(data.message);
+        }
       } else {
         // Log error details
         console.error("Prayer failed:", data);

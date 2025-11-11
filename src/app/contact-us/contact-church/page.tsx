@@ -1,10 +1,11 @@
 // app/contact-us/contact-church/page.tsx
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import dynamic from "next/dynamic";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,12 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Mail, User, Phone, MessageSquare, CheckCircle2, AlertCircle } from "lucide-react";
+
+// Dynamic import for Turnstile to avoid SSR issues
+const Turnstile = dynamic(
+  () => import("@marsidev/react-turnstile").then((mod) => mod.Turnstile),
+  { ssr: false }
+);
 
 // Define the form schema using Zod
 const formSchema = z.object({
@@ -33,6 +40,8 @@ export default function ContactChurchPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<any>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -45,6 +54,13 @@ export default function ContactChurchPage() {
   });
 
   const onSubmit = async (data: FormValues) => {
+    // Validate Turnstile
+    if (!turnstileToken) {
+      setSubmitStatus('error');
+      setErrorMessage("Please complete the security verification");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus('idle');
     setErrorMessage("");
@@ -55,7 +71,10 @@ export default function ContactChurchPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          turnstileToken,
+        }),
       });
 
       const result = await response.json();
@@ -63,16 +82,31 @@ export default function ContactChurchPage() {
       if (response.ok) {
         setSubmitStatus('success');
         form.reset();
+        // Reset Turnstile
+        if (turnstileRef.current) {
+          turnstileRef.current.reset();
+        }
+        setTurnstileToken(null);
         // Auto-hide success message after 5 seconds
         setTimeout(() => setSubmitStatus('idle'), 5000);
       } else {
         setSubmitStatus('error');
         setErrorMessage(result.error || "Failed to send message. Please try again.");
+        // Reset Turnstile on error
+        if (turnstileRef.current) {
+          turnstileRef.current.reset();
+        }
+        setTurnstileToken(null);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
       setSubmitStatus('error');
       setErrorMessage("An unexpected error occurred. Please try again later.");
+      // Reset Turnstile on error
+      if (turnstileRef.current) {
+        turnstileRef.current.reset();
+      }
+      setTurnstileToken(null);
     } finally {
       setIsSubmitting(false);
     }
@@ -234,12 +268,23 @@ export default function ContactChurchPage() {
                     )}
                   />
 
+                  {/* Turnstile Security Verification */}
+                  <div className="flex justify-center">
+                    <Turnstile
+                      ref={turnstileRef}
+                      siteKey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || ""}
+                      onSuccess={(token) => setTurnstileToken(token)}
+                      onError={() => setTurnstileToken(null)}
+                      onExpire={() => setTurnstileToken(null)}
+                    />
+                  </div>
+
                   {/* Submit Button */}
                   <Button
                     type="submit"
                     size="lg"
                     className="w-full h-12 text-base"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !turnstileToken}
                   >
                     {isSubmitting ? (
                       <>
