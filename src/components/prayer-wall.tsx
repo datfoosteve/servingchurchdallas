@@ -40,8 +40,8 @@ export function PrayerWall() {
       const data = await response.json();
       console.log("Prayer response:", data); // Debug log
 
-      if (response.ok && data.success) {
-        // Update local state
+      if (response.ok) {
+        // Update local state with the prayer count
         setPrayers((prev) =>
           prev.map((p) =>
             p.id === prayerId
@@ -49,6 +49,8 @@ export function PrayerWall() {
               : p
           )
         );
+
+        // Mark as praying temporarily for visual feedback
         setPrayingFor((prev) => new Set(prev).add(prayerId));
 
         // Show success feedback
@@ -59,6 +61,12 @@ export function PrayerWall() {
             return newSet;
           });
         }, 3000);
+
+        // Show message if already prayed
+        if (!data.success && data.message) {
+          // Use a subtle notification instead of alert
+          console.info(data.message);
+        }
       } else {
         // Log error details
         console.error("Prayer failed:", data);
