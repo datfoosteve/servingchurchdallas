@@ -71,8 +71,9 @@ export default function PrayersPage() {
       });
 
       const data = await response.json();
+      console.log("Prayer response:", data); // Debug log
 
-      if (data.success) {
+      if (response.ok && data.success) {
         setPrayers((prev) =>
           prev.map((p) =>
             p.id === prayerId
@@ -89,9 +90,14 @@ export default function PrayersPage() {
             return newSet;
           });
         }, 3000);
+      } else {
+        // Log error details
+        console.error("Prayer failed:", data);
+        alert(data.message || data.error || "Failed to record prayer");
       }
     } catch (error) {
       console.error("Error praying:", error);
+      alert("Network error. Please try again.");
     }
   };
 
