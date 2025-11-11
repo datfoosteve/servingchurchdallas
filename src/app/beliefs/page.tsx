@@ -44,7 +44,7 @@ const BELIEFS: BeliefItem[] = [
       <div className="space-y-4">
         <p className="text-gray-700 leading-relaxed">
           We believe in one eternal God—Father, Son, and Holy Spirit—distinct yet indivisible. In their divine unity we
-          see perfect love, creation's source, redemption's architect, and life's breath. From this mystery flows all
+          see perfect love, creation&apos;s source, redemption&apos;s architect, and life&apos;s breath. From this mystery flows all
           relationship and purpose.
         </p>
         <p className="text-sm text-gray-500 italic">Matthew 28:19 • 2 Corinthians 13:14 • John 14:16-17</p>
@@ -77,7 +77,7 @@ const BELIEFS: BeliefItem[] = [
     content: (
       <div className="space-y-4">
         <p className="text-gray-700 leading-relaxed">
-          Humanity was created good, crowned with God's likeness. But through pride and disobedience, we fractured that
+          Humanity was created good, crowned with God&apos;s likeness. But through pride and disobedience, we fractured that
           image and invited death into creation. Our hearts long for what was lost, and only through Christ can that
           fellowship be restored.
         </p>
@@ -94,7 +94,7 @@ const BELIEFS: BeliefItem[] = [
     content: (
       <div className="space-y-4">
         <p className="text-gray-700 leading-relaxed">
-          Salvation is the gift of God's grace, received through repentance and faith in Jesus Christ. His blood redeems,
+          Salvation is the gift of God&apos;s grace, received through repentance and faith in Jesus Christ. His blood redeems,
           His Spirit renews, and His mercy calls us sons and daughters. It is not achieved by effort, but accepted by
           surrender.
         </p>
@@ -164,7 +164,7 @@ const BELIEFS: BeliefItem[] = [
     content: (
       <div className="space-y-4">
         <p className="text-gray-700 leading-relaxed">
-          Marriage is God's sacred union between one man and one woman—an echo of Christ's love for His Church. Within
+          Marriage is God&apos;s sacred union between one man and one woman—an echo of Christ&apos;s love for His Church. Within
           that bond, selfless devotion and faithfulness mirror the eternal covenant between heaven and humanity.
         </p>
         <p className="text-sm text-gray-500 italic">Genesis 2:24 • Ephesians 5:22-33 • Mark 10:6-9</p>
@@ -230,12 +230,12 @@ const BELIEFS: BeliefItem[] = [
     content: (
       <div className="space-y-4">
         <p className="text-gray-700 leading-relaxed">
-          Whether you're exploring faith or searching for a spiritual home, we open our hearts to you. This is a place to
+          Whether you&apos;re exploring faith or searching for a spiritual home, we open our hearts to you. This is a place to
           grow, to heal, to belong—a family centered on Jesus and alive in His love.
         </p>
         <div className="mt-6 p-6 bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg border border-blue-100">
           <p className="text-center text-gray-800 font-medium">
-            Have questions about what we believe? We'd love to talk with you.
+            Have questions about what we believe? We&apos;d love to talk with you.
           </p>
           <div className="flex justify-center mt-4">
             <a
@@ -349,7 +349,7 @@ export default function BeliefsPage() {
             </div>
             {searchQuery && (
               <p className="mt-3 text-sm text-gray-600">
-                Found {filteredBeliefs.length} belief{filteredBeliefs.length !== 1 ? "s" : ""} matching "{searchQuery}"
+                Found {filteredBeliefs.length} belief{filteredBeliefs.length !== 1 ? "s" : ""} matching &quot;{searchQuery}&quot;
               </p>
             )}
           </div>
