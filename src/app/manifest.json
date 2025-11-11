@@ -1,0 +1,49 @@
+{
+  "name": "The Serving Church",
+  "short_name": "Serving",
+  "description": "Connect with The Serving Church community in Sunnyvale, TX. Access sermons, prayer requests, announcements, and events.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#9e69e0",
+  "background_color": "#ffffff",
+  "icons": [
+    {
+      "src": "/web-app-manifest-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/web-app-manifest-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ],
+  "categories": ["religion", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "Prayer Wall",
+      "short_name": "Prayers",
+      "description": "View and submit prayer requests",
+      "url": "/prayers",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Events",
+      "short_name": "Events",
+      "description": "Church events and calendar",
+      "url": "/events",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Donate",
+      "short_name": "Give",
+      "description": "Support our ministry",
+      "url": "/donate",
+      "icons": [{ "src": "/web-app-manifest-192x192.png", "sizes": "192x192" }]
+    }
+  ]
+}

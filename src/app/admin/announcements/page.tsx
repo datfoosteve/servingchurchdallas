@@ -233,40 +233,42 @@ export default function AnnouncementsManagement() {
     <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Link href="/admin/dashboard">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back
-              </Button>
-            </Link>
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <div className="flex items-center gap-3">
-              <Megaphone className="h-8 w-8 text-purple-600" />
-              <div>
-                <h1 className="text-xl font-bold">Announcements</h1>
-                <p className="text-sm text-gray-600">Manage church announcements</p>
+              <Link href="/admin/dashboard">
+                <Button variant="ghost" size="sm">
+                  <ArrowLeft className="h-4 w-4 mr-2" />
+                  Back
+                </Button>
+              </Link>
+              <div className="flex items-center gap-3">
+                <Megaphone className="h-8 w-8 text-purple-600" />
+                <div>
+                  <h1 className="text-xl font-bold">Announcements</h1>
+                  <p className="text-sm text-gray-600 hidden sm:block">Manage church announcements</p>
+                </div>
               </div>
             </div>
+            <Button
+              onClick={() => {
+                setShowForm(!showForm);
+                setEditingId(null);
+                setFormData({
+                  title: "",
+                  content: "",
+                  priority: "normal",
+                  category: "general",
+                  is_published: true,
+                  send_notification: false,
+                });
+              }}
+              className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 w-full sm:w-auto"
+            >
+              <Plus className="h-4 w-4 mr-2" />
+              New Announcement
+            </Button>
           </div>
-          <Button
-            onClick={() => {
-              setShowForm(!showForm);
-              setEditingId(null);
-              setFormData({
-                title: "",
-                content: "",
-                priority: "normal",
-                category: "general",
-                is_published: true,
-                send_notification: false,
-              });
-            }}
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
-          >
-            <Plus className="h-4 w-4 mr-2" />
-            New Announcement
-          </Button>
         </div>
       </header>
 

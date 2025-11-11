@@ -112,7 +112,9 @@ export default function AdminDashboard() {
               <Church className="h-8 w-8 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-bold">Pastor Admin Panel</h1>
+              <h1 className="text-xl font-bold">
+                {member?.role === 'pastor' ? 'Pastor' : 'Admin'} Dashboard
+              </h1>
               <p className="text-sm text-gray-600">The Serving Church</p>
             </div>
           </div>
@@ -127,7 +129,7 @@ export default function AdminDashboard() {
         {/* Welcome Section */}
         <div className="mb-8">
           <h2 className="text-3xl font-bold mb-2">
-            Welcome, Pastor {member?.full_name || "Admin"}!
+            Welcome, {member?.role === 'pastor' ? 'Pastor' : ''} {member?.full_name || "Admin"}!
           </h2>
           <p className="text-gray-600">
             Here&apos;s an overview of your church community

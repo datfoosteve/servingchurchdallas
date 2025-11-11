@@ -32,7 +32,7 @@ import { UserDropdown } from "@/components/UserDropdown";
 export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="w-[100px] h-[20px] rounded-full" />}>
-      <header className="flex h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90 justify-between max-w-[100vw] overflow-x-hidden">
+      <header className="flex h-20 w-full items-center px-4 md:px-6 sticky top-0 z-50 backdrop-blur-md bg-white bg-opacity-90 justify-between">
         <div className="flex items-center gap-2 shrink-0 min-w-0">
           <Link href="/" passHref className="shrink-0">
             <div className="flex gap-2 text-lg font-semibold md:text-base">

@@ -38,7 +38,7 @@ export function Announcements() {
           priority,
           category,
           created_at,
-          author:members(full_name)
+          author:members!author_id(full_name)
         `)
         .eq("is_published", true)
         .order("created_at", { ascending: false })
@@ -47,7 +47,14 @@ export function Announcements() {
       if (error) {
         console.error("Error loading announcements:", error);
       } else {
-        setAnnouncements(data || []);
+        // Transform data to handle author as array or single object
+        const transformed = (data || []).map((announcement: any) => ({
+          ...announcement,
+          author: Array.isArray(announcement.author)
+            ? announcement.author[0]
+            : announcement.author
+        }));
+        setAnnouncements(transformed);
       }
     } catch (err) {
       console.error("Error:", err);
