@@ -4,7 +4,7 @@
 import { useState, useEffect } from "react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Input } from "@/components/ui/input";
-import { Bible, Flame, Heart, Globe2, Cross, Droplets, Wind, Stethoscope, Handshake, Church, Megaphone, Sunrise, Home, Search } from "lucide-react";
+import { Book, Flame, Heart, Globe2, Cross, Droplets, Wind, Stethoscope, Handshake, Church, Megaphone, Sunrise, Home, Search } from "lucide-react";
 import type { ReactNode } from "react";
 
 type BeliefItem = {
@@ -21,7 +21,7 @@ const BELIEFS: BeliefItem[] = [
     id: "scripture",
     title: "Scripture",
     excerpt: "The Bible is not just a book — it is breath and light.",
-    icon: Bible,
+    icon: Book,
     keywords: ["bible", "word", "truth", "scripture", "authority"],
     content: (
       <div className="space-y-4">
@@ -315,7 +315,7 @@ export default function BeliefsPage() {
           <div className="max-w-4xl mx-auto text-center">
             <div className="inline-block mb-6">
               <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                <Bible className="w-12 h-12" />
+                <Book className="w-12 h-12" />
               </div>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">

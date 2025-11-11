@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/navigation-menu";
 
 import { Skeleton } from "@/components/ui/skeleton";
-import { Home, Info, Mic2, Calendar, Heart, MapPin, Mail, MessageSquare, Image as ImageIcon, Users, Menu, ChevronRight, DollarSign, Bible } from "lucide-react";
+import { Home, Info, Mic2, Calendar, Heart, MapPin, Mail, MessageSquare, Image as ImageIcon, Users, Menu, ChevronRight, DollarSign, Book } from "lucide-react";
 
 import ChevronRightIcon from "@/images/icons/ChevronRightIcon";
 import MenuIcon from "@/images/icons/MenuIcon";
@@ -205,7 +205,7 @@ export function NavComponent() {
                           href="/beliefs"
                         >
                           <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
-                            <Bible className="h-4 w-4" />
+                            <Book className="h-4 w-4" />
                             Our Beliefs
                           </div>
                           <div className="line-clamp-2 text-sm leading-snug text-gray-500">
@@ -364,7 +364,7 @@ export function NavComponent() {
                         href="/beliefs"
                       >
                         <div className="text-sm font-medium leading-none group-hover:underline flex items-center gap-2">
-                          <Bible className="h-4 w-4" />
+                          <Book className="h-4 w-4" />
                           Our Beliefs
                         </div>
                         <div className="line-clamp-2 text-sm leading-snug text-gray-500">
