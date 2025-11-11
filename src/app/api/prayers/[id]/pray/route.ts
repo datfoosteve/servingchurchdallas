@@ -63,11 +63,16 @@ export async function POST(
       );
     }
 
+    // RPC function returns an array of rows since it returns TABLE
+    const prayerCount = Array.isArray(updatedPrayer) && updatedPrayer.length > 0
+      ? updatedPrayer[0].prayer_count
+      : 0;
+
     return NextResponse.json(
       {
         success: true,
         message: "Thank you for praying!",
-        prayerCount: updatedPrayer?.prayer_count || 0,
+        prayerCount,
       },
       { status: 200 }
     );
