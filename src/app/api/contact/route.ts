@@ -9,6 +9,7 @@ const contactSchema = z.object({
   email: z.string().email("Invalid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
   phone: z.string().optional(),
+  turnstileToken: z.string().optional(),
 });
 
 export async function POST(request: NextRequest) {
@@ -24,7 +25,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const { name, email, message, phone } = validationResult.data;
+    const { name, email, message, phone, turnstileToken } = validationResult.data;
+
+    // Verify Turnstile token (server-side)
+    if (!turnstileToken) {
+      return NextResponse.json(
+        { error: "Security verification is required" },
+        { status: 403 }
+      );
+    }
+
+    const secretKey = process.env.TURNSTILE_SECRET_KEY;
+    const ip = request.headers.get("x-forwarded-for") || "unknown";
+
+    // Verify with Cloudflare Turnstile
+    const verifyResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          secret: secretKey || "",
+          response: turnstileToken,
+          remoteip: ip,
+        }),
+      }
+    );
+
+    const verifyData = await verifyResponse.json();
+    if (!verifyData.success) {
+      return NextResponse.json(
+        { error: "Security verification failed" },
+        { status: 403 }
+      );
+    }
 
     // Send email notification to church
     const emailData = await resend.emails.send({
