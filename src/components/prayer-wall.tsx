@@ -38,7 +38,6 @@ export function PrayerWall() {
       });
 
       const data = await response.json();
-      console.log("Prayer response:", data); // Debug log
 
       if (response.ok) {
         // Update local state with the prayer count

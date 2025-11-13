@@ -41,9 +41,19 @@ export async function GET(request: NextRequest) {
       query = query.in("status", ["new", "praying", "ongoing", "answered"]);
     }
 
-    // Apply search
+    // Apply search with validation
     if (search) {
-      query = query.or(`name.ilike.%${search}%,request.ilike.%${search}%`);
+      // Validate search length
+      if (search.length > 100) {
+        return NextResponse.json(
+          { error: "Search query too long (max 100 characters)" },
+          { status: 400 }
+        );
+      }
+
+      // Sanitize search to prevent issues with special characters
+      const sanitizedSearch = search.replace(/[%_]/g, '\\$&');
+      query = query.or(`name.ilike.%${sanitizedSearch}%,request.ilike.%${sanitizedSearch}%`);
     }
 
     // Apply sorting based on filter

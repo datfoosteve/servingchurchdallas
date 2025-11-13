@@ -1,4 +1,5 @@
 // Calendar utility functions for generating .ics files
+import { randomUUID } from 'crypto';
 
 export interface CalendarEvent {
   title: string;
@@ -32,7 +33,7 @@ export function generateICS(event: CalendarEvent): string {
   const dtstamp = formatDate(now);
   const dtstart = formatDate(event.startTime);
   const dtend = formatDate(event.endTime);
-  const uid = `${dtstart}-${Math.random().toString(36).substr(2, 9)}@servingchurchdallas.com`;
+  const uid = `${dtstart}-${randomUUID()}@servingchurchdallas.com`;
 
   let icsContent = [
     'BEGIN:VCALENDAR',
