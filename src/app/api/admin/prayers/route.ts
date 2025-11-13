@@ -18,6 +18,20 @@ export async function GET(request: NextRequest) {
       );
     }
 
+    // Check if user is admin or pastor
+    const { data: memberData } = await supabase
+      .from('members')
+      .select('role')
+      .eq('id', user.id)
+      .single();
+
+    if (!memberData || (memberData.role !== 'admin' && memberData.role !== 'pastor')) {
+      return NextResponse.json(
+        { error: 'Forbidden - Admin or Pastor access required' },
+        { status: 403 }
+      );
+    }
+
     // Get query params
     const { searchParams } = new URL(request.url);
     const status = searchParams.get("status");
@@ -41,8 +55,20 @@ export async function GET(request: NextRequest) {
     } else if (isPublic === "false") {
       query = query.eq("is_public", false);
     }
+
+    // Apply search with validation
     if (search) {
-      query = query.or(`name.ilike.%${search}%,request.ilike.%${search}%`);
+      // Validate search length
+      if (search.length > 100) {
+        return NextResponse.json(
+          { error: "Search query too long (max 100 characters)" },
+          { status: 400 }
+        );
+      }
+
+      // Sanitize search to prevent issues with special characters
+      const sanitizedSearch = search.replace(/[%_]/g, '\\$&');
+      query = query.or(`name.ilike.%${sanitizedSearch}%,request.ilike.%${sanitizedSearch}%`);
     }
 
     // Pagination

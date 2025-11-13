@@ -7,7 +7,7 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const supabase = await createClient();
+    const supabase = createClient();
 
     // Fetch the announcement
     const { data: announcement, error } = await supabase

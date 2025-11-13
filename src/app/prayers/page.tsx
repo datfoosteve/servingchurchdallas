@@ -71,7 +71,6 @@ export default function PrayersPage() {
       });
 
       const data = await response.json();
-      console.log("Prayer response:", data); // Debug log
 
       if (response.ok) {
         // Update local state with the prayer count
@@ -94,11 +93,7 @@ export default function PrayersPage() {
           });
         }, 3000);
 
-        // Show message if already prayed
-        if (!data.success && data.message) {
-          // Use a subtle notification instead of alert
-          console.info(data.message);
-        }
+        // Show message if already prayed (handled silently)
       } else {
         // Log error details
         console.error("Prayer failed:", data);
