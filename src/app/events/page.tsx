@@ -5,7 +5,6 @@ import { Calendar } from "@/components/ui/calendar";
 import { format, isSameDay, isAfter, startOfToday } from "date-fns";
 import { generateMonthEvents, Event } from "@/lib/eventHelpers";
 import { createClient } from "@/lib/supabase/client";
-import { Button } from "@/components/ui/button";
 import { Calendar as CalendarIcon, MapPin, Clock } from "lucide-react";
 const Link = React.lazy(() =>
   import("next-view-transitions").then((module) => ({ default: module.Link }))
@@ -25,7 +24,6 @@ const EventsPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const supabase = createClient();
 
-  // Fetch events from database
   useEffect(() => {
     const loadEvents = async () => {
       const { data, error } = await supabase
@@ -43,7 +41,6 @@ const EventsPage: React.FC = () => {
     loadEvents();
   }, [supabase]);
 
-  // Generate events dynamically for the year and month of the selected date
   const events = useMemo(() => {
     if (loading) return [];
     return generateMonthEvents(
@@ -53,7 +50,6 @@ const EventsPage: React.FC = () => {
     );
   }, [dbEvents, date, loading]);
 
-  // Get upcoming events (next 3 events from today)
   const upcomingEvents = useMemo(() => {
     if (loading) return [];
     const today = startOfToday();
@@ -68,12 +64,10 @@ const EventsPage: React.FC = () => {
       .slice(0, 3);
   }, [dbEvents, loading]);
 
-  // Filter events for selected date
   const filteredEvents = events.filter((event) =>
     isSameDay(event.date, date || new Date())
   );
 
-  // Create a modifiers object for event highlighting
   const modifiers = {
     hasEvents: events.map((event) => event.date),
   };
@@ -85,7 +79,6 @@ const EventsPage: React.FC = () => {
     if (category === "prayer") return "🙏";
     if (category === "fellowship") return "🤝";
     if (category === "special-event") return "🎉";
-    // Fallback to title-based detection for compatibility
     if (event.title.includes("Sunday")) return "⛪";
     if (event.title.includes("Bible Study")) return "📖";
     if (event.title.includes("Prayer")) return "🙏";
@@ -94,55 +87,54 @@ const EventsPage: React.FC = () => {
 
   return (
     <main>
-      {/* Hero Section */}
-      <section className="w-full py-12 md:py-20 bg-gradient-to-b from-blue-50 to-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      <section className="bg-[#181818] py-16 md:py-24">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-gray-900 mb-4">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">Events</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-brand-ivory sm:text-5xl md:text-6xl">
               Upcoming Events
             </h1>
-            <p className="mt-4 text-lg md:text-xl text-gray-600">
-              Join us for inspiring worship, fellowship, and spiritual growth.
-              All are welcome!
+            <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.9)] to-transparent" />
+            <p className="mt-6 text-lg leading-8 text-brand-stone md:text-xl">
+              Join us for worship, fellowship, and spiritual growth. All are welcome.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Upcoming Events Highlight Section */}
-      <section className="w-full py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
+      <section className="bg-brand-section py-12 md:py-16">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <h2 className="mb-10 text-center text-3xl font-semibold text-[#1f1f1f]">
             Next Events
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {upcomingEvents.map((event, index) => (
-              <Card key={event.id || index} className="hover:shadow-xl transition-shadow duration-300 border-t-4 border-blue-600">
+              <Card key={event.id || index} className="rounded-[24px] border border-brand-border bg-white/88 shadow-sm transition-shadow duration-300 hover:shadow-xl">
                 <CardHeader>
-                  <div className="flex items-center justify-between mb-2">
+                  <div className="mb-2 flex items-center justify-between">
                     <span className="text-4xl">{getEventIcon(event)}</span>
-                    <span className="text-sm font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+                    <span className="rounded-full bg-[rgba(200,169,107,0.10)] px-3 py-1 text-sm font-semibold text-[#6e5b33]">
                       {format(event.date, "MMM d")}
                     </span>
                   </div>
-                  <CardTitle className="text-xl">{event.title}</CardTitle>
-                  <CardDescription className="space-y-1 text-gray-600">
+                  <CardTitle className="text-xl text-[#1f1f1f]">{event.title}</CardTitle>
+                  <CardDescription className="space-y-1 text-[#625c53]">
                     <div className="flex items-center gap-1">
-                      <CalendarIcon className="w-4 h-4" />
+                      <CalendarIcon className="h-4 w-4 text-brand-gold" />
                       {format(event.date, "EEEE, MMMM d")}
                     </div>
                     {event.time && (
                       <div className="flex items-center gap-1">
-                        <Clock className="w-4 h-4" />
+                        <Clock className="h-4 w-4 text-brand-gold" />
                         {event.time}
                       </div>
                     )}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 mb-3">{event.description}</p>
-                  <div className="flex items-start gap-2 text-sm text-gray-500">
-                    <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <p className="mb-3 text-[#625c53]">{event.description}</p>
+                  <div className="flex items-start gap-2 text-sm text-[#7a746c]">
+                    <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-gold" />
                     <span>{event.location}</span>
                   </div>
                 </CardContent>
@@ -152,16 +144,14 @@ const EventsPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Interactive Calendar Section */}
-      <section className="w-full py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-10">
+      <section className="bg-white py-12 md:py-16">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <h2 className="mb-10 text-center text-3xl font-semibold text-[#1f1f1f]">
             Event Calendar
           </h2>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Calendar Component */}
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
             <div className="flex justify-center">
-              <div className="bg-white rounded-lg shadow-lg p-6">
+              <div className="rounded-[24px] border border-brand-border bg-brand-section p-6 shadow-lg">
                 <Calendar
                   mode="single"
                   selected={date}
@@ -169,24 +159,23 @@ const EventsPage: React.FC = () => {
                   className="rounded-md"
                   modifiers={modifiers}
                   modifiersClassNames={{
-                    hasEvents: "bg-blue-100 text-blue-900 font-bold hover:bg-blue-200",
+                    hasEvents: "bg-[rgba(200,169,107,0.20)] text-[#6e5b33] font-bold hover:bg-[rgba(200,169,107,0.28)]",
                   }}
                 />
-                <p className="text-sm text-gray-500 text-center mt-4">
-                  <span className="inline-block w-3 h-3 bg-blue-100 rounded-full mr-2"></span>
+                <p className="mt-4 text-center text-sm text-[#7a746c]">
+                  <span className="mr-2 inline-block h-3 w-3 rounded-full bg-[rgba(200,169,107,0.35)]"></span>
                   Days with events are highlighted
                 </p>
               </div>
             </div>
 
-            {/* Events Details Card */}
-            <Card className="shadow-lg">
-              <CardHeader className="bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-                <CardTitle className="text-2xl font-bold flex items-center gap-2">
-                  <CalendarIcon className="w-6 h-6" />
+            <Card className="overflow-hidden rounded-[24px] border border-brand-border shadow-lg">
+              <CardHeader className="bg-[linear-gradient(180deg,rgba(42,42,42,0.96)_0%,rgba(31,31,31,0.98)_100%)] text-brand-ivory">
+                <CardTitle className="flex items-center gap-2 text-2xl font-semibold">
+                  <CalendarIcon className="h-6 w-6 text-brand-gold" />
                   {date ? format(date, "MMMM d, yyyy") : "Select a date"}
                 </CardTitle>
-                <CardDescription className="text-blue-50">
+                <CardDescription className="text-brand-stone">
                   {filteredEvents.length > 0
                     ? `${filteredEvents.length} event${filteredEvents.length > 1 ? 's' : ''} scheduled`
                     : "No events scheduled"}
@@ -196,22 +185,20 @@ const EventsPage: React.FC = () => {
                 {filteredEvents.length > 0 ? (
                   <div className="space-y-6">
                     {filteredEvents.map((event, index) => (
-                      <div key={event.id || index} className="pb-6 border-b last:border-b-0 last:pb-0">
+                      <div key={event.id || index} className="border-b border-brand-border pb-6 last:border-b-0 last:pb-0">
                         <div className="flex items-start gap-3">
                           <span className="text-3xl">{getEventIcon(event)}</span>
                           <div className="flex-1">
-                            <h4 className="text-xl font-bold text-gray-900 mb-2">
-                              {event.title}
-                            </h4>
+                            <h4 className="mb-2 text-xl font-semibold text-[#1f1f1f]">{event.title}</h4>
                             {event.time && (
-                              <div className="flex items-center gap-2 text-sm text-gray-500 mb-2">
-                                <Clock className="w-4 h-4" />
+                              <div className="mb-2 flex items-center gap-2 text-sm text-[#7a746c]">
+                                <Clock className="h-4 w-4 text-brand-gold" />
                                 <span>{event.time}</span>
                               </div>
                             )}
-                            <p className="text-gray-600 mb-3">{event.description}</p>
-                            <div className="flex items-start gap-2 text-sm text-gray-500">
-                              <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                            <p className="mb-3 text-[#625c53]">{event.description}</p>
+                            <div className="flex items-start gap-2 text-sm text-[#7a746c]">
+                              <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-brand-gold" />
                               <span>{event.location}</span>
                             </div>
                           </div>
@@ -220,10 +207,10 @@ const EventsPage: React.FC = () => {
                     ))}
                   </div>
                 ) : (
-                  <div className="text-center py-12 text-gray-500">
-                    <CalendarIcon className="w-16 h-16 mx-auto mb-4 text-gray-300" />
+                  <div className="py-12 text-center text-[#7a746c]">
+                    <CalendarIcon className="mx-auto mb-4 h-16 w-16 text-brand-gold/60" />
                     <p className="text-lg">No events scheduled for this day</p>
-                    <p className="text-sm mt-2">Select another date to view events</p>
+                    <p className="mt-2 text-sm">Select another date to view events</p>
                   </div>
                 )}
               </CardContent>
@@ -231,8 +218,6 @@ const EventsPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Note: "Weekly Schedule" section removed - all events managed via admin panel */}
     </main>
   );
 };

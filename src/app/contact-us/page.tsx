@@ -22,108 +22,96 @@ export const metadata: Metadata = createMetadata({
 });
 
 const ContactUsPage = () => {
+  const cards = [
+    {
+      title: 'Visit Us',
+      icon: MapPin,
+      body: (
+        <>
+          <p className="text-[#5f584f]">222 Collins Rd</p>
+          <p className="text-[#5f584f]">Sunnyvale, TX 75182</p>
+          <a href="https://maps.google.com/?q=222+Collins+Rd+Sunnyvale+TX+75182" target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm font-medium text-[#6e5b33] hover:underline">
+            Get Directions →
+          </a>
+        </>
+      ),
+    },
+    {
+      title: 'Call Us',
+      icon: Phone,
+      body: (
+        <>
+          <a href="tel:+121****6371" className="text-lg font-medium text-[#1f1f1f] transition-colors hover:text-[#6e5b33]">
+            (214) 738-6371
+          </a>
+          <p className="mt-2 text-sm text-[#7a746c]">Mon-Fri: 9AM - 5PM</p>
+        </>
+      ),
+    },
+    {
+      title: 'Email Us',
+      icon: Mail,
+      body: (
+        <a href="mailto:theservingchurchdallas@gmail.com" className="break-words text-sm text-[#5f584f] transition-colors hover:text-[#6e5b33]">
+          theservingchurchdallas@gmail.com
+        </a>
+      ),
+    },
+    {
+      title: 'Service Times',
+      icon: Clock,
+      body: (
+        <>
+          <p className="font-semibold text-[#1f1f1f]">Sunday Worship</p>
+          <p className="text-[#5f584f]">10:30 AM - 12:00 PM</p>
+        </>
+      ),
+    },
+  ];
+
   return (
     <>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-b from-blue-50 to-white py-12 md:py-20">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      <section className="bg-[#181818] py-16 md:py-24">
+        <div className="container mx-auto max-w-7xl px-4 text-center md:px-6 lg:px-8">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">Contact</p>
+          <h1 className="text-4xl font-semibold text-brand-ivory md:text-5xl">
             Get In Touch
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.9)] to-transparent" />
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-brand-stone">
             We&apos;d love to hear from you. Whether you have questions, need prayer,
             or want to visit us, we&apos;re here for you.
           </p>
         </div>
       </section>
 
-      {/* Contact Info Cards */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {/* Address */}
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="mx-auto w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-2">
-                  <MapPin className="w-6 h-6 text-blue-600" />
-                </div>
-                <CardTitle className="text-lg">Visit Us</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-600">222 Collins Rd</p>
-                <p className="text-gray-600">Sunnyvale, TX 75182</p>
-                <a
-                  href="https://maps.google.com/?q=222+Collins+Rd+Sunnyvale+TX+75182"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline text-sm mt-2 inline-block"
-                >
-                  Get Directions →
-                </a>
-              </CardContent>
-            </Card>
-
-            {/* Phone */}
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
-                  <Phone className="w-6 h-6 text-green-600" />
-                </div>
-                <CardTitle className="text-lg">Call Us</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <a
-                  href="tel:+12147386371"
-                  className="text-gray-600 hover:text-blue-600 transition-colors text-lg font-medium"
-                >
-                  (214) 738-6371
-                </a>
-                <p className="text-sm text-gray-500 mt-2">Mon-Fri: 9AM - 5PM</p>
-              </CardContent>
-            </Card>
-
-            {/* Email */}
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="mx-auto w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-2">
-                  <Mail className="w-6 h-6 text-purple-600" />
-                </div>
-                <CardTitle className="text-lg">Email Us</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <a
-                  href="mailto:theservingchurchdallas@gmail.com"
-                  className="text-gray-600 hover:text-blue-600 transition-colors break-words text-sm"
-                >
-                  theservingchurchdallas@gmail.com
-                </a>
-              </CardContent>
-            </Card>
-
-            {/* Service Times */}
-            <Card className="text-center hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="mx-auto w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-2">
-                  <Clock className="w-6 h-6 text-orange-600" />
-                </div>
-                <CardTitle className="text-lg">Service Times</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-gray-900 font-semibold">Sunday Worship</p>
-                <p className="text-gray-600">10:30 AM - 12:00 PM</p>
-              </CardContent>
-            </Card>
+      <section className="bg-brand-section py-12 md:py-16">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <div className="mb-12 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+            {cards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <Card key={card.title} className="text-center rounded-[24px] border border-brand-border bg-white/88 shadow-sm hover:shadow-lg transition-shadow">
+                  <CardHeader>
+                    <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full border border-brand-gold/30 bg-[rgba(200,169,107,0.10)]">
+                      <Icon className="h-6 w-6 text-brand-gold" />
+                    </div>
+                    <CardTitle className="text-lg text-[#1f1f1f]">{card.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>{card.body}</CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <h2 className="text-3xl font-bold text-center text-gray-900 mb-8">
+      <section className="bg-white py-12 md:py-16">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <h2 className="mb-8 text-center text-3xl font-semibold text-[#1f1f1f]">
             Find Us on the Map
           </h2>
-          <div className="rounded-lg overflow-hidden shadow-lg">
+          <div className="overflow-hidden rounded-[28px] border border-brand-border shadow-lg">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3349.7424773547885!2d-96.56154492381815!3d32.88503877362204!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x864c1f5e5e5e5e5e%3A0x5e5e5e5e5e5e5e5e!2s222%20Collins%20Rd%2C%20Sunnyvale%2C%20TX%2075182!5e0!3m2!1sen!2sus!4v1234567890123"
               width="100%"
@@ -138,47 +126,39 @@ const ContactUsPage = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+      <section className="bg-[#181818] py-12 md:py-16">
+        <div className="container mx-auto max-w-4xl px-4 md:px-6 lg:px-8">
+          <div className="mb-8 text-center">
+            <h2 className="mb-4 text-3xl font-semibold text-brand-ivory">
               How Can We Help You?
             </h2>
-            <p className="text-gray-600">
-              Choose an option below to get started
-            </p>
+            <p className="text-brand-stone">Choose an option below to get started</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Card className="hover:shadow-lg transition-shadow">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <Card className="rounded-[24px] border border-brand-border bg-[linear-gradient(180deg,rgba(42,42,42,0.96)_0%,rgba(31,31,31,0.98)_100%)] text-brand-ivory">
               <CardHeader>
                 <CardTitle>Send Us a Message</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">
-                  Have a question or want to learn more about our church?
-                  We&apos;d love to hear from you.
+                <p className="mb-4 text-brand-stone">
+                  Have a question or want to learn more about our church? We&apos;d love to hear from you.
                 </p>
-                <Button asChild className="w-full">
-                  <Link href="/contact-us/contact-church">
-                    Contact Church
-                  </Link>
+                <Button asChild className="w-full bg-brand-button-gold text-[#1f1f1f] hover:brightness-105">
+                  <Link href="/contact-us/contact-church">Contact Church</Link>
                 </Button>
               </CardContent>
             </Card>
 
-            <Card className="hover:shadow-lg transition-shadow">
+            <Card className="rounded-[24px] border border-brand-border bg-[linear-gradient(180deg,rgba(42,42,42,0.96)_0%,rgba(31,31,31,0.98)_100%)] text-brand-ivory">
               <CardHeader>
                 <CardTitle>Submit a Prayer Request</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600 mb-4">
+                <p className="mb-4 text-brand-stone">
                   Need prayer? Our church family is here to lift you up in prayer.
                 </p>
-                <Button asChild className="w-full">
-                  <Link href="/contact-us/prayer-request">
-                    Prayer Request
-                  </Link>
+                <Button asChild className="w-full bg-brand-button text-brand-ivory hover:brightness-110">
+                  <Link href="/contact-us/prayer-request">Prayer Request</Link>
                 </Button>
               </CardContent>
             </Card>
