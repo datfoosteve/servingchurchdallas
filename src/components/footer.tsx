@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className="flex list-none space-x-4" aria-label="Social media links">
               <li>
                 <Link
-                  className="rounded-full border border-brand-gold/20 bg-white/5 p-3 text-brand-stone transition-colors hover:text-brand-ivory"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-gold/20 bg-white/5 text-brand-stone transition-colors hover:text-brand-ivory"
                   href="https://www.facebook.com/share/17ms3sqkVQ/?mibextid=wwXIfr"
                   aria-label="Visit our Facebook page"
                   target="_blank"
@@ -43,7 +43,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="rounded-full border border-brand-gold/20 bg-white/5 p-3 text-brand-stone transition-colors hover:text-brand-ivory"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-gold/20 bg-white/5 text-brand-stone transition-colors hover:text-brand-ivory"
                   href="https://www.youtube.com/@theservingchurchdallas"
                   aria-label="Visit our YouTube channel"
                   target="_blank"
@@ -54,7 +54,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  className="rounded-full border border-brand-gold/20 bg-white/5 p-3 text-brand-stone transition-colors hover:text-brand-ivory"
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-brand-gold/20 bg-white/5 text-brand-stone transition-colors hover:text-brand-ivory"
                   href="https://www.instagram.com/theservingchurchdallas?igsh=MWdiZ2ZyY2JyeWoydw=="
                   aria-label="Visit our Instagram profile"
                   target="_blank"
