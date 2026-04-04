@@ -1,90 +1,100 @@
-//component/welcomesection.tsx
 import React from "react";
-const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
-import CrossIcon  from '@/images/icons/CrossIcon';
-import { Button } from "@/components/ui/button"
+const Link = React.lazy(() =>
+  import("next-view-transitions").then((module) => ({ default: module.Link }))
+);
+import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
 
 export function WelcomeSection() {
   return (
-    <section className="bg-gradient-to-b from-white via-blue-50/30 to-white py-16 md:py-24 lg:py-32">
-    <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-6xl text-center">
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-        Welcome to Our Church
-      </h2>
-      <div className="flex items-center justify-center space-x-2 mb-6">
-        <div className="w-12 h-1 bg-gradient-to-r from-[#6D28D9] to-[#EC4899] rounded-full" />
-        <CrossIcon className="w-6 h-6 text-[#6D28D9]" />
-        <div className="w-12 h-1 bg-gradient-to-l from-[#6D28D9] to-[#EC4899] rounded-full" />
-      </div>
-      <p className="text-base md:text-lg lg:text-xl text-gray-600 mx-auto leading-relaxed max-w-3xl mb-10">
-        Discover the joy and community of our vibrant church. Join us as we worship, grow, and serve together.
-      </p>
+    <section className="bg-brand-section py-16 md:py-24 lg:py-28">
+      <div className="container mx-auto max-w-6xl px-4 text-center md:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">
+            Welcome
+          </p>
+          <h2 className="text-3xl font-semibold text-[#1f1f1f] md:text-4xl lg:text-5xl">
+            A place to worship, belong, and grow in Christ
+          </h2>
+          <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.9)] to-transparent" />
+          <p className="mx-auto mt-6 max-w-3xl text-base leading-8 text-[#5e584f] md:text-lg">
+            Whether you are visiting for the first time or looking for a church family to walk with,
+            we want you to feel welcomed, grounded in scripture, and invited into genuine Christian community.
+          </p>
+        </div>
 
-      {/* Enhanced CTA Section */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center items-center flex-wrap max-w-4xl mx-auto">
-        <Link href="/contact-us/contact-church">
-          <Button
-            size="lg"
-            className="group relative overflow-hidden bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-600 hover:from-purple-700 hover:via-blue-700 hover:to-indigo-700 text-white px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-purple-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
-            <div className="relative flex items-center justify-center gap-2 text-base md:text-lg font-semibold">
-              <span>Connect With Us</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Button>
-        </Link>
+        <div className="mx-auto mt-12 grid max-w-5xl gap-5 md:grid-cols-3">
+          <div className="rounded-3xl border border-brand-border bg-white/80 p-6 text-left shadow-sm backdrop-blur-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-brand-gold">Gather</p>
+            <h3 className="mt-3 text-xl font-semibold text-[#1f1f1f]">Join us on Sunday</h3>
+            <p className="mt-3 text-sm leading-7 text-[#625c53]">
+              Worship with us each Sunday morning as we seek the presence of God together.
+            </p>
+            <p className="mt-4 text-sm font-medium text-[#1f1f1f]">10:30 AM - 12:00 PM</p>
+          </div>
 
-        <Link href="/location">
-          <Button
-            size="lg"
-            className="group relative overflow-hidden bg-gradient-to-r from-green-600 via-emerald-600 to-teal-600 hover:from-green-700 hover:via-emerald-700 hover:to-teal-700 text-white px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 to-green-400 opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-300" />
-            <div className="relative flex items-center justify-center gap-2 text-base md:text-lg font-semibold">
-              <MapPin className="h-5 w-5" />
-              <span>Get Directions</span>
-            </div>
-          </Button>
-        </Link>
+          <div className="rounded-3xl border border-brand-border bg-white/80 p-6 text-left shadow-sm backdrop-blur-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-brand-gold">Belong</p>
+            <h3 className="mt-3 text-xl font-semibold text-[#1f1f1f]">Come as you are</h3>
+            <p className="mt-3 text-sm leading-7 text-[#625c53]">
+              We are a church family seeking to reflect Christ with humility, warmth, and faithful community.
+            </p>
+            <p className="mt-4 text-sm font-medium text-[#1f1f1f]">Families, students, and visitors are welcome</p>
+          </div>
 
-        <Link href="/events">
-          <Button
-            size="lg"
-            variant="outline"
-            className="group px-8 py-6 rounded-full border-2 border-purple-600 text-purple-600 hover:bg-purple-50 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            <div className="flex items-center justify-center gap-2 text-base md:text-lg font-semibold">
-              <span>View Events</span>
-              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
-            </div>
-          </Button>
-        </Link>
-      </div>
-
-      {/* Location Helper Text */}
-      <div className="mt-6 text-center">
-        <p className="text-sm text-gray-500 flex items-center justify-center gap-2">
-          <MapPin className="w-4 h-4" />
-          <span>We meet at Sunnyvale High School - Choir Room</span>
-        </p>
-      </div>
-
-      {/* Service Times Quick Info */}
-      <div className="mt-12 pt-8 border-t border-gray-200 max-w-2xl mx-auto">
-        <p className="text-sm text-gray-500 mb-3">Join us for worship</p>
-        <div className="flex justify-center text-gray-700">
-          <div className="flex items-center justify-center gap-2">
-            <span className="text-2xl">⛪</span>
-            <div className="text-left">
-              <p className="font-semibold">Sunday Service</p>
-              <p className="text-sm text-gray-600">10:30 AM - 12:00 PM</p>
-            </div>
+          <div className="rounded-3xl border border-brand-border bg-white/80 p-6 text-left shadow-sm backdrop-blur-sm">
+            <p className="text-xs font-semibold uppercase tracking-[0.26em] text-brand-gold">Find us</p>
+            <h3 className="mt-3 text-xl font-semibold text-[#1f1f1f]">Sunnyvale High School</h3>
+            <p className="mt-3 text-sm leading-7 text-[#625c53]">
+              We meet in the choir room and would love to help make your first visit simple.
+            </p>
+            <p className="mt-4 text-sm font-medium text-[#1f1f1f]">222 Collins Rd, Sunnyvale, TX 75182</p>
           </div>
         </div>
+
+        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
+          <Button
+            asChild
+            size="lg"
+            className="bg-brand-button text-brand-ivory shadow-lg transition hover:brightness-110 hover:shadow-xl"
+          >
+            <Link href="/contact-us/contact-church">
+              <span className="flex items-center gap-2 text-base font-semibold">
+                Connect With Us
+                <ArrowRight className="h-5 w-5" />
+              </span>
+            </Link>
+          </Button>
+
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-brand-gold/40 bg-transparent text-[#1f1f1f] hover:bg-[rgba(200,169,107,0.10)] hover:text-[#1f1f1f]"
+          >
+            <Link href="/location">
+              <span className="flex items-center gap-2 text-base font-semibold">
+                <MapPin className="h-5 w-5" />
+                Get Directions
+              </span>
+            </Link>
+          </Button>
+
+          <Button
+            asChild
+            size="lg"
+            variant="outline"
+            className="border-brand-border bg-white/60 text-[#1f1f1f] hover:bg-white hover:text-[#1f1f1f]"
+          >
+            <Link href="/events">
+              <span className="flex items-center gap-2 text-base font-semibold">
+                View Events
+                <ArrowRight className="h-5 w-5" />
+              </span>
+            </Link>
+          </Button>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
 }

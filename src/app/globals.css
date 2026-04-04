@@ -73,6 +73,91 @@
     body {
       @apply bg-background text-foreground;
     }
+
+    :root {
+      --brand-charcoal: 31 31 31;
+      --brand-charcoal-soft: 42 42 42;
+      --brand-ink: 20 20 20;
+      --brand-gold: 200 169 107;
+      --brand-gold-deep: 183 146 82;
+      --brand-ivory: 247 243 234;
+      --brand-stone: 184 177 166;
+      --brand-border: 58 57 54;
+    }
+  }
+
+  @layer utilities {
+    .bg-brand-charcoal {
+      background-color: rgb(var(--brand-charcoal));
+    }
+
+    .bg-brand-charcoal-soft {
+      background-color: rgb(var(--brand-charcoal-soft));
+    }
+
+    .bg-brand-ink {
+      background-color: rgb(var(--brand-ink));
+    }
+
+    .bg-brand-gold {
+      background-color: rgb(var(--brand-gold));
+    }
+
+    .text-brand-gold {
+      color: rgb(var(--brand-gold));
+    }
+
+    .text-brand-ivory {
+      color: rgb(var(--brand-ivory));
+    }
+
+    .text-brand-stone {
+      color: rgb(var(--brand-stone));
+    }
+
+    .border-brand-gold\/30 {
+      border-color: rgb(var(--brand-gold) / 0.3);
+    }
+
+    .border-brand-gold\/40 {
+      border-color: rgb(var(--brand-gold) / 0.4);
+    }
+
+    .border-brand-border {
+      border-color: rgb(var(--brand-border));
+    }
+
+    .bg-brand-panel {
+      background: linear-gradient(
+        180deg,
+        rgba(var(--brand-charcoal-soft), 0.96) 0%,
+        rgba(var(--brand-charcoal), 0.98) 100%
+      );
+    }
+
+    .bg-brand-section {
+      background: linear-gradient(
+        180deg,
+        rgb(var(--brand-ivory)) 0%,
+        rgba(var(--brand-gold), 0.08) 100%
+      );
+    }
+
+    .bg-brand-button {
+      background: linear-gradient(
+        135deg,
+        rgb(var(--brand-charcoal-soft)) 0%,
+        rgb(var(--brand-charcoal)) 100%
+      );
+    }
+
+    .bg-brand-button-gold {
+      background: linear-gradient(
+        135deg,
+        rgb(var(--brand-gold)) 0%,
+        rgb(var(--brand-gold-deep)) 100%
+      );
+    }
   }
 
   /* PWA Safe Area Support */
