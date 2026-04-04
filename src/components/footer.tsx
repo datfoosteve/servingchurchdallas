@@ -111,7 +111,7 @@ export default function Footer() {
                 required
               />
               <Button
-                className="rounded-r-full bg-brand-button-gold px-5 py-2 text-[#1f1f1f] transition hover:brightness-105"
+                className="rounded-r-full !bg-[linear-gradient(135deg,rgb(200,169,107)_0%,rgb(183,146,82)_100%)] px-5 py-2 text-[#1f1f1f] transition hover:brightness-105"
                 type="submit"
                 aria-label="Subscribe to newsletter"
               >
