@@ -43,14 +43,16 @@ export function MovementComponent() {
               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.8)] to-transparent" />
             </div>
 
-            <h1 className="text-4xl font-semibold leading-tight text-brand-ivory sm:text-5xl md:text-6xl">
-              A family learning to
-              <span className="block text-brand-gold">serve, gather, and look like Christ</span>
+            <h1 className="text-4xl font-semibold leading-[1.05] text-brand-ivory sm:text-5xl md:text-6xl">
+              A family trying
+              <span className="block text-brand-gold">to look like Christ</span>
             </h1>
 
-            <p className="mt-6 max-w-2xl text-base leading-7 text-brand-stone sm:text-lg">
-              Join a church community centered on worship, prayer, scripture, and the life of Jesus.
-              We gather each Sunday with a desire to grow in faith, love one another well, and serve our city with humility.
+            <p className="mt-6 max-w-xl text-base leading-8 text-brand-stone sm:text-lg">
+              Join us for worship, prayer, and community each Sunday in Sunnyvale.
+            </p>
+            <p className="mt-3 max-w-xl text-base leading-8 text-brand-stone sm:text-lg">
+              We want to grow in Christ, love people well, and serve with humility.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:flex-wrap">
