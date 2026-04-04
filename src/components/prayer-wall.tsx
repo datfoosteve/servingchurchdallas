@@ -40,19 +40,14 @@ export function PrayerWall() {
       const data = await response.json();
 
       if (response.ok) {
-        // Update local state with the prayer count
         setPrayers((prev) =>
           prev.map((p) =>
-            p.id === prayerId
-              ? { ...p, prayer_count: data.prayerCount }
-              : p
+            p.id === prayerId ? { ...p, prayer_count: data.prayerCount } : p
           )
         );
 
-        // Mark as praying temporarily for visual feedback
         setPrayingFor((prev) => new Set(prev).add(prayerId));
 
-        // Show success feedback
         setTimeout(() => {
           setPrayingFor((prev) => {
             const newSet = new Set(prev);
@@ -61,13 +56,10 @@ export function PrayerWall() {
           });
         }, 3000);
 
-        // Show message if already prayed
         if (!data.success && data.message) {
-          // Use a subtle notification instead of alert
           console.info(data.message);
         }
       } else {
-        // Log error details
         console.error("Prayer failed:", data);
         alert(data.message || data.error || "Failed to record prayer");
       }
@@ -91,21 +83,26 @@ export function PrayerWall() {
 
   if (loading) {
     return (
-      <section className="bg-white py-16 md:py-24">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-            Prayer Wall
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <section className="bg-[#181818] py-16 md:py-24">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="text-3xl font-semibold text-brand-ivory md:text-4xl">
+              Prayer Wall
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {[1, 2, 3].map((i) => (
-              <Card key={i} className="animate-pulse">
+              <Card
+                key={i}
+                className="animate-pulse rounded-[24px] border border-brand-border bg-[linear-gradient(180deg,rgba(42,42,42,0.96)_0%,rgba(31,31,31,0.98)_100%)]"
+              >
                 <CardHeader>
-                  <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+                  <div className="h-6 w-1/3 rounded bg-white/10"></div>
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-2">
-                    <div className="h-4 bg-gray-200 rounded"></div>
-                    <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                    <div className="h-4 rounded bg-white/10"></div>
+                    <div className="h-4 w-5/6 rounded bg-white/10"></div>
                   </div>
                 </CardContent>
               </Card>
@@ -117,50 +114,62 @@ export function PrayerWall() {
   }
 
   if (prayers.length === 0) {
-    return null; // Don't show section if no prayers
+    return null;
   }
 
   return (
-    <section className="bg-white py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Prayer Wall
+    <section className="bg-[#181818] py-16 md:py-24">
+      <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+        <div className="mb-12 text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">
+            Prayer
+          </p>
+          <h2 className="text-3xl font-semibold text-brand-ivory md:text-4xl">
+            Stand with our church family in prayer
           </h2>
-          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
-            Join us in praying for our church family. Click &ldquo;I&rsquo;m Praying&rdquo; to let them know you&rsquo;re lifting them up.
+          <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.9)] to-transparent" />
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-brand-stone md:text-lg">
+            Join us in lifting up our church family. Let others know you are praying, and share your own prayer request when you need support.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {prayers.map((prayer) => (
-            <Card key={prayer.id} className="hover:shadow-lg transition duration-300">
+            <Card
+              key={prayer.id}
+              className="rounded-[24px] border border-brand-border bg-[linear-gradient(180deg,rgba(42,42,42,0.96)_0%,rgba(31,31,31,0.98)_100%)] text-brand-ivory shadow-[0_16px_36px_rgba(0,0,0,0.25)] transition duration-300 hover:-translate-y-1 hover:border-[rgba(200,169,107,0.45)]"
+            >
               <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle className="text-lg font-semibold">
+                <div className="flex items-start justify-between gap-4">
+                  <CardTitle className="text-xl font-semibold text-brand-ivory">
                     {prayer.name}
                   </CardTitle>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs uppercase tracking-[0.18em] text-brand-stone">
                     {getTimeAgo(prayer.created_at)}
                   </span>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-700 text-sm mb-4 line-clamp-3">
+                <div className="mb-5 h-px w-full bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.45)] to-transparent" />
+                <p className="mb-5 line-clamp-4 text-sm leading-7 text-brand-stone">
                   {prayer.request}
                 </p>
 
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between gap-3">
                   <Button
                     size="sm"
                     variant={prayingFor.has(prayer.id) ? "secondary" : "default"}
                     onClick={() => handlePray(prayer.id)}
                     disabled={prayingFor.has(prayer.id)}
-                    className="flex items-center gap-1"
+                    className={
+                      prayingFor.has(prayer.id)
+                        ? "bg-brand-gold text-[#1f1f1f]"
+                        : "bg-brand-button-gold text-[#1f1f1f] hover:brightness-105"
+                    }
                   >
                     🙏 {prayingFor.has(prayer.id) ? "Praying..." : "I'm Praying"}
                   </Button>
-                  <span className="text-xs text-gray-500">
+                  <span className="text-xs text-brand-stone">
                     {prayer.prayer_count} {prayer.prayer_count === 1 ? "person" : "people"} praying
                   </span>
                 </div>
@@ -169,16 +178,21 @@ export function PrayerWall() {
           ))}
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
-          <Button asChild variant="outline" size="lg">
-            <a href="/prayers">
-              View All Prayers
-            </a>
+        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <Button
+            asChild
+            variant="outline"
+            size="lg"
+            className="border-brand-gold/40 bg-transparent text-brand-ivory hover:bg-white/5 hover:text-brand-ivory"
+          >
+            <a href="/prayers">View All Prayers</a>
           </Button>
-          <Button asChild size="lg">
-            <a href="/contact-us/prayer-request">
-              Submit Your Prayer Request
-            </a>
+          <Button
+            asChild
+            size="lg"
+            className="bg-brand-button-gold text-[#1f1f1f] shadow-lg hover:brightness-105"
+          >
+            <a href="/contact-us/prayer-request">Submit Your Prayer Request</a>
           </Button>
         </div>
       </div>

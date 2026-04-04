@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import { SUPABASE_IMAGES } from "@/lib/supabase-image";
-import { Separator } from "@/components/ui/separator";
 import {
   Card,
   CardContent,
@@ -14,82 +13,87 @@ import {
 import ChurchIcon from "@/images/icons/ChurchIcon";
 import { Button } from "@/components/ui/button";
 import React from "react";
-const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
+const Link = React.lazy(() =>
+  import("next-view-transitions").then((module) => ({ default: module.Link }))
+);
 
 export function MiracleSection() {
   return (
-    <section className="bg-gradient-to-b from-white via-gray-50 to-white py-16 md:py-24">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-        {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            Sermon Series - Pastor Sam Thomas
+    <section className="bg-brand-section py-16 md:py-24">
+      <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+        <div className="mx-auto mb-12 max-w-3xl text-center md:mb-16">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">
+            Sermons
+          </p>
+          <h2 className="text-3xl font-semibold text-[#1f1f1f] md:text-4xl lg:text-5xl">
+            Teaching from Pastor Sam Thomas
           </h2>
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <div className="h-1 w-16 bg-gradient-to-r from-purple-400 to-blue-600 rounded-full"></div>
-            <div className="h-1 w-16 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full"></div>
-            <div className="h-1 w-16 bg-gradient-to-r from-indigo-400 to-blue-600 rounded-full"></div>
-          </div>
+          <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.9)] to-transparent" />
         </div>
 
-        {/* Last Week's Sermon Card */}
-        <Card className="shadow-xl border-2 border-gray-200 mb-8 md:mb-12 bg-white">
-          <CardHeader className="pb-6">
-            <CardTitle className="text-xl md:text-2xl lg:text-3xl font-bold text-center text-gray-900">
+        <Card className="mb-8 rounded-[28px] border border-brand-border bg-[linear-gradient(180deg,rgba(42,42,42,0.96)_0%,rgba(31,31,31,0.98)_100%)] text-brand-ivory shadow-[0_18px_40px_rgba(0,0,0,0.28)] md:mb-12">
+          <CardHeader className="pb-5 text-center">
+            <CardTitle className="text-xl font-semibold text-brand-ivory md:text-2xl lg:text-3xl">
               Last Week&apos;s Sermon
             </CardTitle>
+            <CardDescription className="text-brand-stone">
+              Listen again or share the latest message.
+            </CardDescription>
           </CardHeader>
-          <CardContent className="pb-6">
-            <div className="flex justify-center">
+          <CardContent className="pb-8">
+            <div className="mx-auto max-w-3xl rounded-2xl border border-brand-gold/30 bg-black/15 p-4">
               <iframe
                 src="https://embed.acast.com/63d6855a93dfbe00116a43c6?theme=light&font-family=Poppins&font-src=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DPoppins"
                 frameBorder="0"
                 width="100%"
                 height="80px"
                 title="Last Week's Sermon"
-                className="max-w-2xl rounded-lg"
+                className="rounded-lg"
               ></iframe>
             </div>
           </CardContent>
         </Card>
 
-        {/* Current Series Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {/* Series Image */}
-          <div className="relative rounded-2xl w-full aspect-[4/3] bg-gradient-to-br from-purple-50 to-blue-50 shadow-lg border-2 border-purple-200 overflow-hidden">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-10">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[28px] border border-brand-border bg-[linear-gradient(180deg,rgba(42,42,42,0.96)_0%,rgba(31,31,31,0.98)_100%)] shadow-[0_18px_40px_rgba(0,0,0,0.22)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(200,169,107,0.18),transparent_38%)]" />
             <Image
               src={SUPABASE_IMAGES.aiminlife}
               alt="What is your aim in life sermon series - The Serving Church Sunnyvale TX"
               fill
-              className="object-contain p-4"
+              className="object-contain p-8"
             />
           </div>
 
-          {/* Series Description Card */}
-          <Card className="shadow-xl border-2 border-purple-200 bg-gradient-to-br from-white to-purple-50">
+          <Card className="rounded-[28px] border border-brand-border bg-white/88 shadow-[0_18px_40px_rgba(0,0,0,0.10)]">
             <CardHeader className="pb-4">
-              <CardTitle className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-brand-gold">
                 Current Series
+              </p>
+              <CardTitle className="text-2xl font-semibold text-[#1f1f1f] md:text-3xl">
+                A season of reflection and spiritual renewal
               </CardTitle>
-              <CardDescription className="text-base md:text-lg text-gray-700 leading-relaxed">
-                We all face moments when life feels still — when faith, hope, or direction falter. Through Christ, we learn to rise, release the past, and move into the freedom of His light.
+              <CardDescription className="text-base leading-8 text-[#625c53] md:text-lg">
+                We all face moments when life feels still — when faith, hope, or direction falter.
+                Through Christ, we learn to rise, release the past, and move into the freedom of His light.
               </CardDescription>
             </CardHeader>
-            <CardContent className="pt-4">
-              <div className="h-1 bg-gradient-to-r from-purple-400 to-blue-600 rounded-full mb-6"></div>
+            <CardContent className="pt-2">
+              <div className="h-px w-full bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.8)] to-transparent" />
             </CardContent>
-            <CardFooter className="flex justify-center pb-6">
-              <Link href="/sermons">
-                <Button
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-                  size="lg"
-                >
-                  <div className="flex items-center justify-center gap-2">
+            <CardFooter className="justify-start pb-8">
+              <Button
+                asChild
+                className="bg-brand-button text-brand-ivory shadow-lg transition hover:brightness-110 hover:shadow-xl"
+                size="lg"
+              >
+                <Link href="/sermons">
+                  <span className="flex items-center justify-center gap-2 font-semibold">
                     <ChurchIcon className="h-5 w-5 fill-white" />
-                    <span className="font-semibold">Learn More</span>
-                  </div>
-                </Button>
-              </Link>
+                    Listen to Sermons
+                  </span>
+                </Link>
+              </Button>
             </CardFooter>
           </Card>
         </div>

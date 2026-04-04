@@ -105,38 +105,45 @@ export function Announcements() {
   if (announcements.length === 0) return null;
 
   return (
-    <div className="w-full bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 border-t border-b">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-        <div className="mb-6 flex items-center justify-between">
+    <div className="w-full border-y border-brand-border bg-brand-section py-12">
+      <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+        <div className="mb-8 flex items-center justify-between gap-4">
           <div>
-            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.28em] text-brand-gold">
+              Announcements
+            </p>
+            <h2 className="text-3xl font-semibold text-[#1f1f1f]">
               Latest Announcements
             </h2>
-            <p className="text-gray-600 mt-1">Stay updated with what&apos;s happening at The Serving Church</p>
+            <p className="mt-2 text-[#625c53]">Stay updated with what&apos;s happening at The Serving Church</p>
           </div>
-          <Megaphone className="h-8 w-8 text-purple-600" />
+          <Megaphone className="h-8 w-8 text-brand-gold" />
         </div>
 
         <div className="space-y-4">
           {announcements.map((announcement) => (
-            <Alert key={announcement.id} variant={getVariant(announcement.priority)} className="shadow-md border-2">
+            <Alert
+              key={announcement.id}
+              variant={getVariant(announcement.priority)}
+              className="rounded-[24px] border border-brand-border bg-white/88 shadow-sm"
+            >
               <div className="flex items-start gap-3">
-                {getIcon(announcement.category)}
+                <div className="mt-1 text-brand-gold">{getIcon(announcement.category)}</div>
                 <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <AlertTitle className="mb-0">{announcement.title}</AlertTitle>
-                    <span className={`text-xs font-semibold px-2 py-1 rounded-full border ${getPriorityBadge(announcement.priority)}`}>
+                  <div className="mb-2 flex flex-wrap items-center gap-2">
+                    <AlertTitle className="mb-0 text-[#1f1f1f]">{announcement.title}</AlertTitle>
+                    <span className={`rounded-full border px-2 py-1 text-xs font-semibold ${getPriorityBadge(announcement.priority)}`}>
                       {announcement.priority.toUpperCase()}
                     </span>
-                    <span className="text-xs text-gray-500">
+                    <span className="text-xs uppercase tracking-[0.16em] text-[#7a746c]">
                       {new Date(announcement.created_at).toLocaleDateString()}
                     </span>
                   </div>
-                  <AlertDescription className="mt-2">
+                  <AlertDescription className="mt-2 leading-7 text-[#5f584f]">
                     {announcement.content}
                   </AlertDescription>
                   {announcement.author && (
-                    <p className="text-xs text-gray-500 mt-2">
+                    <p className="mt-3 text-xs uppercase tracking-[0.14em] text-[#7a746c]">
                       — {announcement.author.full_name}
                     </p>
                   )}
@@ -147,7 +154,7 @@ export function Announcements() {
                       }}
                       variant="outline"
                       size="sm"
-                      className="mt-3 flex items-center gap-2"
+                      className="mt-4 flex items-center gap-2 border-brand-gold/40 bg-transparent text-[#1f1f1f] hover:bg-[rgba(200,169,107,0.10)] hover:text-[#1f1f1f]"
                     >
                       <CalendarPlus className="h-4 w-4" />
                       Add to Calendar
@@ -161,7 +168,7 @@ export function Announcements() {
 
         {announcements.length >= 5 && (
           <div className="mt-6 text-center">
-            <a href="/member/dashboard" className="text-sm text-blue-600 hover:text-blue-800 font-medium">
+            <a href="/member/dashboard" className="text-sm font-medium text-[#6e5b33] hover:text-[#5c4b29]">
               View all announcements →
             </a>
           </div>
