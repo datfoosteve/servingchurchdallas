@@ -43,12 +43,17 @@ import { CommandMenu } from "@/components/command-menu";
 import { PrayerBadge } from "@/components/prayer-badge";
 import { UserDropdown } from "@/components/UserDropdown";
 
-const primaryLinks = [
+const primaryLinks: Array<{
+  href: string;
+  label: string;
+  icon: React.ComponentType<{ className?: string }>;
+  badge?: boolean;
+}> = [
   { href: "/about-us", label: "About Us", icon: Info },
   { href: "/sermons", label: "Sermons", icon: Mic2 },
   { href: "/events", label: "Events", icon: Calendar },
   { href: "/prayers", label: "Prayer Wall", icon: Heart, badge: true },
-] as const;
+];
 
 const contactLinks = [
   {
