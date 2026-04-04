@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
-import { SUPABASE_IMAGES } from "@/lib/supabase-image";
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
 const Link = React.lazy(() =>
@@ -36,8 +34,8 @@ import {
   Users,
   DollarSign,
   Book,
-  Youtube,
 } from "lucide-react";
+import ChurchIcon from "@/images/icons/ChurchIcon";
 
 import ChevronRightIcon from "@/images/icons/ChevronRightIcon";
 import MenuIcon from "@/images/icons/MenuIcon";
@@ -101,15 +99,16 @@ export function NavComponent() {
         <div className="flex min-w-0 shrink-0 items-center gap-3">
           <Link href="/" passHref className="shrink-0">
             <div className="flex items-center gap-3 text-lg font-semibold md:text-base">
-              <div className="rounded-full border border-brand-gold/25 bg-white/5 p-2">
-                <Image
-                  src={SUPABASE_IMAGES.logowordhome}
-                  width={120}
-                  height={30}
-                  alt="The Serving Church Logo"
-                  priority
-                  className="h-auto w-[120px] md:w-[140px]"
-                />
+              <div className="flex items-center gap-3 rounded-full border border-brand-gold/25 bg-white/5 px-4 py-2">
+                <ChurchIcon className="h-7 w-7 text-brand-gold" />
+                <div className="leading-tight">
+                  <div className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-brand-gold">
+                    The Serving
+                  </div>
+                  <div className="text-sm font-semibold text-brand-ivory md:text-base">
+                    Church
+                  </div>
+                </div>
               </div>
               <span className="sr-only">Serving Church</span>
             </div>
@@ -129,14 +128,16 @@ export function NavComponent() {
             <SheetContent side="left" className="border-brand-border bg-[#181818] text-brand-ivory">
               <div className="flex items-center justify-between">
                 <Link className="flex items-center gap-2 text-lg font-semibold md:text-base" href="/">
-                  <div className="rounded-full border border-brand-gold/25 bg-white/5 p-2">
-                    <Image
-                      src={SUPABASE_IMAGES.logowordhome}
-                      width={140}
-                      height={35}
-                      alt="The Serving Church Logo"
-                      className="h-auto w-[150px]"
-                    />
+                  <div className="flex items-center gap-3 rounded-full border border-brand-gold/25 bg-white/5 px-4 py-3">
+                    <ChurchIcon className="h-7 w-7 text-brand-gold" />
+                    <div className="leading-tight">
+                      <div className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-brand-gold">
+                        The Serving
+                      </div>
+                      <div className="text-sm font-semibold text-brand-ivory">
+                        Church
+                      </div>
+                    </div>
                   </div>
                   <span className="sr-only">Serving Church</span>
                 </Link>

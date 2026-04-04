@@ -95,9 +95,13 @@ export function UserDropdown() {
   // Not logged in - show login button
   if (!user) {
     return (
-      <Button asChild variant="default" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+      <Button
+        asChild
+        variant="outline"
+        className="border-brand-gold/30 bg-white/5 text-brand-ivory hover:bg-white/10 hover:text-brand-ivory"
+      >
         <Link href="/auth/login">
-          <User className="h-4 w-4 mr-2" />
+          <User className="mr-2 h-4 w-4 text-brand-gold" />
           Login
         </Link>
       </Button>
@@ -108,12 +112,15 @@ export function UserDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="flex items-center gap-2">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-1.5 rounded-full">
-            <User className="h-4 w-4 text-white" />
+        <Button
+          variant="outline"
+          className="flex items-center gap-2 border-brand-gold/30 bg-white/5 text-brand-ivory hover:bg-white/10 hover:text-brand-ivory"
+        >
+          <div className="rounded-full border border-brand-gold/30 bg-[rgba(200,169,107,0.12)] p-1.5">
+            <User className="h-4 w-4 text-brand-gold" />
           </div>
-          <span className="hidden sm:inline font-medium">{getDisplayName()}</span>
-          <ChevronDown className="h-4 w-4" />
+          <span className="hidden font-medium sm:inline">{getDisplayName()}</span>
+          <ChevronDown className="h-4 w-4 text-brand-gold" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-56">
@@ -124,9 +131,9 @@ export function UserDropdown() {
               {user.email}
             </p>
             {(member?.role === "pastor" || member?.role === "admin") && (
-              <div className="flex items-center gap-1 mt-2">
-                <Shield className="h-3 w-3 text-blue-600" />
-                <span className="text-xs font-semibold text-blue-600">
+              <div className="mt-2 flex items-center gap-1">
+                <Shield className="h-3 w-3 text-brand-gold" />
+                <span className="text-xs font-semibold text-brand-gold">
                   {member.role.toUpperCase()}
                 </span>
               </div>
