@@ -70,8 +70,33 @@
     * {
       @apply border-border;
     }
+
+    html {
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
     body {
       @apply bg-background text-foreground;
+      font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: -0.01em;
+    }
+
+    h1,
+    h2,
+    h3,
+    .font-display {
+      font-family: var(--font-display), Georgia, serif;
+      letter-spacing: -0.02em;
+    }
+
+    p,
+    li,
+    input,
+    textarea,
+    button {
+      font-family: var(--font-body), ui-sans-serif, system-ui, sans-serif;
     }
 
     :root {

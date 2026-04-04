@@ -1,10 +1,21 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import React from 'react';
 import { siteConfig, createOrganizationSchema, createLocalBusinessSchema } from "@/lib/seo";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  variable: "--font-display",
+  weight: ["500", "600", "700"],
+  display: "swap",
+});
 
 // import { Navigation } from "@/components/navigation";
 import { NavComponent } from "@/components/component/navcomponent";
@@ -137,7 +148,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={inter.className}>
+      <body className={`${inter.variable} ${cormorant.variable} ${inter.className}`}>
         {/* <Navigation /> */}
         <NavComponent />
         <ThemeProvider
