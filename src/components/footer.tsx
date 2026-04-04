@@ -8,11 +8,11 @@ import { Input } from "@/components/ui/input";
 import { Button } from '@/components/ui/button';
 import ChurchIcon from '@/images/icons/ChurchIcon';
 import FacebookIcon from '@/images/icons/FacebookIcon';
-import TwitterIcon from '@/images/icons/TwitterIcon';
 import InstagramIcon from '@/images/icons/InstagramIcon';
 import MapPinIcon from '@/images/icons/MapPinIcon';
 import PhoneIcon from '@/images/icons/PhoneIcon';
 import MailIcon from '@/images/icons/MailIcon';
+import { Youtube } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -29,7 +29,7 @@ export default function Footer() {
               <li>
                 <Link
                   className="text-gray-400 hover:text-white transition-colors"
-                  href="https://www.facebook.com/theservingchurch"
+                  href="https://www.facebook.com/share/17ms3sqkVQ/?mibextid=wwXIfr"
                   aria-label="Visit our Facebook page"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -40,18 +40,18 @@ export default function Footer() {
               <li>
                 <Link
                   className="text-gray-400 hover:text-white transition-colors"
-                  href="https://twitter.com/theservingchurch"
-                  aria-label="Visit our Twitter profile"
+                  href="https://www.youtube.com/@theservingchurchdallas"
+                  aria-label="Visit our YouTube channel"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <TwitterIcon className="h-5 w-5" aria-hidden="true" />
+                  <Youtube className="h-5 w-5" aria-hidden="true" />
                 </Link>
               </li>
               <li>
                 <Link
                   className="text-gray-400 hover:text-white transition-colors"
-                  href="https://www.instagram.com/theservingchurch"
+                  href="https://www.instagram.com/theservingchurchdallas?igsh=MWdiZ2ZyY2JyeWoydw=="
                   aria-label="Visit our Instagram profile"
                   target="_blank"
                   rel="noopener noreferrer"

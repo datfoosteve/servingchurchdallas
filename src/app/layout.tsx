@@ -71,8 +71,6 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
     images: [siteConfig.ogImage],
-    creator: '@theservingchurch',
-    site: '@theservingchurch',
   },
   icons: {
     icon: '/favicon.ico',

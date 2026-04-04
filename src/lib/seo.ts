@@ -7,9 +7,9 @@ export const siteConfig = {
   url: 'https://servingchurchdallas.com',
   ogImage: 'https://servingchurchdallas.com/og-image.jpg',
   links: {
-    facebook: 'https://facebook.com/theservingchurch',
-    twitter: 'https://twitter.com/theservingchurch',
-    instagram: 'https://instagram.com/theservingchurch',
+    facebook: 'https://www.facebook.com/share/17ms3sqkVQ/?mibextid=wwXIfr',
+    youtube: 'https://www.youtube.com/@theservingchurchdallas',
+    instagram: 'https://www.instagram.com/theservingchurchdallas?igsh=MWdiZ2ZyY2JyeWoydw==',
   },
   address: {
     street: '222 Collins Rd',
@@ -75,8 +75,6 @@ export function createMetadata({
       title,
       description,
       images: [ogImage],
-      creator: '@theservingchurch',
-      site: '@theservingchurch',
     },
   };
 }
@@ -107,7 +105,7 @@ export function createOrganizationSchema() {
     },
     sameAs: [
       siteConfig.links.facebook,
-      siteConfig.links.twitter,
+      siteConfig.links.youtube,
       siteConfig.links.instagram,
     ],
   };
@@ -169,7 +167,7 @@ export function createLocalBusinessSchema() {
     ],
     sameAs: [
       siteConfig.links.facebook,
-      siteConfig.links.twitter,
+      siteConfig.links.youtube,
       siteConfig.links.instagram,
     ],
   };
