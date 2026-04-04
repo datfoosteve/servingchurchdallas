@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const contactSchema = z.object({
   name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
@@ -26,6 +24,16 @@ export async function POST(request: NextRequest) {
     }
 
     const { name, email, message, phone, turnstileToken } = validationResult.data;
+
+    if (!process.env.RESEND_API_KEY) {
+      console.error("Missing RESEND_API_KEY for contact form");
+      return NextResponse.json(
+        { error: "Email service is not configured. Please try again later." },
+        { status: 500 }
+      );
+    }
+
+    const resend = new Resend(process.env.RESEND_API_KEY);
 
     // Verify Turnstile token (server-side)
     if (!turnstileToken) {
