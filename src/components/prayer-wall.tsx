@@ -118,9 +118,10 @@ export function PrayerWall() {
   }
 
   return (
-    <section className="bg-[#181818] py-16 md:py-24">
+    <section className="bg-[#181818] py-20 md:py-28">
       <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
-        <div className="mb-12 text-center">
+        <div className="mb-14 text-center">
+          <div className="mx-auto mb-8 h-px max-w-5xl bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.32)] to-transparent" />
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">
             Prayer
           </p>
