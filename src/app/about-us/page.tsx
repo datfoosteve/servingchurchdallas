@@ -45,7 +45,7 @@ const AboutUsPage: React.FC = () => {
                 Our mission is to equip people to look like Jesus and walk with Him daily. As they walk with Him each day, they are transformed, and that transformation begins to impact the spaces they enter and the lives of those around them.
               </p>
               <p>
-                We believe that true Sunday worship is strengthened by daily devotion. A life consistently surrendered to Jesus throughout the week leads to a greater outpouring of worship, unity, and spiritual vitality when we gather on Sunday morning.
+                We believe that daily devotion also empowers Sunday worship. A life consistently surrendered to Jesus throughout the week leads to a greater outpouring of worship, unity, and spiritual vitality when we gather on Sunday morning.
               </p>
             </div>
           </div>
