@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { Search, Filter, Heart, Clock, TrendingUp, Sparkles, Users } from "lucide-react";
+import { Search, Heart, Clock, TrendingUp, Sparkles, Users } from "lucide-react";
 import type { Prayer } from "@/lib/supabase/types";
 
 const Link = React.lazy(() => import('next-view-transitions').then(module => ({ default: module.Link })));
@@ -73,7 +73,6 @@ export default function PrayersPage() {
       const data = await response.json();
 
       if (response.ok) {
-        // Update local state with the prayer count
         setPrayers((prev) =>
           prev.map((p) =>
             p.id === prayerId
@@ -82,7 +81,6 @@ export default function PrayersPage() {
           )
         );
 
-        // Mark as praying temporarily for visual feedback
         setPrayingFor((prev) => new Set(prev).add(prayerId));
 
         setTimeout(() => {
@@ -92,10 +90,7 @@ export default function PrayersPage() {
             return newSet;
           });
         }, 3000);
-
-        // Show message if already prayed (handled silently)
       } else {
-        // Log error details
         console.error("Prayer failed:", data);
         alert(data.message || data.error || "Failed to record prayer");
       }
@@ -124,60 +119,61 @@ export default function PrayersPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-blue-50 via-white to-purple-50">
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-purple-600 via-blue-600 to-indigo-700 text-white py-16 md:py-20">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <div className="text-center">
-            <div className="inline-block mb-6">
-              <div className="bg-white/20 backdrop-blur-sm rounded-full p-4">
-                <Heart className="w-12 h-12" />
-              </div>
+    <main>
+      <section className="bg-[#181818] py-16 md:py-24">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="mb-6 inline-flex rounded-full border border-brand-gold/30 bg-[rgba(200,169,107,0.10)] p-4">
+              <Heart className="h-12 w-12 text-brand-gold" />
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">Prayer</p>
+            <h1 className="text-4xl font-semibold text-brand-ivory md:text-5xl lg:text-6xl">
               Community Prayer Wall
             </h1>
-            <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto mb-8">
-              Join our church family in prayer. Lift each other up, share burdens, and celebrate answered prayers together.
+            <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.9)] to-transparent" />
+            <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-brand-stone md:text-xl">
+              Join our church family in prayer. Lift one another up, share burdens, and celebrate answered prayers together.
             </p>
 
-            {/* Stats */}
-            <div className="flex flex-wrap justify-center gap-6 md:gap-12 mb-8">
+            <div className="mt-10 flex flex-wrap justify-center gap-6 md:gap-12">
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold">{stats.totalPrayers}</div>
-                <div className="text-blue-200 text-sm md:text-base">Prayer Requests</div>
+                <div className="text-3xl font-semibold text-brand-ivory md:text-4xl">{stats.totalPrayers}</div>
+                <div className="mt-2 text-sm uppercase tracking-[0.18em] text-brand-stone md:text-base">Prayer Requests</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl md:text-4xl font-bold">{stats.totalPraying}</div>
-                <div className="text-blue-200 text-sm md:text-base">People Praying</div>
+                <div className="text-3xl font-semibold text-brand-ivory md:text-4xl">{stats.totalPraying}</div>
+                <div className="mt-2 text-sm uppercase tracking-[0.18em] text-brand-stone md:text-base">People Praying</div>
               </div>
             </div>
 
-            <Button asChild size="lg" className="bg-white text-purple-600 hover:bg-blue-50">
-              <Link href="/contact-us/prayer-request">
-                <Heart className="w-5 h-5 mr-2" />
-                Submit Your Prayer Request
-              </Link>
-            </Button>
+            <div className="mt-10 flex justify-center">
+              <Button asChild size="lg" className="bg-brand-button-gold text-[#1f1f1f] hover:brightness-105">
+                <Link href="/contact-us/prayer-request">
+                  <Heart className="mr-2 h-5 w-5" />
+                  Submit Your Prayer Request
+                </Link>
+              </Button>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Filters & Search */}
-      <section className="py-8 bg-white border-b">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
-          <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-            {/* Filter Buttons */}
-            <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+      <section className="border-b border-brand-border bg-brand-section py-8">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-between gap-4 lg:flex-row">
+            <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
               {filterButtons.map(({ key, label, icon: Icon, tooltip }) => (
                 <Tooltip key={key}>
                   <TooltipTrigger asChild>
                     <Button
-                      variant={filter === key ? "default" : "outline"}
+                      variant="outline"
                       onClick={() => setFilter(key)}
-                      className="flex items-center gap-2"
+                      className={filter === key
+                        ? "border-brand-gold/40 bg-brand-button text-brand-ivory hover:bg-brand-button hover:text-brand-ivory"
+                        : "border-brand-border bg-white/80 text-[#1f1f1f] hover:bg-white hover:text-[#1f1f1f]"
+                      }
                     >
-                      <Icon className="w-4 h-4" />
+                      <Icon className="mr-2 h-4 w-4" />
                       {label}
                     </Button>
                   </TooltipTrigger>
@@ -188,61 +184,58 @@ export default function PrayersPage() {
               ))}
             </div>
 
-            {/* Search */}
-            <div className="relative w-full md:w-80">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <div className="relative w-full lg:w-80">
+              <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform text-[#7a746c]" />
               <Input
                 type="text"
                 placeholder="Search prayers..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
+                className="border-brand-border bg-white/88 pl-10"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Prayer Cards */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
+      <section className="bg-white py-12 md:py-16">
+        <div className="container mx-auto max-w-7xl px-4 md:px-6 lg:px-8">
           {loading && page === 1 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <Card key={i} className="animate-pulse">
+                <Card key={i} className="animate-pulse rounded-[24px] border border-brand-border bg-white/88">
                   <CardHeader>
-                    <div className="h-6 bg-gray-200 rounded w-1/3"></div>
+                    <div className="h-6 w-1/3 rounded bg-gray-200"></div>
                   </CardHeader>
                   <CardContent>
                     <div className="space-y-2">
-                      <div className="h-4 bg-gray-200 rounded"></div>
-                      <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                      <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+                      <div className="h-4 rounded bg-gray-200"></div>
+                      <div className="h-4 w-5/6 rounded bg-gray-200"></div>
+                      <div className="h-4 w-4/6 rounded bg-gray-200"></div>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
           ) : prayers.length === 0 ? (
-            <div className="text-center py-16">
-              <Users className="w-16 h-16 mx-auto text-gray-400 mb-4" />
-              <h3 className="text-2xl font-semibold text-gray-700 mb-2">No prayers found</h3>
-              <p className="text-gray-500 mb-6">
-                {searchQuery
-                  ? "Try a different search term"
-                  : "Be the first to submit a prayer request!"}
+            <div className="py-16 text-center">
+              <div className="mb-4 inline-block rounded-full border border-brand-border bg-brand-section p-4">
+                <Users className="h-12 w-12 text-[#7a746c]" />
+              </div>
+              <h3 className="mb-2 text-xl font-semibold text-[#1f1f1f]">No prayers found</h3>
+              <p className="mb-6 text-[#625c53]">
+                {searchQuery ? "Try a different search term" : "Be the first to submit a prayer request."}
               </p>
-              <Button asChild>
+              <Button asChild className="bg-brand-button-gold text-[#1f1f1f] hover:brightness-105">
                 <Link href="/contact-us/prayer-request">Submit Prayer Request</Link>
               </Button>
             </div>
           ) : (
             <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {prayers.map((prayer) => {
                   const isAnswered = prayer.status === "answered";
 
-                  // Determine display name based on member account and show_name preference
                   const getDisplayName = () => {
                     if (prayer.member_id && prayer.show_name === false) {
                       return "Anonymous";
@@ -259,55 +252,56 @@ export default function PrayersPage() {
                   return (
                     <Card
                       key={prayer.id}
-                      className={`hover:shadow-xl transition-all duration-300 ${
+                      className={`rounded-[24px] border shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
                         isAnswered
-                          ? "bg-gradient-to-br from-green-50 to-emerald-50 border-green-200 border-2"
-                          : "hover:-translate-y-1"
+                          ? "border-brand-gold/40 bg-[rgba(200,169,107,0.08)]"
+                          : "border-brand-border bg-white/88"
                       }`}
                     >
                       <CardHeader>
-                        <div className="flex justify-between items-start">
-                          <CardTitle className="text-lg font-semibold flex items-center gap-2">
-                            <div className="flex items-center gap-2">
+                        <div className="flex items-start justify-between gap-3">
+                          <CardTitle className="flex items-center gap-2 text-lg font-semibold text-[#1f1f1f]">
+                            <div className="flex items-center gap-2 flex-wrap">
                               {displayName}
                               {isMember && prayer.show_name && (
-                                <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700 border border-blue-200">
+                                <span className="inline-flex items-center rounded-full border border-brand-gold/30 bg-[rgba(200,169,107,0.10)] px-2 py-0.5 text-xs font-semibold text-[#6e5b33]">
                                   Member
                                 </span>
                               )}
                             </div>
-                            {isAnswered && (
-                              <Sparkles className="w-5 h-5 text-green-600" />
-                            )}
+                            {isAnswered && <Sparkles className="h-5 w-5 text-brand-gold" />}
                           </CardTitle>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs uppercase tracking-[0.14em] text-[#7a746c]">
                             {getTimeAgo(prayer.created_at)}
                           </span>
                         </div>
                         {isAnswered && (
-                          <div className="inline-flex items-center gap-1 bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded-full mt-2">
-                            <Sparkles className="w-3 h-3" />
-                            Answered Prayer!
+                          <div className="mt-2 inline-flex items-center gap-1 rounded-full border border-brand-gold/30 bg-[rgba(200,169,107,0.10)] px-2 py-1 text-xs font-semibold text-[#6e5b33]">
+                            <Sparkles className="h-3 w-3" />
+                            Answered Prayer
                           </div>
                         )}
                       </CardHeader>
                       <CardContent>
-                        <p className="text-gray-700 text-sm mb-4 leading-relaxed">
+                        <p className="mb-5 text-sm leading-7 text-[#625c53]">
                           {prayer.request}
                         </p>
 
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between gap-3">
                           <Button
                             size="sm"
                             variant={prayingFor.has(prayer.id) ? "secondary" : "default"}
                             onClick={() => handlePray(prayer.id)}
                             disabled={prayingFor.has(prayer.id)}
-                            className="flex items-center gap-1"
+                            className={prayingFor.has(prayer.id)
+                              ? "bg-brand-gold text-[#1f1f1f]"
+                              : "bg-brand-button text-brand-ivory hover:brightness-110"
+                            }
                           >
                             🙏 {prayingFor.has(prayer.id) ? "Praying..." : "I'm Praying"}
                           </Button>
-                          <span className="text-xs text-gray-500 flex items-center gap-1">
-                            <Heart className="w-3 h-3" />
+                          <span className="flex items-center gap-1 text-xs text-[#7a746c]">
+                            <Heart className="h-3 w-3 text-brand-gold" />
                             {prayer.prayer_count} {prayer.prayer_count === 1 ? "person" : "people"}
                           </span>
                         </div>
@@ -317,14 +311,14 @@ export default function PrayersPage() {
                 })}
               </div>
 
-              {/* Load More */}
               {hasMore && (
-                <div className="text-center mt-12">
+                <div className="mt-12 text-center">
                   <Button
                     onClick={() => setPage((p) => p + 1)}
                     disabled={loading}
                     size="lg"
                     variant="outline"
+                    className="border-brand-gold/40 bg-transparent text-[#1f1f1f] hover:bg-[rgba(200,169,107,0.10)] hover:text-[#1f1f1f]"
                   >
                     {loading ? "Loading..." : "Load More Prayers"}
                   </Button>
@@ -335,17 +329,16 @@ export default function PrayersPage() {
         </div>
       </section>
 
-      {/* Call to Action */}
-      <section className="py-16 bg-gradient-to-br from-purple-100 to-blue-100">
-        <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl text-center">
-          <Heart className="w-12 h-12 mx-auto text-purple-600 mb-4" />
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      <section className="bg-[#181818] py-16">
+        <div className="container mx-auto max-w-4xl px-4 text-center md:px-6 lg:px-8">
+          <Heart className="mx-auto mb-4 h-12 w-12 text-brand-gold" />
+          <h2 className="mb-4 text-3xl font-semibold text-brand-ivory md:text-4xl">
             Need Prayer?
           </h2>
-          <p className="text-lg text-gray-700 mb-8">
+          <p className="mb-8 text-lg leading-8 text-brand-stone">
             Our church family is here for you. Share your prayer request and let us lift you up together.
           </p>
-          <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700">
+          <Button asChild size="lg" className="bg-brand-button-gold text-[#1f1f1f] hover:brightness-105">
             <Link href="/contact-us/prayer-request">
               Submit Your Prayer Request
             </Link>
