@@ -115,20 +115,21 @@ export default function ContactChurchPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-purple-50 to-white py-12 md:py-20">
+      <section className="bg-[#181818] py-12 md:py-20">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-4xl text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">Contact</p>
+          <h1 className="text-4xl md:text-5xl font-semibold text-brand-ivory mb-4 font-display">
             Send Us a Message
           </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-            We&apos;d love to hear from you! Whether you have questions about our services,
-            want to learn more about our community, or just want to say hello, we&apos;re here.
+          <p className="text-lg md:text-xl text-brand-stone max-w-2xl mx-auto leading-8">
+            We&apos;d love to hear from you. Whether you have questions about our services,
+            want to learn more about our community, or simply want to say hello, we&apos;re here.
           </p>
         </div>
       </section>
 
       {/* Form Section */}
-      <section className="py-12 md:py-16 bg-white">
+      <section className="py-12 md:py-16 bg-brand-section">
         <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-3xl">
           {/* Success Message */}
           {submitStatus === 'success' && (
@@ -160,10 +161,10 @@ export default function ContactChurchPage() {
             </div>
           )}
 
-          <Card className="shadow-lg">
+          <Card className="shadow-lg rounded-[28px] border border-brand-border bg-white/88">
             <CardHeader className="space-y-3">
-              <CardTitle className="text-2xl md:text-3xl">Contact Form</CardTitle>
-              <CardDescription className="text-base">
+              <CardTitle className="text-2xl md:text-3xl text-[#1f1f1f] font-display">Contact Form</CardTitle>
+              <CardDescription className="text-base text-[#625c53]">
                 Fill out the form below and we&apos;ll respond within 24-48 hours.
               </CardDescription>
             </CardHeader>
@@ -283,7 +284,7 @@ export default function ContactChurchPage() {
                   <Button
                     type="submit"
                     size="lg"
-                    className="w-full h-12 text-base"
+                    className="w-full h-12 text-base bg-brand-button-gold text-[#1f1f1f] hover:brightness-105"
                     disabled={isSubmitting || !turnstileToken}
                   >
                     {isSubmitting ? (
@@ -305,21 +306,21 @@ export default function ContactChurchPage() {
 
           {/* Additional Contact Info */}
           <div className="mt-12 text-center">
-            <p className="text-gray-600 mb-4">
+            <p className="mb-4 text-[#625c53]">
               Prefer to reach us directly?
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <a
                 href="mailto:theservingchurchdallas@gmail.com"
-                className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2"
+                className="font-medium text-[#6e5b33] hover:text-[#4f4022] flex items-center gap-2"
               >
                 <Mail className="w-5 h-5" />
                 theservingchurchdallas@gmail.com
               </a>
               <span className="hidden sm:inline text-gray-300">|</span>
               <a
-                href="tel:+12147386371"
-                className="text-blue-600 hover:text-blue-700 font-medium flex items-center gap-2"
+                href="tel:+121****6371"
+                className="font-medium text-[#6e5b33] hover:text-[#4f4022] flex items-center gap-2"
               >
                 <Phone className="w-5 h-5" />
                 (214) 738-6371

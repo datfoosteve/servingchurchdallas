@@ -176,20 +176,23 @@ const PrayerRequestPage: React.FC = () => {
   };
 
   return (
-    <main className="w-full py-12 md:py-24 lg:py-32 bg-gray-50">
+    <main className="w-full py-12 md:py-24 lg:py-32 bg-brand-section">
       <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-2xl">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4 text-center">Prayer Requests</h1>
-        <p className="text-base text-gray-600 mb-8 text-center max-w-xl mx-auto">
-          We believe in the power of prayer. Share your prayer request with us and our church family will lift you up in prayer.
-        </p>
+        <div className="mb-8 text-center">
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">Prayer Request</p>
+          <h1 className="text-3xl md:text-4xl font-semibold mb-4 text-center text-[#1f1f1f] font-display">Prayer Requests</h1>
+          <p className="text-base text-[#625c53] mb-8 text-center max-w-xl mx-auto leading-8">
+            We believe in the power of prayer. Share your prayer request with us and our church family will lift you up in prayer.
+          </p>
+        </div>
 
         {/* Member Status Card */}
         {isLoggedIn && member && (
-          <Card className="mb-6 bg-gradient-to-r from-blue-50 to-purple-50 border-blue-200">
+          <Card className="mb-6 rounded-[24px] border border-brand-gold/30 bg-[rgba(200,169,107,0.10)]">
             <CardContent className="pt-6">
               <div className="flex items-center gap-3">
-                <div className="bg-blue-500 p-2 rounded-full">
-                  <User className="h-5 w-5 text-white" />
+                <div className="rounded-full border border-brand-gold/30 bg-brand-button p-2">
+                  <User className="h-5 w-5 text-brand-ivory" />
                 </div>
                 <div>
                   <p className="font-semibold text-gray-900">
@@ -204,30 +207,30 @@ const PrayerRequestPage: React.FC = () => {
           </Card>
         )}
 
-        <Tabs defaultValue="public" className="w-full bg-white rounded-lg shadow-lg p-6" onValueChange={(value) => setIsPublic(value === 'public')}>
-          <TabsList className="grid grid-cols-2 mb-6 w-full">
+        <Tabs defaultValue="public" className="w-full rounded-[28px] border border-brand-border bg-white/88 p-6 shadow-lg" onValueChange={(value) => setIsPublic(value === 'public')}>
+          <TabsList className="mb-6 grid w-full grid-cols-2">
             <TabsTrigger value="public">Public Prayer</TabsTrigger>
             <TabsTrigger value="private">Private Prayer</TabsTrigger>
           </TabsList>
 
           <TabsContent value="public">
-            <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-md">
-              <p className="text-sm text-blue-800">
+            <div className="mb-4 rounded-xl border border-brand-gold/30 bg-[rgba(200,169,107,0.10)] p-4">
+              <p className="text-sm text-[#6e5b33]">
                 Public prayer requests will be shared on the prayer wall for the entire congregation to see and pray for.
               </p>
             </div>
 
             {/* Anonymity Toggle for Logged-in Members */}
             {isLoggedIn && (
-              <div className="mb-6 p-4 bg-purple-50 border border-purple-200 rounded-md">
+              <div className="mb-6 rounded-xl border border-brand-border bg-brand-section p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
-                    {showName ? <User className="h-5 w-5 text-purple-600" /> : <UserX className="h-5 w-5 text-purple-600" />}
+                    {showName ? <User className="h-5 w-5 text-brand-gold" /> : <UserX className="h-5 w-5 text-brand-gold" />}
                     <div>
-                      <Label htmlFor="show-name" className="text-sm font-semibold cursor-pointer">
+                      <Label htmlFor="show-name" className="text-sm font-semibold cursor-pointer text-[#1f1f1f]">
                         {showName ? 'Show my name on prayer wall' : 'Post anonymously'}
                       </Label>
-                      <p className="text-xs text-purple-700">
+                      <p className="text-xs text-[#6e5b33]">
                         {showName
                           ? 'Your name will be displayed with your prayer request'
                           : 'Your prayer will show as "Anonymous"'}
@@ -342,7 +345,7 @@ const PrayerRequestPage: React.FC = () => {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+                  className="w-full bg-brand-button-gold text-[#1f1f1f] hover:brightness-105"
                   disabled={isSubmitting || !turnstileToken}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Prayer Request'}
@@ -352,8 +355,8 @@ const PrayerRequestPage: React.FC = () => {
           </TabsContent>
 
           <TabsContent value="private">
-            <div className="mb-4 p-4 bg-purple-50 border border-purple-200 rounded-md">
-              <p className="text-sm text-purple-800">
+            <div className="mb-4 rounded-xl border border-brand-border bg-brand-section p-4">
+              <p className="text-sm text-[#6e5b33]">
                 Private prayer requests will only be seen by the pastoral team and will not be shared publicly.
               </p>
             </div>
@@ -457,7 +460,7 @@ const PrayerRequestPage: React.FC = () => {
 
                 <Button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700"
+                  className="w-full bg-brand-button text-brand-ivory hover:brightness-110"
                   disabled={isSubmitting || !turnstileToken}
                 >
                   {isSubmitting ? 'Submitting...' : 'Submit Private Prayer Request'}
@@ -468,7 +471,7 @@ const PrayerRequestPage: React.FC = () => {
         </Tabs>
 
         {!isLoggedIn && (
-          <Card className="mt-6 bg-blue-50 border-blue-200">
+          <Card className="mt-6 rounded-[24px] border border-brand-gold/30 bg-[rgba(200,169,107,0.10)]">
             <CardHeader>
               <CardTitle className="text-lg flex items-center gap-2">
                 <User className="h-5 w-5" />
@@ -479,7 +482,7 @@ const PrayerRequestPage: React.FC = () => {
               </CardDescription>
             </CardHeader>
             <CardContent>
-              <Button asChild variant="outline" className="w-full">
+              <Button asChild variant="outline" className="w-full border-brand-gold/40 text-[#1f1f1f] hover:bg-[rgba(200,169,107,0.10)] hover:text-[#1f1f1f]">
                 <a href="/auth/login">Login to Member Portal</a>
               </Button>
             </CardContent>
