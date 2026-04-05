@@ -106,12 +106,12 @@ export function NavComponent() {
             <div className="flex items-center gap-3 text-lg font-semibold md:text-base">
               <div className="flex items-center gap-3 rounded-full border border-brand-gold/25 bg-white/5 px-4 py-2">
                 <ChurchIcon className="h-7 w-7 text-brand-gold" />
-                <div className="leading-tight">
-                  <div className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-brand-gold">
-                    The Serving
+                <div className="leading-none">
+                  <div className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+                    THE SERVING
                   </div>
-                  <div className="text-sm font-semibold text-brand-ivory md:text-base">
-                    Church
+                  <div className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-brand-ivory md:text-base">
+                    CHURCH
                   </div>
                 </div>
               </div>
@@ -135,12 +135,12 @@ export function NavComponent() {
                 <Link className="flex items-center gap-2 text-lg font-semibold md:text-base" href="/">
                   <div className="flex items-center gap-3 rounded-full border border-brand-gold/25 bg-white/5 px-4 py-3">
                     <ChurchIcon className="h-7 w-7 text-brand-gold" />
-                    <div className="leading-tight">
-                      <div className="text-[0.62rem] font-semibold uppercase tracking-[0.28em] text-brand-gold">
-                        The Serving
+                    <div className="leading-none">
+                      <div className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+                        THE SERVING
                       </div>
-                      <div className="text-sm font-semibold text-brand-ivory">
-                        Church
+                      <div className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-brand-ivory">
+                        CHURCH
                       </div>
                     </div>
                   </div>

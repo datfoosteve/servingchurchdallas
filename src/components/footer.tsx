@@ -23,7 +23,14 @@ export default function Footer() {
             <Link className="mb-6 flex items-center" href="/">
               <div className="flex items-center gap-3 rounded-full border border-brand-gold/20 bg-white/5 px-4 py-3">
                 <ChurchIcon className="h-8 w-8 text-brand-gold" />
-                <span className="text-2xl font-semibold text-brand-ivory">The Serving Church</span>
+                <div className="leading-none">
+                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-brand-gold">
+                    THE SERVING
+                  </div>
+                  <div className="mt-1 text-base font-semibold uppercase tracking-[0.2em] text-brand-ivory md:text-lg">
+                    CHURCH
+                  </div>
+                </div>
               </div>
             </Link>
             <p className="mb-5 max-w-sm text-sm leading-7 text-brand-stone">
