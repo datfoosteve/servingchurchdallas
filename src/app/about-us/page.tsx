@@ -40,11 +40,14 @@ const AboutUsPage: React.FC = () => {
             </h2>
           </div>
           <div className="rounded-[28px] border border-brand-border bg-white/85 p-8 shadow-[0_16px_40px_rgba(0,0,0,0.10)] md:p-12">
-            <p className="text-center text-base leading-8 text-[#5f584f] md:text-lg lg:text-xl">
-              Our church is committed to bringing the kingdom of God here in the city of Sunnyvale, Texas.
-              We have a strong calling to the high school and to the district, so if you are interested in
-              serving God by impacting the next generation at the schools, we would love to work alongside you.
-            </p>
+            <div className="mx-auto max-w-3xl space-y-5 text-center text-base leading-8 text-[#5f584f] md:text-lg lg:text-xl">
+              <p>
+                Our mission is to equip people to look like Jesus and walk with Him daily. As they walk with Him each day, they are transformed, and that transformation begins to impact the spaces they enter and the lives of those around them.
+              </p>
+              <p>
+                We believe that true Sunday worship is strengthened by daily devotion. A life consistently surrendered to Jesus throughout the week leads to a greater outpouring of worship, unity, and spiritual vitality when we gather on Sunday morning.
+              </p>
+            </div>
           </div>
         </div>
       </section>
