@@ -52,47 +52,45 @@ export function WelcomeSection() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row sm:flex-wrap">
-          <Button
-            asChild
-            size="lg"
-            className="bg-brand-button text-brand-ivory shadow-lg transition hover:brightness-110 hover:shadow-xl"
-          >
-            <Link href="/contact-us/contact-church">
-              <span className="flex items-center gap-2 text-base font-semibold">
-                Connect With Us
-                <ArrowRight className="h-5 w-5" />
-              </span>
-            </Link>
-          </Button>
+        <div className="mx-auto mt-12 max-w-3xl">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <Button
+              asChild
+              size="lg"
+              className="h-14 w-full bg-brand-button text-brand-ivory shadow-lg transition hover:brightness-110 hover:shadow-xl"
+            >
+              <Link href="/contact-us/contact-church">
+                <span className="flex items-center justify-center gap-2 text-base font-semibold">
+                  Connect With Us
+                  <ArrowRight className="h-5 w-5" />
+                </span>
+              </Link>
+            </Button>
 
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-brand-gold/40 bg-transparent text-[#1f1f1f] hover:bg-[rgba(200,169,107,0.10)] hover:text-[#1f1f1f]"
-          >
-            <Link href="/location">
-              <span className="flex items-center gap-2 text-base font-semibold">
-                <MapPin className="h-5 w-5" />
-                Get Directions
-              </span>
-            </Link>
-          </Button>
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="h-14 w-full border-brand-gold/40 bg-transparent text-[#1f1f1f] hover:bg-[rgba(200,169,107,0.10)] hover:text-[#1f1f1f]"
+            >
+              <Link href="/location">
+                <span className="flex items-center justify-center gap-2 text-base font-semibold">
+                  <MapPin className="h-5 w-5" />
+                  Get Directions
+                </span>
+              </Link>
+            </Button>
+          </div>
 
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="border-brand-border bg-white/60 text-[#1f1f1f] hover:bg-white hover:text-[#1f1f1f]"
-          >
-            <Link href="/events">
-              <span className="flex items-center gap-2 text-base font-semibold">
-                View Events
-                <ArrowRight className="h-5 w-5" />
-              </span>
+          <div className="mt-5 flex justify-center">
+            <Link
+              href="/events"
+              className="inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#6e5b33] transition-colors hover:text-[#4f4022]"
+            >
+              View Events
+              <ArrowRight className="h-4 w-4" />
             </Link>
-          </Button>
+          </div>
         </div>
       </div>
     </section>
