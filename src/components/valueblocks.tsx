@@ -40,11 +40,11 @@ export function ValueBlocks() {
           <p className="mb-4 text-sm font-semibold uppercase tracking-[0.32em] text-brand-gold">
             What We Hope For
           </p>
-          <h2 className="text-3xl font-semibold text-brand-ivory md:text-4xl lg:text-5xl">
+          <h2 className="mx-auto max-w-2xl text-3xl font-bold leading-tight text-[#201d18] md:text-4xl lg:text-5xl">
             Three commitments that shape our life together
           </h2>
           <div className="mx-auto mt-6 h-px w-40 bg-gradient-to-r from-transparent via-[rgba(200,169,107,0.9)] to-transparent" />
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-brand-stone md:text-lg">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-[#5f584f] md:text-lg">
             These are the values we want to practice as a church family: becoming more like Christ,
             strengthening our homes, and pursuing the presence of God with sincerity.
           </p>
