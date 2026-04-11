@@ -35,9 +35,8 @@ import {
   DollarSign,
   Book,
 } from "lucide-react";
-import ChurchIcon from "@/images/icons/ChurchIcon";
-
 import ChevronRightIcon from "@/images/icons/ChevronRightIcon";
+import { SiteLogo } from "@/components/site-logo";
 import MenuIcon from "@/images/icons/MenuIcon";
 import { CommandMenu } from "@/components/command-menu";
 import { PrayerBadge } from "@/components/prayer-badge";
@@ -102,20 +101,13 @@ export function NavComponent() {
     <React.Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}>
       <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 backdrop-blur-xl md:px-6">
         <div className="flex min-w-0 shrink-0 items-center gap-3">
-          <Link href="/" passHref className="shrink-0">
-            <div className="flex items-center gap-3 text-lg font-semibold md:text-base">
-              <div className="flex items-center gap-3 rounded-full border border-brand-gold/25 bg-white/5 px-4 py-2">
-                <ChurchIcon className="h-7 w-7 text-brand-gold" />
-                <div className="leading-none">
-                  <div className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-brand-gold">
-                    THE SERVING
-                  </div>
-                  <div className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-brand-ivory md:text-base">
-                    CHURCH
-                  </div>
-                </div>
-              </div>
-              <span className="sr-only">Serving Church</span>
+          <Link href="/" passHref className="shrink-0" aria-label="The Serving Church home">
+            <div className="flex items-center text-lg font-semibold md:text-base">
+              <SiteLogo
+                className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-2 shadow-sm"
+                imgClassName="h-11 md:h-12"
+              />
+              <span className="sr-only">The Serving Church</span>
             </div>
           </Link>
 
@@ -132,19 +124,12 @@ export function NavComponent() {
             </SheetTrigger>
             <SheetContent side="left" className="border-brand-border bg-[#181818] text-brand-ivory">
               <div className="flex items-center justify-between">
-                <Link className="flex items-center gap-2 text-lg font-semibold md:text-base" href="/">
-                  <div className="flex items-center gap-3 rounded-full border border-brand-gold/25 bg-white/5 px-4 py-3">
-                    <ChurchIcon className="h-7 w-7 text-brand-gold" />
-                    <div className="leading-none">
-                      <div className="text-[0.62rem] font-semibold uppercase tracking-[0.22em] text-brand-gold">
-                        THE SERVING
-                      </div>
-                      <div className="mt-1 text-sm font-semibold uppercase tracking-[0.2em] text-brand-ivory">
-                        CHURCH
-                      </div>
-                    </div>
-                  </div>
-                  <span className="sr-only">Serving Church</span>
+                <Link className="flex items-center text-lg font-semibold md:text-base" href="/" aria-label="The Serving Church home">
+                  <SiteLogo
+                    className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-2 shadow-sm"
+                    imgClassName="h-11"
+                  />
+                  <span className="sr-only">The Serving Church</span>
                 </Link>
               </div>
 

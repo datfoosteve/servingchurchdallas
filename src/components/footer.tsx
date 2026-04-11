@@ -6,7 +6,7 @@ const Link = React.lazy(() =>
 );
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import ChurchIcon from "@/images/icons/ChurchIcon";
+import { SiteLogo } from "@/components/site-logo";
 import FacebookIcon from "@/images/icons/FacebookIcon";
 import InstagramIcon from "@/images/icons/InstagramIcon";
 import MapPinIcon from "@/images/icons/MapPinIcon";
@@ -20,18 +20,11 @@ export default function Footer() {
       <div className="container mx-auto max-w-7xl px-4 py-14 md:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link className="mb-6 flex items-center" href="/">
-              <div className="flex items-center gap-3 rounded-full border border-brand-gold/20 bg-white/5 px-4 py-3">
-                <ChurchIcon className="h-8 w-8 text-brand-gold" />
-                <div className="leading-none">
-                  <div className="text-[0.68rem] font-semibold uppercase tracking-[0.22em] text-brand-gold">
-                    THE SERVING
-                  </div>
-                  <div className="mt-1 text-base font-semibold uppercase tracking-[0.2em] text-brand-ivory md:text-lg">
-                    CHURCH
-                  </div>
-                </div>
-              </div>
+            <Link className="mb-6 flex items-center" href="/" aria-label="The Serving Church home">
+              <SiteLogo
+                className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-3 shadow-sm"
+                imgClassName="h-12 md:h-14"
+              />
             </Link>
             <p className="mb-5 max-w-sm text-sm leading-7 text-brand-stone">
               A church family seeking to reflect the image of Christ through worship, prayer, service, and community.
