@@ -99,13 +99,13 @@ const desktopPanelLinkClass =
 export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}>
-      <header className="sticky top-0 z-50 flex h-28 w-full items-center justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 backdrop-blur-xl md:h-32 md:px-6">
-        <div className="flex min-w-0 shrink-0 items-center gap-2 md:gap-3">
+      <header className="sticky top-0 z-50 flex h-20 w-full items-start justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 pt-3 backdrop-blur-xl md:h-28 md:items-center md:px-6 md:pt-0">
+        <div className="flex min-w-0 shrink-0 items-start gap-2 md:items-center md:gap-3">
           <Link href="/" passHref className="shrink-0" aria-label="The Serving Church home">
             <div className="flex items-center text-lg font-semibold md:text-base">
               <SiteLogo
-                className="relative"
-                imgClassName="h-16 md:h-20"
+                className="relative -mb-8 md:-mb-0"
+                imgClassName="h-24 md:h-20"
               />
               <span className="sr-only">The Serving Church</span>
             </div>
@@ -114,7 +114,7 @@ export function NavComponent() {
           <Sheet>
             <SheetTrigger asChild>
               <Button
-                className="self-center border-brand-gold/30 bg-white/5 text-brand-ivory hover:bg-white/10 lg:hidden"
+                className="h-9 w-9 self-start border-brand-gold/30 bg-white/5 text-brand-ivory hover:bg-white/10 lg:hidden"
                 size="icon"
                 variant="outline"
               >
@@ -299,7 +299,7 @@ export function NavComponent() {
           </NavigationMenu>
         </div>
 
-        <div className="flex shrink-0 items-center justify-end gap-1.5 md:gap-3">
+        <div className="flex shrink-0 items-start justify-end gap-1.5 pt-0.5 md:items-center md:gap-3 md:pt-0">
           <div className="hidden sm:block">
             <CommandMenu />
           </div>
