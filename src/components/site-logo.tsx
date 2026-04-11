@@ -20,8 +20,8 @@ export function SiteLogo({
       <Image
         src={SITE_LOGO_URL}
         alt={alt}
-        width={240}
-        height={72}
+        width={320}
+        height={96}
         priority
         className={cn("block h-12 w-auto", imgClassName)}
       />

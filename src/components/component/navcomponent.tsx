@@ -99,13 +99,13 @@ const desktopPanelLinkClass =
 export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}>
-      <header className="sticky top-0 z-50 flex h-20 w-full items-center justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 backdrop-blur-xl md:px-6">
+      <header className="sticky top-0 z-50 flex h-24 w-full items-center justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 backdrop-blur-xl md:h-28 md:px-6">
         <div className="flex min-w-0 shrink-0 items-center gap-3">
           <Link href="/" passHref className="shrink-0" aria-label="The Serving Church home">
             <div className="flex items-center text-lg font-semibold md:text-base">
               <SiteLogo
-                className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-2 shadow-sm"
-                imgClassName="h-11 md:h-12"
+                className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-2 shadow-sm md:px-4 md:py-3"
+                imgClassName="h-14 md:h-16"
               />
               <span className="sr-only">The Serving Church</span>
             </div>
@@ -127,7 +127,7 @@ export function NavComponent() {
                 <Link className="flex items-center text-lg font-semibold md:text-base" href="/" aria-label="The Serving Church home">
                   <SiteLogo
                     className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-2 shadow-sm"
-                    imgClassName="h-11"
+                    imgClassName="h-14"
                   />
                   <span className="sr-only">The Serving Church</span>
                 </Link>
