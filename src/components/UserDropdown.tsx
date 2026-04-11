@@ -98,7 +98,7 @@ export function UserDropdown() {
       <Button
         asChild
         variant="outline"
-        className="border-brand-gold/30 bg-white/5 text-brand-ivory hover:bg-white/10 hover:text-brand-ivory"
+        className="h-9 border-brand-gold/30 bg-white/5 px-3 text-sm text-brand-ivory hover:bg-white/10 hover:text-brand-ivory sm:h-10 sm:px-4"
       >
         <Link href="/auth/login">
           <User className="mr-2 h-4 w-4 text-brand-gold" />

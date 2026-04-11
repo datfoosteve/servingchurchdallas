@@ -99,13 +99,13 @@ const desktopPanelLinkClass =
 export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}>
-      <header className="sticky top-0 z-50 flex h-24 w-full items-center justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 backdrop-blur-xl md:h-28 md:px-6">
-        <div className="flex min-w-0 shrink-0 items-center gap-3">
+      <header className="sticky top-0 z-50 flex h-28 w-full items-center justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 backdrop-blur-xl md:h-32 md:px-6">
+        <div className="flex min-w-0 shrink-0 items-center gap-2 md:gap-3">
           <Link href="/" passHref className="shrink-0" aria-label="The Serving Church home">
             <div className="flex items-center text-lg font-semibold md:text-base">
               <SiteLogo
                 className="relative"
-                imgClassName="h-14 md:h-16"
+                imgClassName="h-16 md:h-20"
               />
               <span className="sr-only">The Serving Church</span>
             </div>
@@ -127,7 +127,7 @@ export function NavComponent() {
                 <Link className="flex items-center text-lg font-semibold md:text-base" href="/" aria-label="The Serving Church home">
                   <SiteLogo
                     className="relative"
-                    imgClassName="h-14"
+                    imgClassName="h-16"
                   />
                   <span className="sr-only">The Serving Church</span>
                 </Link>
@@ -299,7 +299,7 @@ export function NavComponent() {
           </NavigationMenu>
         </div>
 
-        <div className="flex shrink-0 items-center justify-end gap-2 md:gap-3">
+        <div className="flex shrink-0 items-center justify-end gap-1.5 md:gap-3">
           <div className="hidden sm:block">
             <CommandMenu />
           </div>

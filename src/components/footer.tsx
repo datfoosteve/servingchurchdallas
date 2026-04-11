@@ -23,7 +23,7 @@ export default function Footer() {
             <Link className="mb-6 flex items-center" href="/" aria-label="The Serving Church home">
               <SiteLogo
                 className="relative"
-                imgClassName="h-16 md:h-20"
+                imgClassName="h-[4.5rem] md:h-24"
               />
             </Link>
             <p className="mb-5 max-w-sm text-sm leading-7 text-brand-stone">
