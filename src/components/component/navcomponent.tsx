@@ -100,13 +100,22 @@ export function NavComponent() {
   return (
     <React.Suspense fallback={<Skeleton className="h-[20px] w-[100px] rounded-full" />}>
       <header className="sticky top-0 z-50 flex h-20 w-full items-start justify-between border-b border-brand-gold/20 bg-[rgba(20,20,20,0.86)] px-4 pt-3 backdrop-blur-xl md:h-28 md:items-center md:px-6 md:pt-0">
+        <Link
+          href="/"
+          passHref
+          className="absolute left-1/2 top-3 z-10 -translate-x-1/2 md:hidden"
+          aria-label="The Serving Church home"
+        >
+          <div className="flex items-center text-lg font-semibold">
+            <SiteLogo className="relative -mb-8" imgClassName="h-24" />
+            <span className="sr-only">The Serving Church</span>
+          </div>
+        </Link>
+
         <div className="flex min-w-0 shrink-0 items-start gap-2 md:items-center md:gap-3">
-          <Link href="/" passHref className="shrink-0" aria-label="The Serving Church home">
+          <Link href="/" passHref className="hidden shrink-0 md:block" aria-label="The Serving Church home">
             <div className="flex items-center text-lg font-semibold md:text-base">
-              <SiteLogo
-                className="relative -mb-8 md:-mb-0"
-                imgClassName="h-24 md:h-20"
-              />
+              <SiteLogo className="relative" imgClassName="h-20" />
               <span className="sr-only">The Serving Church</span>
             </div>
           </Link>
