@@ -22,7 +22,7 @@ export default function Footer() {
           <div>
             <Link className="mb-6 flex items-center" href="/" aria-label="The Serving Church home">
               <SiteLogo
-                className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-3 shadow-sm md:px-4 md:py-4"
+                className="relative"
                 imgClassName="h-16 md:h-20"
               />
             </Link>

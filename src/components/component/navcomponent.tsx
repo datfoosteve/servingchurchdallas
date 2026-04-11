@@ -104,7 +104,7 @@ export function NavComponent() {
           <Link href="/" passHref className="shrink-0" aria-label="The Serving Church home">
             <div className="flex items-center text-lg font-semibold md:text-base">
               <SiteLogo
-                className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-2 shadow-sm md:px-4 md:py-3"
+                className="relative"
                 imgClassName="h-14 md:h-16"
               />
               <span className="sr-only">The Serving Church</span>
@@ -126,7 +126,7 @@ export function NavComponent() {
               <div className="flex items-center justify-between">
                 <Link className="flex items-center text-lg font-semibold md:text-base" href="/" aria-label="The Serving Church home">
                   <SiteLogo
-                    className="rounded-full border border-brand-gold/20 bg-white/5 px-3 py-2 shadow-sm"
+                    className="relative"
                     imgClassName="h-14"
                   />
                   <span className="sr-only">The Serving Church</span>
